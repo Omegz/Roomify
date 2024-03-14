@@ -1,4 +1,4 @@
-import { OpenAIModel } from "~/types/Model";
+import type { OpenAIModel } from "~/types/Model";
 
 export const LS_UUID = "@ls/uuid";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
 import Sidebar from "./Sidebar";
-import { Signal } from "@preact/signals-react";
+import type { Signal } from "@preact/signals-react";
 
 
 const MobileSiderbar = (props: { mobileSidebarVisible: Signal<boolean> }) => {
