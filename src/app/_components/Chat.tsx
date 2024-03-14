@@ -75,7 +75,7 @@ const sendMessageButton = computed(() => <button
   onClick={sendMessage}
   className="absolute p-1 rounded-md bottom-1.5 md:bottom-2.5 bg-transparent disabled:bg-gray-500 right-1 md:right-2 disabled:opacity-40"
 >
-  <div className="i-fe-search h-4 w-4 mr-1 text-white"></div>
+  <div className="i-material-symbols-send-rounded h-4 w-4 mr-1 text-white"></div>
 </button>)
 
 const selectedModel = DEFAULT_OPENAI_MODEL;

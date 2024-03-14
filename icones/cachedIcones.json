@@ -58,5 +58,9 @@
   {
     "iconeName": "mdi:logout",
     "iconeColored": false
+  },
+  {
+    "iconeName": "material-symbols:send-rounded",
+    "iconeColored": false
   }
 ]

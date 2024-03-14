@@ -58,5 +58,9 @@
   ".i-mdi-logout": {
     "@apply i-base-mono": {},
     "--icon": "url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0ibTE3IDdsLTEuNDEgMS40MUwxOC4xNyAxMUg4djJoMTAuMTdsLTIuNTggMi41OEwxNyAxN2w1LTVNNCA1aDhWM0g0Yy0xLjEgMC0yIC45LTIgMnYxNGMwIDEuMS45IDIgMiAyaDh2LTJINHoiLz48L3N2Zz4=\")"
+  },
+  ".i-material-symbols-send-rounded": {
+    "@apply i-base-mono": {},
+    "--icon": "url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTQuNCAxOS40MjVxLS41LjItLjk1LS4wODhUMyAxOC41VjE0bDgtMmwtOC0yVjUuNXEwLS41NS40NS0uODM3dC45NS0uMDg4bDE1LjQgNi41cS42MjUuMjc1LjYyNS45MjV0LS42MjUuOTI1eiIvPjwvc3ZnPg==\")"
   }
 }
