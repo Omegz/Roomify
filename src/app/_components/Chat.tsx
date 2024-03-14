@@ -1,4 +1,4 @@
-import { createRef } from "react";
+import { createRef, type KeyboardEvent, type MouseEvent } from "react";
 import { FiSend } from "react-icons/fi";
 import { BsChevronDown, BsPlusLg } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -83,7 +83,7 @@ const sendMessageButton = computed(() => <button
 
 const selectedModel = DEFAULT_OPENAI_MODEL;
 
-const sendMessage = async (e: any) => {
+const sendMessage = async (e: KeyboardEvent<HTMLTextAreaElement> | MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
   e.preventDefault();
 
   // Don't send empty messages
@@ -120,8 +120,8 @@ const sendMessage = async (e: any) => {
     ]
 
     isLoading.value = false
-  } catch (error: { message: string } | Error | any) {
-    const errors = JSON.parse((error)?.message ?? '') as { message: string }[]
+  } catch (error) {
+    const errors = JSON.parse((error as { message: string })?.message ?? '') as { message: string }[] | undefined;
     (errors)?.forEach(error => {
       console.log(error.message);
       errorMessage.value = error.message
@@ -148,11 +148,11 @@ effect(() => {
   }
 });
 
-const handleKeypress = (e: any) => {
+const handleKeypress = async (e: KeyboardEvent<HTMLTextAreaElement>) => {
   // It's triggers by pressing the enter key
-  if (e.keyCode == 13 && !e.shiftKey) {
-    sendMessage(e);
+  if (e.key === "Enter" && !e.shiftKey) {
     e.preventDefault();
+    await sendMessage(e);
   }
 };
 
@@ -174,7 +174,7 @@ const textArea = computed(() => (<textarea
 ></textarea>))
 
 
-const Chat = (props: { mobileSidebarVisible: Signal<Boolean> }) => {
+const Chat = (props: { mobileSidebarVisible: Signal<boolean> }) => {
   console.log("chat rerendered")
   const { mobileSidebarVisible } = props;
 
