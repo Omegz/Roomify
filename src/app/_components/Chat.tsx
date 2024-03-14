@@ -148,11 +148,11 @@ effect(() => {
   }
 });
 
-const handleKeypress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+const handleKeypress = async (e: KeyboardEvent<HTMLTextAreaElement>) => {
   // It's triggers by pressing the enter key
   if (e.key === "Enter" && !e.shiftKey) {
-    sendMessage(e);
     e.preventDefault();
+    await sendMessage(e);
   }
 };
 
