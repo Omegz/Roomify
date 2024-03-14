@@ -174,7 +174,7 @@ const textArea = computed(() => (<textarea
 ></textarea>))
 
 
-const Chat = (props: { mobileSidebarVisible: Signal<Boolean> }) => {
+const Chat = (props: { mobileSidebarVisible: Signal<boolean> }) => {
   console.log("chat rerendered")
   const { mobileSidebarVisible } = props;
 
