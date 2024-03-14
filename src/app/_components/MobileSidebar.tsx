@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 import { Signal } from "@preact/signals-react";
 
 
-const MobileSiderbar = (props: { mobileSidebarVisible: Signal<Boolean> }) => {
+const MobileSiderbar = (props: { mobileSidebarVisible: Signal<boolean> }) => {
   const { mobileSidebarVisible } = props;
   return (
     <div id="headlessui-portal-root display:hidden" className={(mobileSidebarVisible.value ? '' : 'invisible ') + "md:hidden"}>
