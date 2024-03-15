@@ -2,7 +2,7 @@
 import { createRef, type KeyboardEvent, type MouseEvent } from "react";
 import Message from "./Message";
 import { Category, DEFAULT_OPENAI_MODEL } from "~/shared/Constants";
-import { type Signal, computed, signal, effect } from "@preact/signals-react";
+import { computed, signal, effect } from "@preact/signals-react";
 import { client } from "~/trpc/react";
 import { mobileSidebarVisible } from "./MobileSidebar";
 
