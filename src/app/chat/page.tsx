@@ -1,7 +1,7 @@
+import "server-only";
 // import { useEffect } from "react";
 import MobileSiderbar from "~/app/_components/MobileSidebar";
 import Sidebar from "~/app/_components/Sidebar";
-import { signal } from "@preact/signals-react";
 import Chat from "~/app/_components/Chat";
 import { getServerAuthSession } from "~/server/auth";
 import { redirect } from "next/navigation";
