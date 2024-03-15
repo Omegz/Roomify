@@ -1,8 +1,10 @@
+'use client'
 import { createRef, type KeyboardEvent, type MouseEvent } from "react";
 import Message from "./Message";
 import { Category, DEFAULT_OPENAI_MODEL } from "~/shared/Constants";
-import { type Signal, computed, signal, effect } from "@preact/signals-react";
+import { computed, signal, effect } from "@preact/signals-react";
 import { client } from "~/trpc/react";
+import { mobileSidebarVisible } from "./MobileSidebar";
 
 const isLoading = signal(false)
 
@@ -176,10 +178,7 @@ const textArea = computed(() => (<textarea
 ></textarea>))
 
 
-const Chat = (props: { mobileSidebarVisible: Signal<boolean> }) => {
-  console.log("chat rerendered")
-  const { mobileSidebarVisible } = props;
-
+const Chat = () => {
   // const { trackEvent } = useAnalytics();
 
 
