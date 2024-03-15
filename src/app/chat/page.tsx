@@ -7,7 +7,6 @@ import { getServerAuthSession } from "~/server/auth";
 import { redirect } from "next/navigation";
 // import useAnalytics from "@/hooks/useAnalytics";
 
-const mobileSidebarVisible = signal(false);
 
 export default async function Home() {
   const session = await getServerAuthSession();
@@ -22,13 +21,13 @@ export default async function Home() {
 
   return (
     <main className="overflow-hidden w-full h-screen relative flex">
-      <MobileSiderbar mobileSidebarVisible={mobileSidebarVisible} />
+      <MobileSiderbar />
       <div className="dark hidden flex-shrink-0 bg-gray-900 md:flex md:w-[260px] md:flex-col">
         <div className="flex h-full min-h-0 flex-col ">
           <Sidebar />
         </div>
       </div>
-      <Chat mobileSidebarVisible={mobileSidebarVisible} />
+      <Chat />
     </main>
   );
 }
