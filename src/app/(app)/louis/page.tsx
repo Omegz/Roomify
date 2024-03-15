@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 // import useAnalytics from "@/hooks/useAnalytics";
 
 
-export default async function Home() {
+export default async function Louis() {
   const session = await getServerAuthSession();
   if (!session) {
     throw redirect("/")

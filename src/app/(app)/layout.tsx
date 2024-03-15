@@ -1,5 +1,5 @@
+import NextTopLoader from 'nextjs-toploader';
 import "~/styles/globals.css";
-
 // import { Inter } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
@@ -20,9 +20,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+
   return (
     <html lang="en">
-      <body>
+      <body id="body">
+        <NextTopLoader />
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
     </html>
