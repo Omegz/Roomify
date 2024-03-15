@@ -1,3 +1,4 @@
+'use client'
 import { createRef, type KeyboardEvent, type MouseEvent } from "react";
 import Message from "./Message";
 import { Category, DEFAULT_OPENAI_MODEL } from "~/shared/Constants";
