@@ -1,14 +1,19 @@
-'use client'
 // import { useEffect } from "react";
 import MobileSiderbar from "~/app/_components/MobileSidebar";
 import Sidebar from "~/app/_components/Sidebar";
 import { signal } from "@preact/signals-react";
 import Chat from "~/app/_components/Chat";
+import { getServerAuthSession } from "~/server/auth";
+import { redirect } from "next/navigation";
 // import useAnalytics from "@/hooks/useAnalytics";
 
 const mobileSidebarVisible = signal(false);
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerAuthSession();
+  if (!session) {
+    throw redirect("/")
+  }
   // const { trackEvent } = useAnalytics();
 
   // useEffect(() => {

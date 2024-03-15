@@ -55,6 +55,14 @@ export default async function Home() {
             >
               {session ? "Sign out" : "Sign in"}
             </Link>
+            {session ? (
+              <Link
+                href="/chat"
+                className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+              >
+                Chat
+              </Link>
+            ) : null}
           </div>
         </div>
 
