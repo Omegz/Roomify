@@ -5,13 +5,13 @@ import { Category } from "~/shared/Constants";
 import { selectedCategory } from "./Chat";
 import { computed } from "@preact/signals-react";
 
-const setSelectedCategory = (event) => {
-  selectedCategory.value = event.target.value;
+const setSelectedCategory = (event: React.FormEvent<HTMLDivElement>) => {
+  selectedCategory.value = (event.target as HTMLInputElement).value as Category;
 }
 
 const categoryOptions = computed(() => {
   return Object.values(Category).map((category, i) => (
-    <div key={i} onChange={setSelectedCategory}>
+    <div key={i} onChange={(e) => setSelectedCategory}>
       <input type="radio" id={category.toString()} name="category" value={category.toString()} className="hidden" />
       <label className="flex-col flex-1 overflow-y-auto border-b border-white/20" htmlFor={category.toString()}>
         <div className="flex flex-col gap-2 pb-2 text-gray-100 text-sm">
