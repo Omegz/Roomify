@@ -11,7 +11,7 @@ const setSelectedCategory = (event: React.FormEvent<HTMLDivElement>) => {
 
 const categoryOptions = computed(() => {
   return Object.values(Category).map((category, i) => (
-    <div key={i} onChange={(e) => setSelectedCategory}>
+    <div key={i} onChange={setSelectedCategory}>
       <input type="radio" id={category.toString()} name="category" value={category.toString()} className="hidden" />
       <label className="flex-col flex-1 overflow-y-auto border-b border-white/20" htmlFor={category.toString()}>
         <div className="flex flex-col gap-2 pb-2 text-gray-100 text-sm">
