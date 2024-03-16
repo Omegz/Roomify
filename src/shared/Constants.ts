@@ -20,13 +20,13 @@ export const OPENAI_MODELS: OpenAIModel[] = [
 ];
 
 export enum Category {
-  Marketing,
-  Image,
-  Code,
-  Math,
-  Science,
-  History,
-  Writer,
-  Contextual,
-  Other
+  Marketing = "Marketing",
+  Image = "Image",
+  Code = "Code",
+  Math = "Math",
+  Science = "Science",
+  History = "History",
+  Writer = "Writer",
+  Contextual = "Contextual",
+  Other = "Other",
 }

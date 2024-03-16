@@ -2,13 +2,13 @@ import { z } from "zod";
 
 import {
   createTRPCRouter,
-  publicProcedure,
+  protectedProcedure,
 } from "~/server/api/trpc";
 import { makeLouisRequest } from "../controllers/louis";
 import { Category } from "~/shared/Constants";
 
 export const openAiRouter = createTRPCRouter({
-  sendMessage: publicProcedure
+  sendMessage: protectedProcedure
     .input(z.object({
       messages: z.array(z.object({
         content: z.string().nullable(),
@@ -25,6 +25,7 @@ export const openAiRouter = createTRPCRouter({
       const question = input.messages[input?.messages?.length - 1]?.content ?? ""
       const louisResponse = await makeLouisRequest(question, input.selectedCategory)
       const louisMessage = louisResponse?.body.responseContent
+      // const louisMessage = input.selectedCategory
       return {
         message: louisMessage,
         role: "system"
