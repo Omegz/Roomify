@@ -5,6 +5,7 @@ import { HomeWords } from "~/app/_components/Home_Words";
 import Link from "next/link";
 import Image from "next/image";
 import '~/styles/landing/globals.css'
+import AuthButton from "~/app/_components/AuthButton";
 
 export default async function Home() {
   const session = await getServerAuthSession();
@@ -31,17 +32,20 @@ export default async function Home() {
           <HomeWords />
 
           <div className="container2">
-            <Link
-              href="/louis"
-              className="button type--A"
-              prefetch={true}
-            >
-              <div className="button__line"></div>
-              <div className="button__line"></div>
-              <span className="button__text sp">Chat Now</span>
-              <div className="button__drow1"></div>
-              <div className="button__drow2"></div>
-            </Link>
+            {session ? (
+              <Link
+                href="/louis"
+                className="button type--A"
+                prefetch={true}
+              >
+                <div className="button__line"></div>
+                <div className="button__line"></div>
+                <span className="button__text sp">Chat Now</span>
+                <div className="button__drow1"></div>
+                <div className="button__drow2"></div>
+              </Link>
+            ) : null}
+
             <Link
               href="/about"
               className="button type--B"
@@ -54,17 +58,7 @@ export default async function Home() {
               <div className="button__drow1"></div>
               <div className="button__drow2"></div>
             </Link>
-            <Link
-              href={session ? "/api/auth/signout" : "/api/auth/signin"}
-              className="button type--C"
-            >
-
-              <div className="button__line"></div>
-              <div className="button__line"></div>
-              <span className="button__text sp">{session ? "Sign out" : "Sign in"}</span>
-              <div className="button__drow1"></div>
-              <div className="button__drow2"></div>
-            </Link>
+            <AuthButton isLoggedIn={!!session} />
           </div>
         </div>
 
