@@ -6,6 +6,7 @@ import { computed, signal, effect } from "@preact/signals-react";
 import { client } from "~/trpc/react";
 import { mobileSidebarVisible } from "./MobileSidebar";
 
+export const selectedCategory = signal(Category.Other)
 const isLoading = signal(false)
 
 const message = signal("")
@@ -84,8 +85,6 @@ const selectedModel = DEFAULT_OPENAI_MODEL;
 
 const sendMessage = async (e: KeyboardEvent<HTMLTextAreaElement> | MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
   e.preventDefault();
-  const selectedCategory = Category.Code;
-
   // Don't send empty messages
   if (messageEmpty.value) {
     errorMessage.value = "Please enter a message."
@@ -98,8 +97,9 @@ const sendMessage = async (e: KeyboardEvent<HTMLTextAreaElement> | MouseEvent<HT
   isLoading.value = true
 
   // Add the message to the conversation
+  // cleared previous chat
   conversation.value = [
-    ...conversation.value,
+    // ...conversation.value,
     { content: message.value, role: "user" },
   ]
 
@@ -111,7 +111,7 @@ const sendMessage = async (e: KeyboardEvent<HTMLTextAreaElement> | MouseEvent<HT
     const response = await client.openai.sendMessage.mutate({
       messages: conversation.value,
       model: selectedModel,
-      selectedCategory,
+      selectedCategory: selectedCategory.value,
     })
 
     if (response?.message) {
