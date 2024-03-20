@@ -1,7 +1,7 @@
 import { postRouter } from "~/server/api/routers/post";
 import { createTRPCRouter } from "~/server/api/trpc";
 import { openAiRouter } from "~/server/api/routers/openai";
-import { stripeRouter } from "./routers/pay";
+import { stripeRouter } from "./routers/stripeRouter";
 /**
  * This is the primary router for your server.
  *

@@ -41,4 +41,37 @@ export const stripeRouter = createTRPCRouter({
         throw new Error('Failed to create checkout session');
       }
     }),
+
+    createCheckoutSessionYearly: publicProcedure
+    .input(z.object({
+      // Define any input you need for creating a checkout session
+      // For simplicity, we're not taking any inputs here
+    }))
+    .mutation(async ({ input, ctx }) => {
+      // Ensure the user is authenticated or authorized if necessary
+      // if (!ctx.session?.user) {
+      //   throw new Error('Unauthorized');
+      // }
+
+
+      try {
+
+        console.log('hit trpc endpoint for yearly')
+        const session = await stripe.checkout.sessions.create({
+          payment_method_types: ['card'],
+          line_items: [{
+            price: 'price_1OvgsrDtvZGWcW3MrNpFn3uR', // Replace with your actual price ID
+            quantity: 1,
+          }],
+          mode: 'subscription',
+          success_url: 'http://localhost:3000',
+          cancel_url: 'http://localhost:3000',
+        });
+
+        return { url: session.url };
+      } catch (error) {
+        console.error('Failed to create checkout session:', error);
+        throw new Error('Failed to create checkout session');
+      }
+    }),
 });

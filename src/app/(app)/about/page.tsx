@@ -1,5 +1,7 @@
 import "server-only";
 import StripePaymentInitiation from "~/app/_components/Pay-stripe";
+import StripeYearlyPaymentInitiation from "~/app/_components/StripeYearly";
+
 export default async function Test() {
   return (
     <main className="relative flex h-screen w-full justify-center overflow-hidden">
@@ -9,9 +11,12 @@ export default async function Test() {
             <p className="text-primary tracking-px mb-8 whitespace-nowrap font-sans text-sm font-semibold uppercase">
               👋 Kosomak
             </p>
-            <StripePaymentInitiation />
+
+            <StripeYearlyPaymentInitiation />
           </div>
         </div>
+
+        <StripePaymentInitiation />
       </div>
     </main>
   );
