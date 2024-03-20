@@ -1,6 +1,7 @@
 import "server-only";
 import StripePaymentInitiation from "~/app/_components/Pay-stripe";
-export default async function Test() {
+
+export default async function pay() {
   return (
     <main className="relative flex h-screen w-full justify-center overflow-hidden">
       <div className="flex flex-wrap lg:items-center">
