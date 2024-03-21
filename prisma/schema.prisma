@@ -55,14 +55,30 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
-    posts         Post[]
+    id                   String    @id @default(cuid())
+    name                 String?
+    email                String?   @unique
+    stripeEmail          String?
+    emailVerified        DateTime?
+    image                String?
+    stripeSessionId      String?   @unique
+    stripeCustomerId     String?   @unique
+    stripeSubscriptionId String?   @unique
+    paidSubscription     Boolean   @default(false)
+    accounts             Account[]
+    sessions             Session[]
+    posts                Post[]
+}
+
+model HistoricalStripe {
+    id                   Int      @id @default(autoincrement())
+    userId               String
+    stripeCustomerId     String
+    stripeSubscriptionId String?
+    stripeEmail          String?
+    createdAt            DateTime @default(now())
+
+    @@index([userId], name: "idx_historical_stripe_user_id")
 }
 
 model VerificationToken {
