@@ -19,22 +19,45 @@ export const config = {
 };
 
 
-// Define the function outside of your event handling switch statement
 async function handleCheckoutSessionCompleted(session) {
-  if (session.payment_status === "paid") { // Adjusted to check payment_status
+  if (session.payment_status === "paid") {
     const userId = session.metadata.userId; // Ensure this metadata is set when creating the session
+    const newStripeCustomerId = session.customer; // The new Stripe customer ID from the session
 
     try {
-      await db.user.update({
+      // Retrieve the current user to get the old stripeCustomerId
+      const user = await db.user.findUnique({
         where: { id: userId },
-        data: { paidSubscription: true },
       });
-      console.log(`User ${userId}'s subscription status updated to paid.`);
+
+      if (user) {
+        // If there is an existing stripeCustomerId, add it to the historical table
+        if (user.stripeCustomerId) {
+          await db.historicalStripe.create({
+            data: {
+              userId: userId,
+              stripeCustomerId: user.stripeCustomerId,
+            },
+          });
+        }
+
+        // Update user's stripeCustomerId and paidSubscription status
+        await db.user.update({
+          where: { id: userId },
+          data: {
+            stripeCustomerId: newStripeCustomerId,
+            paidSubscription: true,
+          },
+        });
+
+        console.log(`User ${userId}'s subscription status and Stripe customer ID updated.`);
+      }
     } catch (err) {
-      console.error('Failed to update user subscription status:', err);
+      console.error('Failed to update user subscription status or Stripe customer ID:', err);
     }
   }
 }
+
 
 export  async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
