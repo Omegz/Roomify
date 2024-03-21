@@ -23,6 +23,8 @@ async function handleCheckoutSessionCompleted(session) {
     const userId = session.metadata.userId; // Ensure this metadata is set when creating the session
     const newStripeCustomerId = session.customer; // The new Stripe customer ID from the session
     const newStripeEmail = session.customer_details.email; // The new Stripe email from the session
+    // Assuming subscription ID is directly accessible from session (adjust as needed)
+    const newStripeSubscriptionId = session.subscription;
 
     try {
       // Retrieve the current user to get the old values
@@ -31,31 +33,33 @@ async function handleCheckoutSessionCompleted(session) {
       });
 
       if (user) {
-        // Update historical data for both stripeCustomerId and stripeEmail
-        if (user.stripeCustomerId && user.stripeEmail) {
+        // Update historical data for stripeCustomerId, stripeEmail, and stripeSubscriptionId
+        if (user.stripeCustomerId && user.stripeEmail && user.stripeSubscriptionId) {
           await db.historicalStripe.create({
             data: {
               userId: userId,
               stripeCustomerId: user.stripeCustomerId,
+              stripeSubscriptionId: user.stripeSubscriptionId,
               stripeEmail: user.stripeEmail, // Assumes you're tracking previous stripeEmails
             },
           });
         }
 
-        // Update user with new Stripe customer ID and email
+        // Update user with new Stripe customer ID, email, and subscription ID
         await db.user.update({
           where: { id: userId },
           data: {
             stripeCustomerId: newStripeCustomerId,
             stripeEmail: newStripeEmail, // Update the user's stripeEmail
+            stripeSubscriptionId: newStripeSubscriptionId, // Update the subscription ID
             paidSubscription: true,
           },
         });
 
-        console.log(`User ${userId}'s subscription status, Stripe customer ID, and Stripe email updated.`);
+        console.log(`User ${userId}'s subscription status, Stripe customer ID, Stripe email, and Stripe subscription ID updated.`);
       }
     } catch (err) {
-      console.error('Failed to update user subscription status, Stripe customer ID, or Stripe email:', err);
+      console.error('Failed to update user subscription status, Stripe customer ID, Stripe email, or Stripe subscription ID:', err);
     }
   }
 }

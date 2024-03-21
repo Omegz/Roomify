@@ -71,11 +71,12 @@ model User {
 }
 
 model HistoricalStripe {
-    id               Int      @id @default(autoincrement())
-    userId           String
-    stripeCustomerId String
-    stripeEmail      String?
-    createdAt        DateTime @default(now())
+    id                   Int      @id @default(autoincrement())
+    userId               String
+    stripeCustomerId     String
+    stripeSubscriptionId String?
+    stripeEmail          String?
+    createdAt            DateTime @default(now())
 
     @@index([userId], name: "idx_historical_stripe_user_id")
 }
