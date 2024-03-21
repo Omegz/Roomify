@@ -17,40 +17,60 @@ export const config = {
   },
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method === 'POST') {
-    let event: Stripe.Event;
-    console.log('hello webhoookkkk')
 
-    // Ensure you have STRIPE_WEBHOOK_SECRET in your environment variables
-    const sig = req.headers['stripe-signature']!;
-    const reqBuffer = await buffer(req);
+//cus_PmFvIpMAhe2MS6
 
-    try {
-      event = stripe.webhooks.constructEvent(
-        reqBuffer.toString(),
-        sig,
-        STRIPE_WEBHOOK_SECRET
-      );
-    } catch (err) {
-      console.error(`Error verifying webhook signature: ${err.message}`);
-      return res.status(400).send(`Webhook verification failed: ${err.message}`);
+export  async function handler(req: NextApiRequest, res: NextApiResponse) {
+    if (req.method === 'POST') {
+      const sig = req.headers['stripe-signature']!;
+      const reqBuffer = await buffer(req);
+  
+      let event: Stripe.Event;
+  
+      // Verify and construct webhook event
+      try {
+        event = stripe.webhooks.constructEvent(
+          reqBuffer.toString(),
+          sig,
+          STRIPE_WEBHOOK_SECRET
+        );
+      } catch (err) {
+        console.error(`Error verifying webhook signature: ${err.message}`);
+        return res.status(400).send(`Webhook verification failed: ${err.message}`);
+      }
+  
+      // Process webhook event
+      try {
+        switch (event.type) {
+          case 'checkout.session.completed':
+            console.log('Checkout session completed event received');
+            // Handle successful checkout session completion here
+            console.log('webhook checkout session', event.data.object)
+            break;
+          case 'invoice.payment_succeeded':
+            console.log('Invoice payment succeeded event received');
+            // Handle successful invoice payment here
+            break;
+          case 'charge.failed':
+          case 'invoice.payment_failed':
+            console.log('Payment failed event received');
+            // Handle failed payment here
+            break;
+          // Add more event types as needed
+          default:
+            console.log(`Unhandled event type ${event.type}`);
+        }
+      } catch (error) {
+        console.error("Error processing the webhook event:", error);
+        return res.status(500).send("Internal Server Error");
+      }
+  
+      // Acknowledge the event reception to Stripe
+      res.status(200).json({ received: true });
+    } else {
+      res.setHeader('Allow', ['POST']);
+      res.status(405).end('Method Not Allowed');
     }
-
-    // Process webhook event
-    switch (event.type) {
-      case 'checkout.session.completed':
-        // Handle successful checkout session completion
-        console.log('Checkout session completed event received');
-        break;
-      // Add more event types as needed
-    }
-
-    res.status(200).json({ received: true });
-  } else {
-    res.setHeader('Allow', ['POST']);
-    res.status(405).end('Method Not Allowed');
   }
-};
 
 export default handler;
