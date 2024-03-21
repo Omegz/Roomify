@@ -1,6 +1,7 @@
 import { postRouter } from "~/server/api/routers/post";
 import { createTRPCRouter } from "~/server/api/trpc";
 import { openAiRouter } from "~/server/api/routers/openai";
+import { stripeRouter } from "./routers/stripeRouter";
 /**
  * This is the primary router for your server.
  *
@@ -9,6 +10,7 @@ import { openAiRouter } from "~/server/api/routers/openai";
 export const appRouter = createTRPCRouter({
   post: postRouter,
   openai: openAiRouter,
+  stripe: stripeRouter
 });
 
 // export type definition of API
