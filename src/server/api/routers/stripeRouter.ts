@@ -13,6 +13,20 @@ const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: '2020-08-27' });
 
 
 
+// Assumption: ctx is your context containing user information and db is your database access layer
+async function getOrCreateStripeCustomer(stripe, email: string) {
+  const customers = await stripe.customers.list({
+    email,
+    limit: 1,
+  });
+
+  if (customers.data.length > 0) {
+    return customers.data[0]; // Return existing customer
+  } else {
+    return await stripe.customers.create({ email }); // Create new customer
+  }
+}
+
 export const stripeRouter = createTRPCRouter({
   createCheckoutSession: protectedProcedure
     .input(z.object({
@@ -24,12 +38,40 @@ export const stripeRouter = createTRPCRouter({
       if (!ctx.session || !ctx.session.user) {
         throw new Error('Unauthorized');
       }
+      let stripeCustomerId = null;
+
+      // Use findFirst instead of findUnique to support OR condition
+      const user = await ctx.db.user.findFirst({
+        where: {
+          OR: [
+            { email: ctx.session.user.email },
+            { stripeEmail: ctx.session.user.email }
+          ],
+        },
+      });
+
+      if (user && user.stripeCustomerId) {
+        stripeCustomerId = user.stripeCustomerId;
+      } else {
+        const customer = await getOrCreateStripeCustomer(stripe, ctx.session.user.email);
+        stripeCustomerId = customer.id;
+        await ctx.db.user.update({
+          where: { id: ctx.session.user.id },
+          data: {
+            stripeEmail: ctx.session.user.email,
+            stripeCustomerId: stripeCustomerId,
+          },
+        });
+      }
+
 
       try {
         // Assume `planId` determines the price ID dynamically
         // const priceId = input.planId === 'yearly' ? 'price_1OvgsrDtvZGWcW3MrNpFn3uR' : 'price_1Oud3SDtvZGWcW3M7runWv1b';
         
         console.log('hit trpc endpoint');
+// cus_PmH3xYHUAEWExn
+
 
      
 
@@ -45,7 +87,7 @@ export const stripeRouter = createTRPCRouter({
           success_url: 'http://localhost:3000',
           cancel_url: 'http://localhost:3000/cancel',
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        
+          customer: stripeCustomerId,
         });
 
         console.log(stripeSession)
