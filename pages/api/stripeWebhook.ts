@@ -18,42 +18,44 @@ export const config = {
   },
 };
 
-
 async function handleCheckoutSessionCompleted(session) {
   if (session.payment_status === "paid") {
     const userId = session.metadata.userId; // Ensure this metadata is set when creating the session
     const newStripeCustomerId = session.customer; // The new Stripe customer ID from the session
+    const newStripeEmail = session.customer_details.email; // The new Stripe email from the session
 
     try {
-      // Retrieve the current user to get the old stripeCustomerId
+      // Retrieve the current user to get the old values
       const user = await db.user.findUnique({
         where: { id: userId },
       });
 
       if (user) {
-        // If there is an existing stripeCustomerId, add it to the historical table
-        if (user.stripeCustomerId) {
+        // Update historical data for both stripeCustomerId and stripeEmail
+        if (user.stripeCustomerId && user.stripeEmail) {
           await db.historicalStripe.create({
             data: {
               userId: userId,
               stripeCustomerId: user.stripeCustomerId,
+              stripeEmail: user.stripeEmail, // Assumes you're tracking previous stripeEmails
             },
           });
         }
 
-        // Update user's stripeCustomerId and paidSubscription status
+        // Update user with new Stripe customer ID and email
         await db.user.update({
           where: { id: userId },
           data: {
             stripeCustomerId: newStripeCustomerId,
+            stripeEmail: newStripeEmail, // Update the user's stripeEmail
             paidSubscription: true,
           },
         });
 
-        console.log(`User ${userId}'s subscription status and Stripe customer ID updated.`);
+        console.log(`User ${userId}'s subscription status, Stripe customer ID, and Stripe email updated.`);
       }
     } catch (err) {
-      console.error('Failed to update user subscription status or Stripe customer ID:', err);
+      console.error('Failed to update user subscription status, Stripe customer ID, or Stripe email:', err);
     }
   }
 }
