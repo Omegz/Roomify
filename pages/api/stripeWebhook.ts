@@ -3,6 +3,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
 import { buffer } from 'micro'; // Ensure 'micro' is installed or use an alternative approach
+import { db } from "~/server/db";
 
 const STRIPE_WEBHOOK_SECRET='whsec_0f3814f79714fbbc1f91404baa0bf6aaeb48e69e2c7f2584a4519a782a0c55a4'
 
@@ -18,7 +19,22 @@ export const config = {
 };
 
 
-//cus_PmFvIpMAhe2MS6
+// Define the function outside of your event handling switch statement
+async function handleCheckoutSessionCompleted(session) {
+  if (session.payment_status === "paid") { // Adjusted to check payment_status
+    const userId = session.metadata.userId; // Ensure this metadata is set when creating the session
+
+    try {
+      await db.user.update({
+        where: { id: userId },
+        data: { paidSubscription: true },
+      });
+      console.log(`User ${userId}'s subscription status updated to paid.`);
+    } catch (err) {
+      console.error('Failed to update user subscription status:', err);
+    }
+  }
+}
 
 export  async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
@@ -44,8 +60,11 @@ export  async function handler(req: NextApiRequest, res: NextApiResponse) {
         switch (event.type) {
           case 'checkout.session.completed':
             console.log('Checkout session completed event received');
-            // Handle successful checkout session completion here
-            console.log('webhook checkout session', event.data.object)
+            const session = event.data.object; // The session object from the event
+            console.log('webhook checkout session', session);
+          
+            // Call the function with the session data
+            await handleCheckoutSessionCompleted(session).catch(console.error); // Make sure to catch any errors
             break;
           case 'invoice.payment_succeeded':
             console.log('Invoice payment succeeded event received');

@@ -70,6 +70,15 @@ model User {
     posts                Post[]
 }
 
+model HistoricalStripe {
+    id               Int      @id @default(autoincrement())
+    userId           String
+    stripeCustomerId String
+    createdAt        DateTime @default(now())
+
+    @@index([userId], name: "idx_historical_stripe_user_id")
+}
+
 model VerificationToken {
     identifier String
     token      String   @unique
