@@ -82,9 +82,11 @@ export  async function handler(req: NextApiRequest, res: NextApiResponse) {
           sig,
           STRIPE_WEBHOOK_SECRET
         );
-      } catch (err: any) {
-        console.error(`Error verifying webhook signature: ${err.message}`);
-        return res.status(400).send(`Webhook verification failed: ${err.message}`);
+      } catch (err) {
+        console.error(`Error verifying webhook signature`);
+        return res.status(400).send(`Webhook verification failed: `);
+        // console.error(`Error verifying webhook signature: ${err.message}`);
+        // return res.status(400).send(`Webhook verification failed: ${err.message}`);
       }
   
       // Process webhook event
