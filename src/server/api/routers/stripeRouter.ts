@@ -7,7 +7,7 @@ import Stripe from 'stripe';
 
 const STRIPE_SECRET_KEY = 'sk_test_51Nk0IODtvZGWcW3MwkEuTOoZjGILPJkk5t1NkGpSEMQXG3sZHRU4da4vPm9pr5aDP3ZIf0iAbrHs4e6KQoINUVO500Q4NxR8xk'
 // Initialize Stripe
-const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: '2020-08-27' });
+const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: '2023-10-16' });
 
 
 import { getServerAuthSession } from "~/server/auth";
@@ -20,7 +20,8 @@ export const stripeRouter = createTRPCRouter({
     }))
     .mutation(async ({ ctx }) => {
       // Retrieve the session to get user information
-      const session = await getServerAuthSession(ctx);
+      // const session = await getServerAuthSession(ctx); come back to this 
+      const session = await getServerAuthSession();
       
       // Ensure user is authenticated
       if (!session || !session.user) {
