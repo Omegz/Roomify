@@ -22,7 +22,7 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
   if (session.payment_status === "paid") {
     const userId = session?.metadata?.userId; // Ensure this metadata is set when creating the session
     const newStripeCustomerId = session.customer; // The new Stripe customer ID from the session
-    const newStripeEmail = session?.customer_details?.email; // The new Stripe email from the session
+    // const newStripeEmail = session?.customer_details?.email; // The new Stripe email from the session
     // Assuming subscription ID is directly accessible from session (adjust as needed)
     const newStripeSubscriptionId = session.subscription;
 
@@ -49,9 +49,9 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
         await db.user.update({
           where: { id: userId },
           data: {
-            stripeCustomerId: newStripeCustomerId,
-            stripeEmail: newStripeEmail, // Update the user's stripeEmail
-            stripeSubscriptionId: newStripeSubscriptionId, // Update the subscription ID
+            stripeCustomerId: newStripeCustomerId?.toString(),
+            // email: newStripeEmail ?? "", // Update the user's stripeEmail
+            stripeSubscriptionId: newStripeSubscriptionId?.toString(), // Update the subscription ID
             paidSubscription: true,
           },
         });
