@@ -3,16 +3,12 @@ import "server-only";
 import MobileSiderbar from "~/app/_components/MobileSidebar";
 import Sidebar from "~/app/_components/Sidebar";
 import Chat from "~/app/_components/Chat";
-import { getServerAuthSession } from "~/server/auth";
-import { redirect } from "next/navigation";
+import { validateOrRedirect } from "~/server/authUtils";
 // import useAnalytics from "@/hooks/useAnalytics";
 
 
 export default async function Louis() {
-  const session = await getServerAuthSession();
-  if (!session) {
-    throw redirect("/")
-  }
+  await validateOrRedirect();
   // const { trackEvent } = useAnalytics();
 
   // useEffect(() => {
