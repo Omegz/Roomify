@@ -1,9 +1,9 @@
-'use client'
-import { signIn } from "next-auth/react"
+import Link from "next/link";
+import "server-only";
 
 export default function GoogleSignIn() {
   return (
-    <button className="signin" onClick={() => signIn("google")}>
+    <Link className="signin" href="/api/auth/login/google">
       <svg
         viewBox="0 0 256 262"
         preserveAspectRatio="xMidYMid"
@@ -27,6 +27,6 @@ export default function GoogleSignIn() {
         ></path>
       </svg>
       Sign in with Google
-    </button>
+    </Link>
   )
 }

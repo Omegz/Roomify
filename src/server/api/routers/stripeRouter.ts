@@ -7,29 +7,23 @@ import Stripe from 'stripe';
 
 const STRIPE_SECRET_KEY = 'sk_test_51Nk0IODtvZGWcW3MwkEuTOoZjGILPJkk5t1NkGpSEMQXG3sZHRU4da4vPm9pr5aDP3ZIf0iAbrHs4e6KQoINUVO500Q4NxR8xk'
 // Initialize Stripe
-const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: '2020-08-27' });
-
-
-import { getServerAuthSession } from "~/server/auth";
-
+const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: '2023-10-16' });
 
 export const stripeRouter = createTRPCRouter({
-  createCheckoutSession: publicProcedure
+  createCheckoutSession: protectedProcedure
     .input(z.object({
       // Define any inputs if necessary
     }))
     .mutation(async ({ ctx }) => {
-      // Retrieve the session to get user information
-      const session = await getServerAuthSession(ctx);
-      
+
       // Ensure user is authenticated
-      if (!session || !session.user) {
+      if (!ctx.session?.user) {
         throw new Error('Unauthorized');
       }
-      
+
       // Optionally, retrieve user from your database
       const user = await ctx.db.user.findUnique({
-        where: { id: session.user.id },
+        where: { id: ctx.session.user.id },
       });
 
       if (!user) {
@@ -59,12 +53,12 @@ export const stripeRouter = createTRPCRouter({
         url: stripeSession.url,
       };
     }),
-    createCheckoutSessionYearly: publicProcedure
+  createCheckoutSessionYearly: publicProcedure
     .input(z.object({
       // Define any input you need for creating a checkout session
       // For simplicity, we're not taking any inputs here
     }))
-    .mutation(async ({ input, ctx }) => {
+    .mutation(async () => {
       // Ensure the user is authenticated or authorized if necessary
       // if (!ctx.session?.user) {
       //   throw new Error('Unauthorized');

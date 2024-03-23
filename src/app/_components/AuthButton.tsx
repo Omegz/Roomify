@@ -1,12 +1,24 @@
 'use client'
-import { signOut } from "next-auth/react"
+import type { User } from "lucia"
 import Link from "next/link"
 
-export default function AuthButton(props: { isLoggedIn: boolean }) {
+export default function AuthButton(props: { user: User | null }) {
 
-  return props.isLoggedIn ? (
+  const signOut = async () => {
+    const response = await fetch("/api/auth/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    if (response.ok) {
+      window.location.reload()
+    }
+  }
+
+  return props?.user?.active === true ? (
     <button
-      onClick={() => signOut()}
+      onClick={signOut}
       className="button type--C"
     >
 
@@ -17,16 +29,31 @@ export default function AuthButton(props: { isLoggedIn: boolean }) {
       <div className="button__drow2"></div>
     </button>
   ) : (
-    <Link
-      href="/signin"
-      className="button type--C"
-    >
+    <>
+      {props?.user?.active !== false ? (<Link
+        href="/signup"
+        className="button type--C"
+        prefetch={true}
+      >
 
-      <div className="button__line"></div>
-      <div className="button__line"></div>
-      <span className="button__text sp">Sign in</span>
-      <div className="button__drow1"></div>
-      <div className="button__drow2"></div>
-    </Link>
+        <div className="button__line"></div>
+        <div className="button__line"></div>
+        <span className="button__text sp">Sign up</span>
+        <div className="button__drow1"></div>
+        <div className="button__drow2"></div>
+      </Link>) : null}
+      <Link
+        href="/login"
+        className="button type--C"
+        prefetch={true}
+      >
+
+        <div className="button__line"></div>
+        <div className="button__line"></div>
+        <span className="button__text sp">Log in</span>
+        <div className="button__drow1"></div>
+        <div className="button__drow2"></div>
+      </Link>
+    </>
   )
 }
