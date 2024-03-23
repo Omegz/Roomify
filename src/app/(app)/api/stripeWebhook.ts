@@ -1,12 +1,12 @@
 // src/app/api/stripeWebhook/stripeWebhook.ts
 
-import { NextApiRequest, NextApiResponse } from 'next';
+import { type NextApiRequest, type NextApiResponse } from 'next';
 import Stripe from 'stripe';
 import { buffer } from 'micro'; // Ensure 'micro' is installed or use an alternative approach
 
-STRIPE_SECRET_KEY="sk_test_51Nk0IODtvZGWcW3MwkEuTOoZjGILPJkk5t1NkGpSEMQXG3sZHRU4da4vPm9pr5aDP3ZIf0iAbrHs4e6KQoINUVO500Q4NxR8xk"
+const STRIPE_SECRET_KEY = "sk_test_51Nk0IODtvZGWcW3MwkEuTOoZjGILPJkk5t1NkGpSEMQXG3sZHRU4da4vPm9pr5aDP3ZIf0iAbrHs4e6KQoINUVO500Q4NxR8xk"
 const stripe = new Stripe(STRIPE_SECRET_KEY, {
-  apiVersion: '2020-08-27',
+  apiVersion: '2023-10-16',
 });
 
 export const config = {
@@ -31,7 +31,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         process.env.STRIPE_WEBHOOK_SECRET!
       );
     } catch (err) {
+      // @ts-expect-error asd
       console.error(`Error verifying webhook signature: ${err.message}`);
+      // @ts-expect-error asd
       return res.status(400).send(`Webhook verification failed: ${err.message}`);
     }
 

@@ -9,6 +9,13 @@ const config = {
   eslint: {
     ignoreDuringBuilds: false,
   },
+  webpack: (config) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    config.externals.push("@node-rs/argon2", "@node-rs/bcrypt");
+    return config;
+  }
+
+
 };
 
 export default config;

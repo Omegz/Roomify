@@ -4,14 +4,14 @@ import { Stripe } from 'stripe';
 
 const SECRET_STRIPE_KEY = "sk_test_51Nk0IODtvZGWcW3MwkEuTOoZjGILPJkk5t1NkGpSEMQXG3sZHRU4da4vPm9pr5aDP3ZIf0iAbrHs4e6KQoINUVO500Q4NxR8xk";
 const stripe = new Stripe(SECRET_STRIPE_KEY, {
-    apiVersion: "2023-08-16"
+  apiVersion: "2023-10-16"
 });
 
 
 const CLIENT_URL = 'www.google.com';
-const MONTHLY_SUBSCRIPTION="price_1Oud3SDtvZGWcW3M7runWv1b"
+const MONTHLY_SUBSCRIPTION = "price_1Oud3SDtvZGWcW3M7runWv1b"
 
-const YEARLY_SUBSCRIPTION="price_1OvgsrDtvZGWcW3MrNpFn3uR"
+const YEARLY_SUBSCRIPTION = "price_1OvgsrDtvZGWcW3MrNpFn3uR"
 
 export const StripeController = {
   createCheckoutSession: async (sessionIdCookie: string, isYearly: boolean) => {
@@ -20,7 +20,7 @@ export const StripeController = {
     }
 
     console.log('we hit the stripe controller. yay!')
-  
+
 
 
     const trialEnd = Math.floor(Date.now() / 1000) + (3 * 24 * 60 * 60);
@@ -42,11 +42,12 @@ export const StripeController = {
   },
 
   handleWebhook: async (reqBody: Buffer, sig: string | string[]) => {
-    let event;
+    let event: Stripe.Event;
 
     try {
       event = stripe.webhooks.constructEvent(reqBody, sig, process.env.STRIPE_WEBHOOK_SECRET!);
     } catch (err) {
+      // @ts-expect-error adds
       console.error(`Webhook signature verification failed: ${err.message}`);
       throw err; // This should be caught and handled to return an appropriate response to Stripe
     }
@@ -54,7 +55,7 @@ export const StripeController = {
     // Switch or if-else logic to handle different event types
     // For example:
     // if (event.type === 'checkout.session.completed') { ... }
-    
+
     // Return a message or object that indicates the result of the operation
     return { received: true, event };
   },

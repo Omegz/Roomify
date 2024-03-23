@@ -46,20 +46,48 @@ model Account {
     @@unique([provider, providerAccountId])
 }
 
+// model Session {
+//     id           String   @id @default(cuid())
+//     sessionToken String   @unique
+//     userId       String
+//     expires      DateTime
+//     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+// }
+
 model Session {
-    id           String   @id @default(cuid())
-    sessionToken String   @unique
-    userId       String
-    expires      DateTime
-    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id        String   @id
+    userId    String
+    expiresAt DateTime
+    user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
 }
 
+// model User {
+//     id                   String    @id @default(cuid())
+//     name                 String?
+//     email                String?   @unique
+//     stripeEmail          String?
+//     emailVerified        DateTime?
+//     image                String?
+//     stripeSessionId      String?   @unique
+//     stripeCustomerId     String?   @unique
+//     stripeSubscriptionId String?   @unique
+//     paidSubscription     Boolean   @default(false)
+//     accounts             Account[]
+//     sessions             Session[]
+//     posts                Post[]
+// }
+
 model User {
-    id                   String    @id @default(cuid())
-    name                 String?
-    email                String?   @unique
-    stripeEmail          String?
-    emailVerified        DateTime?
+    id String @id
+
+    hashed_password String?
+    username        String  @unique
+    email           String? @unique
+    google_sub      String? @unique
+    first_name      String?
+    last_name       String?
+    active          Boolean @default(true)
+
     image                String?
     stripeSessionId      String?   @unique
     stripeCustomerId     String?   @unique
@@ -82,7 +110,8 @@ model HistoricalStripe {
 }
 
 model VerificationToken {
-    identifier String
+    id         String   @id @default(cuid())
+    identifier String   @unique
     token      String   @unique
     expires    DateTime
 
