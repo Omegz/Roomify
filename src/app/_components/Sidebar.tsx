@@ -1,9 +1,9 @@
 'use client'
-import { signOut } from "next-auth/react"
 import React from "react";
 import { Category } from "~/shared/Constants";
 import { selectedCategory } from "./Chat";
 import { computed } from "@preact/signals-react";
+import Link from "next/link";
 
 const setSelectedCategory = (event: React.FormEvent<HTMLDivElement>) => {
   selectedCategory.value = (event.target as HTMLInputElement).value as Category;
@@ -70,10 +70,10 @@ const Sidebar = () => {
           <div className="i-bx-link-external h-4 w-4" ></div>
           Get help
         </a>
-        <button onClick={() => signOut()} className="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm">
+        <Link href="api/logout" className="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm">
           <div className="i-mdi-logout h-4 w-4"></div>
           Log out
-        </button>
+        </Link>
       </nav>
     </div>
   );
