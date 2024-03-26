@@ -5,7 +5,7 @@ import {
   protectedProcedure,
 } from "~/server/api/trpc";
 import { makeLouisRequest } from "../controllers/louis";
-import { Category } from "~/shared/Constants";
+import { Category, Model } from "~/shared/Constants";
 
 export const openAiRouter = createTRPCRouter({
   sendMessage: protectedProcedure
@@ -14,16 +14,13 @@ export const openAiRouter = createTRPCRouter({
         content: z.string().nullable(),
         role: z.enum(["user", "system"]),
       })),
-      model: z.object({
-        name: z.string(),
-        id: z.string(),
-        available: z.boolean(),
-      }),
+      model: z.nativeEnum(Model),
+      
       selectedCategory: z.nativeEnum(Category),
     }))
     .mutation(async ({ input }) => {
       const question = input.messages[input?.messages?.length - 1]?.content ?? ""
-      const louisResponse = await makeLouisRequest(question, input.selectedCategory)
+      const louisResponse = await makeLouisRequest(question, input.selectedCategory, input.model)
       const louisMessage = louisResponse?.body.responseContent
       // const louisMessage = input.selectedCategory
       return {

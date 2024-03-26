@@ -1,12 +1,24 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 import { createRef, type KeyboardEvent, type MouseEvent } from "react";
 import Message from "./Message";
-import { Category, DEFAULT_OPENAI_MODEL } from "~/shared/Constants";
+import { Category, DEFAULT_OPENAI_MODEL, Model } from "~/shared/Constants";
 import { computed, signal, effect } from "@preact/signals-react";
 import { client } from "~/trpc/react";
 import { mobileSidebarVisible } from "./MobileSidebar";
 
 export const selectedCategory = signal(Category.Other);
+export const selectedModel = signal(Model.Other); // Assuming Model.DEFAULT is a valid default model
+const modelOptions = Object.values(Model).map((modelKey) => (
+  <option key={modelKey} value={modelKey}>
+    {modelKey}
+  </option>
+));
+
+const handleModelChange = (event) => {
+  selectedModel.value = Model[event.target.value];
+};
+
 const isLoading = signal(false);
 
 const message = signal("");
@@ -39,7 +51,7 @@ const conversationContainer = computed(() =>
   !showEmptyChat.value && !conversationEmpty.value ? (
     <div className="flex flex-col items-center text-sm">
       <div className="flex w-full items-center justify-center gap-1 border-b border-black/10  p-3 text-gray-500 dark:border-gray-900/50 dark:bg-gray-700 dark:text-gray-300">
-        Model: {selectedModel.name}
+        Model: {selectedModel.value}
       </div>
       {conversationMessages}
       <div className="h-32 w-full flex-shrink-0 md:h-48"></div>
@@ -48,7 +60,7 @@ const conversationContainer = computed(() =>
   ) : (
     <div className="relative flex h-full w-full flex-col py-10">
       <div className="flex items-center justify-center gap-2">
-        <div className="relative w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
+        {/* <div className="relative w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
           <button
             className="align-center relative flex w-full cursor-default flex-col rounded-md border border-black/10 bg-white py-2 pl-3 pr-10 text-left focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 sm:text-sm dark:border-white/20 dark:bg-gray-800"
             id="headlessui-listbox-button-:r0:"
@@ -74,10 +86,20 @@ const conversationContainer = computed(() =>
               <div className="i-bi-chevron-down h-4 w-4 text-gray-400"></div>
             </span>
           </button>
+        </div> */}
+
+        <div className="relative w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
+          <select
+            onChange={handleModelChange}
+            value={selectedModel.value}
+            className="mb-4 w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-base shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+          >
+            {modelOptions}
+          </select>
         </div>
       </div>
       <h1 className="flex h-screen items-center justify-center gap-2 text-center text-2xl font-semibold text-gray-200 sm:text-4xl dark:text-gray-600">
-        ChatGPT Clone
+        Louis Gpt
       </h1>
     </div>
   ),
@@ -92,8 +114,6 @@ const sendMessageButton = computed(() => (
     <div className="i-material-symbols-send-rounded mr-1 h-4 w-4 text-white"></div>
   </button>
 ));
-
-const selectedModel = DEFAULT_OPENAI_MODEL;
 
 const sendMessage = async (
   e:
@@ -126,7 +146,7 @@ const sendMessage = async (
   try {
     const response = await client.openai.sendMessage.mutate({
       messages: conversation.value,
-      model: selectedModel,
+      model: selectedModel.value, // Now including the selected model
       selectedCategory: selectedCategory.value,
     });
 
