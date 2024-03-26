@@ -1,15 +1,14 @@
 import "server-only";
 
-import { getServerAuthSession } from "~/server/auth";
 import { HomeWords } from "~/app/_components/Home_Words";
 import Link from "next/link";
 import Image from "next/image";
 import '~/styles/landing/globals.css'
 import AuthButton from "~/app/_components/AuthButton";
+import { validateRequest } from "~/server/authUtils";
 
 export default async function Home() {
-  const session = await getServerAuthSession();
-
+  const { user } = await validateRequest();
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white ">
       <div className="flex bg-[#131417] parentDiv">
@@ -32,7 +31,7 @@ export default async function Home() {
           <HomeWords />
 
           <div className="container2">
-            {session ? (
+            {user ? (
               <Link
                 href="/louis"
                 className="button type--A"
@@ -58,7 +57,7 @@ export default async function Home() {
               <div className="button__drow1"></div>
               <div className="button__drow2"></div>
             </Link>
-            <AuthButton isLoggedIn={!!session} />
+            <AuthButton user={user} />
           </div>
         </div>
 

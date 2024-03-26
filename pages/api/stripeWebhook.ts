@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // src/app/api/Webhook/stripeWebhook.ts
 
 import { NextApiRequest, NextApiResponse } from 'next';
@@ -7,12 +5,11 @@ import Stripe from 'stripe';
 import { buffer } from 'micro'; // Ensure 'micro' is installed or use an alternative approach
 import { db } from "~/server/db";
 
-
 const STRIPE_WEBHOOK_SECRET='whsec_0f3814f79714fbbc1f91404baa0bf6aaeb48e69e2c7f2584a4519a782a0c55a4'
 
 const STRIPE_SECRET_KEY="sk_test_51Nk0IODtvZGWcW3MwkEuTOoZjGILPJkk5t1NkGpSEMQXG3sZHRU4da4vPm9pr5aDP3ZIf0iAbrHs4e6KQoINUVO500Q4NxR8xk"
 const stripe = new Stripe(STRIPE_SECRET_KEY, {
-  apiVersion: '2023-10-16',
+  apiVersion: '2020-08-27',
 });
 
 export const config = {
@@ -23,11 +20,11 @@ export const config = {
 
 async function handleCheckoutSessionCompleted(session) {
   if (session.payment_status === "paid") {
-    const userId: string = session.metadata.userId; // Ensure this metadata is set when creating the session
-    const newStripeCustomerId: string = session.customer; // The new Stripe customer ID from the session
-    const newStripeEmail: string = session.customer_details.email; // The new Stripe email from the session
+    const userId = session.metadata.userId; // Ensure this metadata is set when creating the session
+    const newStripeCustomerId = session.customer; // The new Stripe customer ID from the session
+    const newStripeEmail = session.customer_details.email; // The new Stripe email from the session
     // Assuming subscription ID is directly accessible from session (adjust as needed)
-    const newStripeSubscriptionId:string = session.subscription;
+    const newStripeSubscriptionId = session.subscription;
 
     try {
       // Retrieve the current user to get the old values
@@ -83,10 +80,8 @@ export  async function handler(req: NextApiRequest, res: NextApiResponse) {
           STRIPE_WEBHOOK_SECRET
         );
       } catch (err) {
-        console.error(`Error verifying webhook signature`);
-        return res.status(400).send(`Webhook verification failed: `);
-        // console.error(`Error verifying webhook signature: ${err.message}`);
-        // return res.status(400).send(`Webhook verification failed: ${err.message}`);
+        console.error(`Error verifying webhook signature: ${err.message}`);
+        return res.status(400).send(`Webhook verification failed: ${err.message}`);
       }
   
       // Process webhook event
