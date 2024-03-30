@@ -61,22 +61,6 @@ model Session {
     user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
 }
 
-// model User {
-//     id                   String    @id @default(cuid())
-//     name                 String?
-//     email                String?   @unique
-//     stripeEmail          String?
-//     emailVerified        DateTime?
-//     image                String?
-//     stripeSessionId      String?   @unique
-//     stripeCustomerId     String?   @unique
-//     stripeSubscriptionId String?   @unique
-//     paidSubscription     Boolean   @default(false)
-//     accounts             Account[]
-//     sessions             Session[]
-//     posts                Post[]
-// }
-
 model User {
     id String @id
 
@@ -89,13 +73,26 @@ model User {
     active          Boolean @default(true)
 
     image                String?
-    stripeSessionId      String?   @unique
-    stripeCustomerId     String?   @unique
-    stripeSubscriptionId String?   @unique
-    paidSubscription     Boolean   @default(false)
+    stripeSessionId      String?    @unique
+    stripeCustomerId     String?    @unique
+    stripeSubscriptionId String?    @unique
+    paidSubscription     Boolean    @default(false)
     accounts             Account[]
     sessions             Session[]
     posts                Post[]
+    Favorite             Favorite[]
+}
+
+model Favorite {
+    id        Int      @id @default(autoincrement())
+    content   String
+    // role      String
+    createdAt DateTime @default(now())
+    // If you have a User model and want to associate favorites with specific users
+    userId    String?
+    user      User?    @relation(fields: [userId], references: [id])
+
+    @@map("favorites")
 }
 
 model HistoricalStripe {

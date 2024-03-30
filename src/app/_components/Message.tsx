@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 "use client";
+import { content } from "tailwindcss/defaultTheme";
 import CopyButton from "./Copy";
+import SaveToFavoritesButton from "./Favorites"; // Adjust the path as necessary
 
 const Message = (props: {
   message: {
@@ -50,7 +53,15 @@ const Message = (props: {
                     <>
                       <p>{text}</p>
                       {/* Conditionally render the CopyButton for non-user (i.e., "system") messages */}
-                      {!isUser && text && <CopyButton content={text} />}
+                      {/* {!isUser && text && <CopyButton content={text} />} */}
+                      {!isUser && text && (
+                        <>
+                          <CopyButton content={text} />
+                          <SaveToFavoritesButton content={text} role={role} />
+                        </>
+                      )}
+
+                      <></>
                     </>
                   )}
                 </div>
