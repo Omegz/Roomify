@@ -50,11 +50,12 @@ const conversationMessages = computed(() =>
 const conversationContainer = computed(() =>
   !showEmptyChat.value && !conversationEmpty.value ? (
     <div className="flex flex-col items-center text-sm">
-      <div className="flex w-full items-center justify-center gap-1 border-b border-black/10  p-3 text-gray-500 dark:border-gray-900/50 dark:bg-gray-700 dark:text-gray-300">
+      <div className="flex w-full items-center justify-center gap-1 border-b border-black/10   p-3 text-gray-500 dark:border-gray-900/50 dark:bg-gray-700 dark:text-gray-300">
         Model: {selectedModel.value}
       </div>
       {conversationMessages}
-      <div className="h-32 w-full flex-shrink-0 md:h-48"></div>
+
+      <div className="h-32 w-full flex-shrink-0  md:h-48"></div>
       <div ref={bottomOfChatRef}></div>
     </div>
   ) : (
