@@ -3,24 +3,25 @@ import React from "react";
 import { client } from "~/trpc/react"; // Adjust the import path as necessary
 
 interface SaveToFavoritesButtonProps {
-  content: string;
-  role: "user" | "system";
+  content: string; // The chatbot's response
+  userInput: string; // The user's original query/input
 }
 
 const SaveToFavoritesButton: React.FC<SaveToFavoritesButtonProps> = ({
-  content,
-  role,
+  content, // The chatbot's response
+  userInput, // The user's original query/input
 }) => {
   const handleSaveToFavorites = async () => {
     try {
-      // Assuming your mutation for saving favorites is correctly set up in your tRPC router
-      // and that 'favorites.add' is the correct path to this mutation.
-      await client.openai.saveToFavorites.mutate({ content, role });
-      console.log("Message saved to favorites successfully");
-      // Optionally, you can add more feedback for the user here, e.g., showing a success message.
+      await client.openai.saveToFavorites.mutate({
+        content,
+        userInput,
+        role: "system", // Assuming the saved content is always the system's response
+        // Note: `userId` is removed from here as it will be determined server-side
+      });
+      console.log("Saved successfully");
     } catch (error) {
-      console.error("Failed to save message to favorites:", error);
-      // Handle error feedback as well, if necessary.
+      console.error("Failed to save:", error);
     }
   };
 

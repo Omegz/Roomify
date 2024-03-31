@@ -57,7 +57,11 @@ const Message = (props: {
                       {!isUser && text && (
                         <>
                           <CopyButton content={text} />
-                          <SaveToFavoritesButton content={text} role={role} />
+                          <SaveToFavoritesButton
+                            content={text}
+                            role={role}
+                            userInput="hello"
+                          />
                         </>
                       )}
 

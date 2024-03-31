@@ -33,23 +33,31 @@ export const openAiRouter = createTRPCRouter({
       };
     }),
 
-    saveToFavorites: protectedProcedure
+  // Here's the addition of saveToFavorites within the same router
+  saveToFavorites: protectedProcedure
     .input(z.object({
       content: z.string(),
+      userInput: z.string(), // The user's original input
       role: z.enum(["user", "system"]),
-      userId: z.string().optional(), // Include this if you're associating favorites with users
     }))
-    .mutation(async ({ input, ctx }) => {
-      // Implementation for saving the message as a favorite
+    .mutation(async ({ ctx, input }) => {
+      // Assuming you have session/user authentication set up to provide ctx.user.id
+      if (!ctx.user?.id) {
+        throw new Error("User ID not found in session");
+      }
+      const { content, userInput, role } = input;
+      const userId = ctx.user.id; // Use the authenticated user's ID from the context
       const savedFavorite = await db.favorite.create({
         data: {
-          content: input.content,
-          // role: input.role,
-          userId: input.userId, // Associate with a user if userId is provided
+          content,
+          userInput,
+          role,
+          userId, // Associate the favorite with the logged-in user
         },
       });
-  
+
       return savedFavorite;
     }),
+
   
 });

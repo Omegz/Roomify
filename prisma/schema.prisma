@@ -86,11 +86,11 @@ model User {
 model Favorite {
     id        Int      @id @default(autoincrement())
     content   String
-    // role      String
+    userInput String // Field for storing the user's original input
+    role      String?
     createdAt DateTime @default(now())
-    // If you have a User model and want to associate favorites with specific users
-    userId    String?
-    user      User?    @relation(fields: [userId], references: [id])
+    userId    String // Associate each favorite with a user
+    user      User     @relation(fields: [userId], references: [id])
 
     @@map("favorites")
 }
