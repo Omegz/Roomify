@@ -8,10 +8,11 @@ const Message = (props: {
   message: {
     content: string | null;
     role: "user" | "system";
+    userInput?: string; // Optional userInput for system messages
   };
 }) => {
   const { message } = props;
-  const { role, content: text } = message;
+  const { role, content: text, userInput } = message;
 
   const isUser = role === "user";
 
@@ -60,7 +61,7 @@ const Message = (props: {
                           <SaveToFavoritesButton
                             content={text}
                             role={role}
-                            userInput="hello"
+                            userInput={userInput}
                           />
                         </>
                       )}

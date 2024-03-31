@@ -15,6 +15,8 @@ const modelOptions = Object.values(Model).map((modelKey) => (
   </option>
 ));
 
+const lastSentMessage = signal(""); // Initialize a signal to store the last sent user message
+
 const handleModelChange = (event) => {
   selectedModel.value = Model[event.target.value];
 };
@@ -38,12 +40,17 @@ const errorMessageContainer = computed(() =>
 const showEmptyChat = signal(true);
 
 const conversation = signal<
-  { content: string | null; role: "user" | "system" }[]
+  { content: string | null; role: "user" | "system"; userInput?: string }[]
 >([]);
+
 const conversationEmpty = computed(() => conversation.value.length === 0);
 const conversationMessages = computed(() =>
-  conversation.value.map((message, index) => (
-    <Message key={index} message={message} />
+  conversation.value.map((msg, index) => (
+    <Message
+      key={index}
+      message={msg}
+      userInput={msg.role === "system" ? msg.userInput : undefined} // Pass userInput only for system messages
+    />
   )),
 );
 
@@ -132,6 +139,7 @@ const sendMessage = async (
 
   // trackEvent("send.message", { message: message });
   isLoading.value = true;
+  lastSentMessage.value = message.value; // Store the current message as the last sent message
 
   // Add the message to the conversation
   // cleared previous chat
@@ -155,9 +163,23 @@ const sendMessage = async (
       // Add the message to the conversation
       conversation.value = [
         ...conversation.value,
-        { content: response?.message ?? "", role: "system" },
+        {
+          content: response?.message ?? "",
+          role: "system",
+          userInput: lastSentMessage.value,
+        },
       ];
     }
+
+    // if (response?.message) {
+    //   // Add the message to the conversation
+    //   conversation.value = [
+    //     ...conversation.value,
+    //     { content: message.value, role: "user" }, // User's message
+    //     // Assume systemResponse is the response received after sending the message
+    //     { content: systemResponse, role: "system", userInput: message.value }, // System's response with userInput
+    //   ];
+    // }
 
     isLoading.value = false;
   } catch (error) {
