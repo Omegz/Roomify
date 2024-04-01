@@ -26,7 +26,20 @@ const SaveToFavoritesButton: React.FC<SaveToFavoritesButtonProps> = ({
   };
 
   return (
-    <button onClick={handleSaveToFavorites} className="save-btn">
+    <button
+      onClick={handleSaveToFavorites}
+      className="save-btn"
+      style={{
+        marginLeft: "10px",
+        padding: "5px",
+        backgroundColor: "#d15c7f",
+        color: "white",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+        margin: "5px",
+      }}
+    >
       Save
     </button>
   );

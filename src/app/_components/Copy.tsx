@@ -22,11 +22,12 @@ const CopyButton: React.FC<CopyButtonProps> = ({ content }) => {
       style={{
         marginLeft: "10px",
         padding: "5px",
-        backgroundColor: "#007bff",
+        backgroundColor: "#4e92e5",
         color: "white",
         border: "none",
         borderRadius: "5px",
         cursor: "pointer",
+        margin: "5px",
       }}
     >
       Copy
