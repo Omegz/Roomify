@@ -3,6 +3,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { client } from "~/trpc/react";
+import CopyButton from "~/app/_components/Copy";
 
 const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]);
@@ -46,6 +47,8 @@ const FavoritesPage = () => {
             <div className="p-4">
               <p className="text-gray-800">{favorite.content}</p>
             </div>
+
+            <CopyButton content={favorite.content} />
           </div>
         ))}
       </div>
