@@ -9,6 +9,10 @@ const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const handleRemove = async (id) => {
+    await client.openai.removeFromFavorites.mutate({ id });
+    refetch(); // Refetch favorites after removal
+  };
 
   useEffect(() => {
     // Immediately invoke async function to fetch favorites
@@ -33,7 +37,7 @@ const FavoritesPage = () => {
 
   return (
     <div className="container mx-auto px-4">
-      <h1 className="mb-6 text-2xl font-bold">User Favorites</h1>
+      <h1 className="mb-6 mt-4 text-2xl font-bold">Library</h1>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {favorites.map((favorite) => (
           <div
@@ -49,6 +53,21 @@ const FavoritesPage = () => {
             </div>
 
             <CopyButton content={favorite.content} />
+            <button
+              onClick={() => handleRemove(favorite.id)}
+              style={{
+                marginLeft: "10px",
+                padding: "5px",
+                backgroundColor: "#d15c7f",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+                margin: "5px",
+              }}
+            >
+              Remove
+            </button>
           </div>
         ))}
       </div>

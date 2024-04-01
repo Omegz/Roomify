@@ -72,5 +72,33 @@ export const openAiRouter = createTRPCRouter({
   
       return favorites;
     }),
+
+    // Inside your openAiRouter in the tRPC router file
+removeFromFavorites: protectedProcedure
+.input(z.object({
+  id: z.number(),
+}))
+.mutation(async ({ ctx, input }) => {
+  const { id } = input;
+  const userId = ctx.session.user.id;
+
+  // Ensure the favorite belongs to the current user to prevent unauthorized deletions
+  const favorite = await db.favorite.findUnique({
+    where: { id },
+  });
+
+  if (favorite?.userId !== userId) {
+    throw new Error("Unauthorized");
+  }
+
+  // Correctly perform the deletion
+  await db.favorite.delete({
+    where: { id },
+  });
+
+  // Return a success response
+  return { success: true, id };
+}),
+
   
 });
