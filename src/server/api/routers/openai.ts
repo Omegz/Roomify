@@ -59,5 +59,18 @@ export const openAiRouter = createTRPCRouter({
       return savedFavorite;
     }),
 
+    getFavorites: protectedProcedure.query(async ({ ctx }) => {
+      // Assuming ctx.session contains the user's session information
+      // And ctx.session.user.id is the user's ID
+      const userId = ctx.session.user.id;
+  
+      // Fetch favorites from the database
+      const favorites = await db.favorite.findMany({
+        where: { userId },
+        orderBy: { createdAt: 'desc' }, // Optional: order by creation date
+      });
+  
+      return favorites;
+    }),
   
 });

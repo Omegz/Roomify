@@ -48,7 +48,14 @@ const Sidebar = () => {
   return (
     <div className="scrollbar-trigger flex h-full w-full flex-1 items-start border-white/20">
       <nav className="flex h-full flex-1 flex-col space-y-1 p-2">
-        <a className="mb-1 flex flex-shrink-0 cursor-pointer items-center gap-3 rounded-md border border-white/20 px-3 py-3 text-sm text-white transition-colors duration-200 hover:bg-gray-500/10">
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault(); // Prevent the default anchor behavior
+            window.location.reload(); // Reload the page
+          }}
+          className="mb-1 flex flex-shrink-0 cursor-pointer items-center gap-3 rounded-md border border-white/20 px-3 py-3 text-sm text-white transition-colors duration-200 hover:bg-gray-500/10"
+        >
           <div className="i-bi-plus-lg h-4 w-4"></div>
           New chat
         </a>
