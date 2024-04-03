@@ -16,17 +16,14 @@ export default async function Louis() {
   // }, []);
 
   return (
-    <main className="">
-      {/* <Header /> */}
-      <div className="relative flex h-screen w-full overflow-hidden">
-        <MobileSiderbar />
-        <div className="dark hidden flex-shrink-0 bg-gray-900 md:flex md:w-[260px] md:flex-col">
-          <div className="flex h-full min-h-0 flex-col ">
-            <Sidebar />
-          </div>
+    <main className="relative flex h-screen w-full overflow-hidden">
+      <MobileSiderbar />
+      <div className="dark hidden flex-shrink-0 bg-gray-900 md:flex md:w-[260px] md:flex-col">
+        <div className="flex h-full min-h-0 flex-col ">
+          <Sidebar />
         </div>
-        <Chat />
       </div>
+      <Chat />
     </main>
   );
 }

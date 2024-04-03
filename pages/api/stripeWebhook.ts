@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // src/app/api/Webhook/stripeWebhook.ts
 
 import { NextApiRequest, NextApiResponse } from 'next';
@@ -64,6 +65,34 @@ async function handleCheckoutSessionCompleted(session) {
   }
 }
 
+async function handleSubscriptionCancellation(subscription) {
+  const stripeCustomerId = subscription.customer;
+  const cancelsAt = subscription.cancel_at;
+
+  // Ensure stripeCustomerId is defined
+  if (!stripeCustomerId) {
+    console.error('Stripe customer ID is undefined.');
+    return;
+  }
+
+  try {
+    // Update the user record with the cancellation date using stripeCustomerId to find the user
+    await db.user.update({
+      where: { stripeCustomerId: stripeCustomerId },
+      data: {
+        cancelsAt: cancelsAt,
+      },
+    });
+
+    console.log(`User with Stripe customer ID ${stripeCustomerId}'s subscription cancellation date updated.`);
+  } catch (err) {
+    console.error('Failed to update user subscription cancellation date:', err);
+  }
+}
+
+
+
+
 
 export  async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
@@ -105,25 +134,21 @@ export  async function handler(req: NextApiRequest, res: NextApiResponse) {
             // Handle failed payment here
             break;
 
-            case 'customer.subscription.deleted':
-              console.log('Subscription cancelled and deleted event received');
-              // The subscription object from the event
-              const deletedSubscription = event.data.object;
-              console.log('Webhook received for cancelled subscription:', deletedSubscription);
-              // You could call a function here to handle the cancellation in your application, if needed
-              // For example: await handleSubscriptionCancelled(deletedSubscription).catch(console.error);
-              break;
-          
-            case 'customer.subscription.updated':
-              const updatedSubscription = event.data.object;
-              // Check if the update is for a cancellation at the end of the billing period
-              if (updatedSubscription.status === 'canceled' || updatedSubscription.cancel_at_period_end) {
-                console.log('Subscription updated to cancel at period end event received');
-                console.log('Webhook received for subscription update with cancellation:', updatedSubscription);
-                // Similarly, you might handle this specific case in your application as needed
-                // For example: await handleSubscriptionCancellationAtPeriodEnd(updatedSubscription).catch(console.error);
-              }
-              break;
+         // Inside your switch statement in the webhook handler...
+case 'customer.subscription.deleted':
+  console.log('Subscription cancelled and deleted event received');
+  const deletedSubscription = event.data.object;
+  await handleSubscriptionCancellation(deletedSubscription).catch(console.error);
+  break;
+
+case 'customer.subscription.updated':
+  const updatedSubscription = event.data.object;
+  // Check if the update is for a cancellation at the end of the billing period
+  if (updatedSubscription.status === 'canceled' || updatedSubscription.cancel_at_period_end) {
+    console.log('Subscription updated to cancel at period end event received');
+    await handleSubscriptionCancellation(updatedSubscription).catch(console.error);
+  }
+  break;
           // Add more event types as needed
           default:
             console.log(`Unhandled event type ${event.type}`);
