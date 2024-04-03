@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/prefer-optional-chain */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // src/server/routers/stripeRouter.ts
 import { z } from 'zod';
 import { createTRPCRouter, publicProcedure, protectedProcedure } from '~/server/api/trpc';
@@ -91,4 +94,46 @@ export const stripeRouter = createTRPCRouter({
         throw new Error('Failed to create checkout session');
       }
     }),
+
+    cancelSubscription: publicProcedure
+    .input(z.object({
+      // Define any necessary inputs here. In this case, we're assuming the user's ID from the session is enough.
+    }))
+    .mutation(async ({ ctx }) => {
+      if (!ctx.user?.id) {
+        throw new Error("Unauthorized: User ID not found in session.");
+      }
+  
+      const user = await ctx.db.user.findUnique({
+        where: { id: ctx.user.id },
+        select: { stripeSubscriptionId: true }
+      });
+  
+      if (!user || !user.stripeSubscriptionId) {
+        throw new Error("No subscription found for user.");
+      }
+  
+      try {
+        // Here, we directly await the stripe.subscriptions.update call without assigning its result to a variable,
+        // since we don't use it later in the code.
+        await stripe.subscriptions.update(user.stripeSubscriptionId, {
+          cancel_at_period_end: true,
+        });
+  
+        // Optionally, update your database as needed to reflect the change.
+        await ctx.db.user.update({
+          where: { id: ctx.user.id },
+          data: {
+            // Reflect the pending cancellation in your database as needed.
+            // For example, mark the subscription as pending cancellation.
+          },
+        });
+  
+        return { success: true, message: "Subscription will be cancelled at the end of the billing period." };
+      } catch (error) {
+        console.error("Failed to update subscription cancellation:", error);
+        throw new Error("Failed to update subscription cancellation.");
+      }
+    }),
+  
 });

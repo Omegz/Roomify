@@ -104,6 +104,26 @@ export  async function handler(req: NextApiRequest, res: NextApiResponse) {
             console.log('Payment failed event received');
             // Handle failed payment here
             break;
+
+            case 'customer.subscription.deleted':
+              console.log('Subscription cancelled and deleted event received');
+              // The subscription object from the event
+              const deletedSubscription = event.data.object;
+              console.log('Webhook received for cancelled subscription:', deletedSubscription);
+              // You could call a function here to handle the cancellation in your application, if needed
+              // For example: await handleSubscriptionCancelled(deletedSubscription).catch(console.error);
+              break;
+          
+            case 'customer.subscription.updated':
+              const updatedSubscription = event.data.object;
+              // Check if the update is for a cancellation at the end of the billing period
+              if (updatedSubscription.status === 'canceled' || updatedSubscription.cancel_at_period_end) {
+                console.log('Subscription updated to cancel at period end event received');
+                console.log('Webhook received for subscription update with cancellation:', updatedSubscription);
+                // Similarly, you might handle this specific case in your application as needed
+                // For example: await handleSubscriptionCancellationAtPeriodEnd(updatedSubscription).catch(console.error);
+              }
+              break;
           // Add more event types as needed
           default:
             console.log(`Unhandled event type ${event.type}`);

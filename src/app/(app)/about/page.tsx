@@ -1,6 +1,7 @@
 import "server-only";
 import StripePaymentInitiation from "~/app/_components/Pay-stripe";
 import StripeYearlyPaymentInitiation from "~/app/_components/StripeYearly";
+import CancelStripeSubscription from "~/app/_components/CancelStripeSubscription";
 
 export default async function Test() {
   return (
@@ -16,7 +17,9 @@ export default async function Test() {
           </div>
         </div>
 
-        <StripePaymentInitiation />
+        {/* <StripePaymentInitiation /> */}
+
+        <CancelStripeSubscription />
       </div>
     </main>
   );
