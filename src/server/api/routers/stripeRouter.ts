@@ -135,5 +135,40 @@ export const stripeRouter = createTRPCRouter({
         throw new Error("Failed to update subscription cancellation.");
       }
     }),
+
+    getUserInfo: protectedProcedure
+  .input(z.object({
+    // This example assumes no input is required for fetching user information.
+  }))
+  .query(async ({ ctx }) => {
+    // With protectedProcedure, you should already have context indicating the user is authenticated,
+    // so you may not need to explicitly check for ctx.user.id presence as it's implied.
+    const user = await ctx.db.user.findUnique({
+      where: { id: ctx.user?.id },
+      select: {
+        id: true,
+        username: true,
+        email: true,
+        first_name: true,
+        last_name: true,
+        active: true,
+        stripeEmail: true,
+        image: true,
+        stripeCustomerId: true,
+        stripeSubscriptionId: true,
+        paidSubscription: true,
+        cancelsAt: true,
+        // Add any other fields you wish to return
+      },
+    });
+
+    if (!user) {
+      throw new Error("User not found.");
+    }
+
+    // Return the user information. You may adjust what data you wish to expose.
+    return { user };
+  }),
+
   
 });
