@@ -64,14 +64,14 @@ model Session {
 model User {
     id String @id
 
-    hashed_password String?
-    username        String  @unique
-    email           String? @unique
-    google_sub      String? @unique
-    first_name      String?
-    last_name       String?
-    active          Boolean @default(true)
-
+    hashed_password      String?
+    username             String     @unique
+    email                String?    @unique
+    google_sub           String?    @unique
+    first_name           String?
+    last_name            String?
+    active               Boolean    @default(true)
+    stripeEmail          String?
     image                String?
     stripeSessionId      String?    @unique
     stripeCustomerId     String?    @unique

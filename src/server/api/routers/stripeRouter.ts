@@ -9,8 +9,7 @@ const STRIPE_SECRET_KEY = 'sk_test_51Nk0IODtvZGWcW3MwkEuTOoZjGILPJkk5t1NkGpSEMQX
 // Initialize Stripe
 const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: '2020-08-27' });
 
-
-import { getServerAuthSession } from "~/server/auth";
+;
 
 
 export const stripeRouter = createTRPCRouter({
@@ -20,16 +19,17 @@ export const stripeRouter = createTRPCRouter({
     }))
     .mutation(async ({ ctx }) => {
       // Retrieve the session to get user information
-      const session = await getServerAuthSession(ctx);
-      
-      // Ensure user is authenticated
-      if (!session || !session.user) {
-        throw new Error('Unauthorized');
+
+      if (!ctx.user?.id) {
+        throw new Error("User ID not found in session");
       }
+
+      const userId = ctx.user.id; // Use the authenticated user's ID from the context
+    
       
       // Optionally, retrieve user from your database
       const user = await ctx.db.user.findUnique({
-        where: { id: session.user.id },
+        where: { id: userId },
       });
 
       if (!user) {

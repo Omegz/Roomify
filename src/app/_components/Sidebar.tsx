@@ -79,6 +79,11 @@ const Sidebar = () => {
           Saved Prompts
         </a>
 
+        <a className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-3 text-sm text-white transition-colors duration-200 hover:bg-gray-500/10">
+          <div className="i-ant-design-user-outlined h-4 w-4"></div>
+          My plan
+        </a>
+
         {/* <Link href="api/logout" className="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm">
           <div className="i-mdi-logout h-4 w-4"></div>
           Log out
