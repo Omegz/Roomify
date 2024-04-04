@@ -59,16 +59,25 @@ const UserInfoDisplay = () => {
           <h1>User Information</h1>
           {userInfo.value ? (
             <>
-              <p>
+              {/* <p>
                 <strong>Username:</strong> {userInfo.value.user.username}
-              </p>
+              </p> */}
               <p>
                 <strong>Email:</strong> {userInfo.value.user.email}
               </p>
-              <p>
+              {userInfo.value.user.cancelsAt && (
+                <p>
+                  <strong>Subscription Ends:</strong>{" "}
+                  {new Date(
+                    userInfo.value.user.cancelsAt * 1000,
+                  ).toLocaleDateString("en-US")}
+                </p>
+              )}
+
+              {/* <p>
                 <strong>Name:</strong> {userInfo.value.user.first_name ?? "N/A"}{" "}
                 {userInfo.value.user.last_name ?? ""}
-              </p>
+              </p> */}
               {/* Display additional user fields as necessary */}
             </>
           ) : (

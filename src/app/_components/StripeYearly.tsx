@@ -52,14 +52,14 @@ const StripeYearlyPaymentInitiation = () => {
   });
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center">
       {errorMessageDisplay.value}
       <button
         onClick={initiateStripeSession}
         disabled={isLoading.value}
-        className="rounded-md bg-green-500 px-6 py-24 text-white hover:bg-blue-700 disabled:bg-blue-300"
+        className="rounded-md  px-6 py-3 text-white hover:bg-blue-700 disabled:bg-blue-300"
       >
-        {isLoading.value ? "Processing..." : "Pay with Stripe Yearly"}
+        {isLoading.value ? "Processing..." : "Subscribe"}
       </button>
     </div>
   );
