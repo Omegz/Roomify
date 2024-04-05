@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -5,6 +6,9 @@ import styles from "./LandingStyles.module.css";
 import RevolvingIcon from "~/app/_components/RevolvingIcon";
 import WordsChaos from "~/app/_components/WordsChaos";
 import LandingNav from "~/app/_components/LandingNav";
+import OrgLandingNav from "~/app/_components/OrgLandingNav";
+
+import StarsBackground from "~/app/_components/Starsbg";
 
 function Page() {
   // State for changing words
@@ -44,7 +48,11 @@ function Page() {
     <div>
       {/* <RevolvingIcon /> */}
       {/* <WordsChaos /> */}
-      <LandingNav />
+      {/* <LandingNav /> */}
+
+      <StarsBackground>
+        <h1 className="h-screen">Content on top of the stars</h1>
+      </StarsBackground>
     </div>
   );
 }
