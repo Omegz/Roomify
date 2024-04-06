@@ -1,0 +1,72 @@
+.section {
+    background-color: #131417;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card {
+    position: relative;
+    min-width: 300px;
+    max-width: 620px;
+    background: linear-gradient(-45deg, #f403d1, #64b5f6); /* Default background */
+    border-radius: 15px;
+    margin: 7px auto;
+    padding: 40px 20px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+    text-align: center;
+  }
+
+  .card1 {
+    position: relative;
+    min-width: 300px;
+    max-width: 620px;
+    background: linear-gradient(-45deg,  #64b5f6, #f321d7); /* Default background */
+    border-radius: 15px;
+    margin: 7px auto;
+    padding: 40px 20px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+    text-align: center;
+  }
+  
+  .card:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Custom classes for specific card backgrounds */
+  .cardMonthly {
+    background: linear-gradient(-45deg, #f403d1, #64b5f6);
+  }
+  
+  .cardYearly {
+    background: linear-gradient(-45deg, #ffec61, #f321d7);
+  }
+  
+  .title i {
+    color: black;
+    font-size: 60px;
+    border-radius: 50%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title h2, .price h4, .option ul li {
+    color: #fff;
+  }
+  
+  .price h4 {
+    font-size: 60px;
+  }
+  
+  .option ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .option ul li {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  

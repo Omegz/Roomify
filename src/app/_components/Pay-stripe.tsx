@@ -46,14 +46,14 @@ const StripePaymentInitiation = () => {
   });
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center">
       {errorMessageDisplay.value}
       <button
         onClick={initiateStripeSession}
         disabled={isLoading.value}
-        className="rounded-md bg-blue-500 px-6 py-3 text-white hover:bg-blue-700 disabled:bg-blue-300"
+        className="rounded-md px-6 py-3 text-white hover:bg-blue-500  disabled:bg-blue-300"
       >
-        {isLoading.value ? "Processing..." : "Pay with Stripe"}
+        {isLoading.value ? "Processing..." : "Subscribe"}
       </button>
     </div>
   );

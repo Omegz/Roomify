@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/prefer-optional-chain */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // src/server/routers/stripeRouter.ts
 import { z } from 'zod';
 import { createTRPCRouter, publicProcedure, protectedProcedure } from '~/server/api/trpc';
@@ -9,8 +12,7 @@ const STRIPE_SECRET_KEY = 'sk_test_51Nk0IODtvZGWcW3MwkEuTOoZjGILPJkk5t1NkGpSEMQX
 // Initialize Stripe
 const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: '2020-08-27' });
 
-
-import { getServerAuthSession } from "~/server/auth";
+;
 
 
 export const stripeRouter = createTRPCRouter({
@@ -20,16 +22,17 @@ export const stripeRouter = createTRPCRouter({
     }))
     .mutation(async ({ ctx }) => {
       // Retrieve the session to get user information
-      const session = await getServerAuthSession(ctx);
-      
-      // Ensure user is authenticated
-      if (!session || !session.user) {
-        throw new Error('Unauthorized');
+
+      if (!ctx.user?.id) {
+        throw new Error("User ID not found in session");
       }
+
+      const userId = ctx.user.id; // Use the authenticated user's ID from the context
+    
       
       // Optionally, retrieve user from your database
       const user = await ctx.db.user.findUnique({
-        where: { id: session.user.id },
+        where: { id: userId },
       });
 
       if (!user) {
@@ -91,4 +94,81 @@ export const stripeRouter = createTRPCRouter({
         throw new Error('Failed to create checkout session');
       }
     }),
+
+    cancelSubscription: publicProcedure
+    .input(z.object({
+      // Define any necessary inputs here. In this case, we're assuming the user's ID from the session is enough.
+    }))
+    .mutation(async ({ ctx }) => {
+      if (!ctx.user?.id) {
+        throw new Error("Unauthorized: User ID not found in session.");
+      }
+  
+      const user = await ctx.db.user.findUnique({
+        where: { id: ctx.user.id },
+        select: { stripeSubscriptionId: true }
+      });
+  
+      if (!user || !user.stripeSubscriptionId) {
+        throw new Error("No subscription found for user.");
+      }
+  
+      try {
+        // Here, we directly await the stripe.subscriptions.update call without assigning its result to a variable,
+        // since we don't use it later in the code.
+        await stripe.subscriptions.update(user.stripeSubscriptionId, {
+          cancel_at_period_end: true,
+        });
+  
+        // Optionally, update your database as needed to reflect the change.
+        await ctx.db.user.update({
+          where: { id: ctx.user.id },
+          data: {
+            // Reflect the pending cancellation in your database as needed.
+            // For example, mark the subscription as pending cancellation.
+          },
+        });
+  
+        return { success: true, message: "Subscription will be cancelled at the end of the billing period." };
+      } catch (error) {
+        console.error("Failed to update subscription cancellation:", error);
+        throw new Error("Failed to update subscription cancellation.");
+      }
+    }),
+
+    getUserInfo: protectedProcedure
+  .input(z.object({
+    // This example assumes no input is required for fetching user information.
+  }))
+  .query(async ({ ctx }) => {
+    // With protectedProcedure, you should already have context indicating the user is authenticated,
+    // so you may not need to explicitly check for ctx.user.id presence as it's implied.
+    const user = await ctx.db.user.findUnique({
+      where: { id: ctx.user?.id },
+      select: {
+        id: true,
+        username: true,
+        email: true,
+        first_name: true,
+        last_name: true,
+        active: true,
+        stripeEmail: true,
+        image: true,
+        stripeCustomerId: true,
+        stripeSubscriptionId: true,
+        paidSubscription: true,
+        cancelsAt: true,
+        // Add any other fields you wish to return
+      },
+    });
+
+    if (!user) {
+      throw new Error("User not found.");
+    }
+
+    // Return the user information. You may adjust what data you wish to expose.
+    return { user };
+  }),
+
+  
 });

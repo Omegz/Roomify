@@ -27,6 +27,12 @@ export enum Category {
   Science = "Science",
   History = "History",
   Writer = "Writer",
+
+  Other = "Other",
+}
+
+export enum Model {
+  Standard = "Standard",
   Contextual = "Contextual",
   Other = "Other",
 }
