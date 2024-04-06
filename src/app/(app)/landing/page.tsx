@@ -46,12 +46,8 @@ function Page() {
 
   return (
     <div>
-      {/* <RevolvingIcon /> */}
-      {/* <WordsChaos /> */}
-      {/* <LandingNav /> */}
-
       <StarsBackground>
-        <h1 className="h-screen">Content on top of the stars</h1>
+        <h1 className="h-screen text-white">Hello Worlds</h1>
       </StarsBackground>
     </div>
   );

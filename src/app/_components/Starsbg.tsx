@@ -1,31 +1,57 @@
-// StarsBackground.jsx
-import React, { useEffect } from "react";
+// StarsBackground.tsx
+import React from "react";
 
 const StarsBackground = ({ children }) => {
-  const stars = [
-    { id: 1, size: 1, speed: 50 },
-    { id: 2, size: 2, speed: 100 },
-    { id: 3, size: 3, speed: 150 },
-  ];
-
-  const generateRandomShadows = (n) => {
-    let value = `${Math.random() * 2000}px ${Math.random() * 2000}px #FFF`;
-    for (let i = 2; i <= n; i++) {
-      value += `, ${Math.random() * 2000}px ${Math.random() * 2000}px #FFF`;
+  // Generates a large number of stars with random positions
+  const generateRandomStars = (count) => {
+    let stars = [];
+    for (let i = 0; i < count; i++) {
+      stars.push(`${Math.random() * 100}vw ${Math.random() * 100}vh #FFF`);
     }
-    return value;
+    return stars.join(", ");
   };
 
-  useEffect(() => {
-    document.body.style.margin = "0";
-    // You might not want to set this on the body if this component will be used inside a page with other content
-    document.body.style.background =
-      "radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)";
-  }, []);
+  const starStyles = {
+    "--star-small": generateRandomStars(700),
+    "--star-medium": generateRandomStars(200),
+    "--star-large": generateRandomStars(100),
+  };
 
   return (
     <>
-      <style>{`
+      <div className="stars-background" style={starStyles}>
+        {children}
+      </div>
+      <style jsx>{`
+        .stars-background {
+          position: relative;
+          width: 100vw;
+          height: 100vh;
+          background: radial-gradient(
+            ellipse at bottom,
+            #1b2735 0%,
+            #090a0f 100%
+          );
+          overflow: hidden;
+        }
+        .stars-background::before,
+        .stars-background::after {
+          content: "";
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          border-radius: 50%;
+          box-shadow: var(--star-small);
+          animation: animStar 50s linear infinite;
+        }
+        .stars-background::after {
+          box-shadow: var(--star-medium);
+          animation: animStar 100s linear infinite;
+        }
+        .stars-background::before {
+          box-shadow: var(--star-large);
+          animation: animStar 150s linear infinite;
+        }
         @keyframes animStar {
           from {
             transform: translateY(0px);
@@ -34,36 +60,7 @@ const StarsBackground = ({ children }) => {
             transform: translateY(-2000px);
           }
         }
-        .stars {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          width: 1px;
-          height: 1px;
-          background: transparent;
-        }
       `}</style>
-      <div
-        className="stars-container"
-        style={{ position: "relative", width: "100%", height: "100%" }}
-      >
-        {stars.map(({ id, size, speed }) => (
-          <div
-            key={id}
-            className={`stars stars${id}`}
-            style={{
-              "--size": `${size}px`,
-              "--speed": `${speed}s`,
-              "--shadows": generateRandomShadows(700),
-              boxShadow: "var(--shadows)",
-              animation: `animStar var(--speed) linear infinite`,
-            }}
-          />
-        ))}
-        {children}
-      </div>
     </>
   );
 };
