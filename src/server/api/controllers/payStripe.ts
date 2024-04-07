@@ -4,7 +4,7 @@ import { Stripe } from 'stripe';
 
 const SECRET_STRIPE_KEY = "sk_test_51Nk0IODtvZGWcW3MwkEuTOoZjGILPJkk5t1NkGpSEMQXG3sZHRU4da4vPm9pr5aDP3ZIf0iAbrHs4e6KQoINUVO500Q4NxR8xk";
 const stripe = new Stripe(SECRET_STRIPE_KEY, {
-    apiVersion: "2023-08-16"
+    apiVersion: "2023-10-16"
 });
 
 
