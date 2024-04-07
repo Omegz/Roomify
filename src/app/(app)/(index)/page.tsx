@@ -41,7 +41,7 @@ export default async function Home() {
             height={600}
           />
           <HomeWords />
-          {/* 
+
           <div className="container2">
             {user ? (
               <Link href="/louis" className="button type--A" prefetch={true}>
@@ -62,7 +62,7 @@ export default async function Home() {
               <div className="button__drow2"></div>
             </Link>
             <AuthButton user={user} />
-          </div> */}
+          </div>
         </div>
 
         <div className="sp hidden w-1/4 items-center justify-center md:flex">
