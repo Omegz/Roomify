@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 
@@ -6,7 +8,9 @@ import React, { useState, useMemo, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 
 const db = [];
-const alreadyRemoved = [];
+// Assuming you want to track removed persons by their name
+const alreadyRemoved: string[] = [];
+
 const URL = "https://randomuser.me/api/";
 
 interface PersonData {
