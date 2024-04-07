@@ -2,159 +2,116 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-"use client";
 
-import React, { useRef, useState, useEffect, useMemo } from "react";
+"use client";
+import styles from "./Person.module.css";
+
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import TinderCard from "react-tinder-card";
 
-const db = [];
-// Assuming you want to track removed persons by their name
-const alreadyRemoved: string[] = [];
+const URL = "https://randomuser.me/api/?results=10"; // Fetch 10 results at a time
 
-const URL = "https://randomuser.me/api/";
+interface Location {
+  street: { name: string; number: number };
+  city: string;
+  state: string;
+}
+
+interface Name {
+  first: string;
+  last: string;
+}
+
+interface Picture {
+  large: string;
+}
 
 interface PersonData {
   gender: string;
-  name: string;
-  age: number;
-  picture: string;
-  address: string;
+  name: Name;
+  dob: { age: number };
+  picture: Picture;
+  location: Location;
   email: string;
   phone: string;
 }
 
 function Person() {
-  const [loading, setLoading] = useState(true);
-  const [characters, setCharacters] = useState<PersonData[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [profiles, setProfiles] = useState<PersonData[]>([]);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  const [lastDirection, setLastDirection] = useState();
+  const childRefs = useMemo(
+    () => profiles.map(() => React.createRef<never>()),
+    [profiles],
+  );
 
-  const loadData = async () => {
-    const response = await fetch(URL);
-    const responseJSON = await response.json();
-    const person = responseJSON.results[0];
-    const { street, city, state } = person.location;
-
-    // Now db is typed correctly as an array of PersonData objects
-    const newCharacter: PersonData = {
-      gender: person.gender,
-      name: `${person.name.first} ${person.name.last}`,
-      age: person.dob.age,
-      picture: person.picture.large,
-      address: `${street.name}, ${city}, ${state}`,
-      email: person.email,
-      phone: person.phone,
-    };
-
-    setCharacters((prevCharacters) => [...prevCharacters, newCharacter]);
-    setLoading(false);
+  const fetchProfiles = async () => {
+    try {
+      const response = await fetch(URL);
+      const data = await response.json();
+      setProfiles((prev) => [...prev, ...data.results]);
+      setLoading(false);
+    } catch (error) {
+      console.error("Failed to fetch profiles:", error);
+    }
   };
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    loadData();
+    fetchProfiles();
   }, []);
 
-  const childRefs = useMemo(
-    () =>
-      Array(characters.length)
-        .fill(null)
-        .map(() => React.createRef<never>()),
-    [characters.length],
-  );
-
-  const swiped = (direction, person) => {
-    setLastDirection(direction);
-    alreadyRemoved.push(person);
+  const swiped = (direction: string, index: number) => {
+    setCurrentIndex(index + 1);
   };
 
-  const outOfFrame = () => {
-    loadData();
+  const outOfFrame = (name: string, index: number) => {
+    // Optionally, fetch more profiles if you're at the last one
+    if (index === profiles.length - 1) {
+      fetchProfiles();
+    }
   };
 
   return (
-    <div className="container">
-      <link
-        href="https://fonts.googleapis.com/css?family=Damion&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css?family=Alatsi&display=swap"
-        rel="stylesheet"
-      />
+    <div className={styles.container}>
       <h1>React Tinder Card</h1>
-      <div style={{ textAlign: "center" }} />
       {loading ? (
         <div className="spinner-border text-primary" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
       ) : (
-        <div className="cardContainer">
-          {characters.map((character, index) => {
-            return (
-              <TinderCard
-                ref={childRefs[index]}
-                className="swipe"
-                key={character.name}
-                onSwipe={(dir) => swiped(dir, character)}
-                onCardLeftScreen={() => outOfFrame()}
-              >
-                <div className="card" style={{ width: "18rem" }}>
-                  <img
-                    src={character.picture}
-                    className="card-img-top"
-                    alt="..."
-                    style={{ width: "16rem", margin: "auto" }}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{character.name}</h5>
-                    <p className="card-text" style={{ marginBottom: "0.5rem" }}>
-                      <i
-                        style={{
-                          fontSize: "20px",
-                          marginRight: "5px",
-                          minWidth: "1.5rem",
-                          textAlign: "center",
-                        }}
-                        className="fa fa-phone"
-                        aria-hidden="true"
-                      />
-                      {character.phone}
-                    </p>
-                    <p className="card-text" style={{ marginBottom: "0.5rem" }}>
-                      <i
-                        style={{
-                          fontSize: "20px",
-                          marginRight: "5px",
-                          minWidth: "1.5rem",
-                          textAlign: "center",
-                        }}
-                        className="fa fa-envelope"
-                        aria-hidden="true"
-                      />
-                      {character.email}
-                    </p>
-                    <p
-                      className="card-text"
-                      style={{ marginBottom: "0.5rem", overflow: "hidden" }}
-                    >
-                      <i
-                        style={{
-                          fontSize: "20px",
-                          marginRight: "5px",
-                          minWidth: "1.5rem",
-                          textAlign: "center",
-                        }}
-                        className="fa fa-map-marker"
-                        aria-hidden="true"
-                      />
-                      {character.address}
-                    </p>
+        <div className={styles.cardContainer}>
+          {profiles.map(
+            (profile, index) =>
+              index === currentIndex && (
+                <TinderCard
+                  ref={childRefs[index]}
+                  className="swipe"
+                  key={profile.email} // email as a unique key; adjust as necessary
+                  onSwipe={(dir) => swiped(dir, index)}
+                  onCardLeftScreen={() =>
+                    outOfFrame(
+                      `${profile.name.first} ${profile.name.last}`,
+                      index,
+                    )
+                  }
+                >
+                  <div className={styles.card}>
+                    <img
+                      src={profile.picture.large}
+                      className="card-img-top"
+                      alt={`${profile.name.first} ${profile.name.last}`}
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title">{`${profile.name.first} ${profile.name.last}`}</h5>
+                      <p className="card-text">{profile.phone}</p>
+                      <p className="card-text">{profile.email}</p>
+                      <p className="card-text">{`${profile.location.street.number} ${profile.location.street.name}, ${profile.location.city}, ${profile.location.state}`}</p>
+                    </div>
                   </div>
-                </div>
-              </TinderCard>
-            );
-          })}
+                </TinderCard>
+              ),
+          )}
         </div>
       )}
     </div>
