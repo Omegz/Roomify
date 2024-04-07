@@ -62,6 +62,30 @@ function Person() {
   }, []);
 
   const swiped = (direction: string, index: number) => {
+    // Guard clause to ensure index is within bounds
+    if (index < 0 || index >= profiles.length) {
+      console.error("Index out of bounds", index);
+      return; // Exit the function if index is not valid
+    }
+
+    console.log(
+      `You swiped ${direction} on ${profiles[index].name.first} ${profiles[index].name.last}`,
+    );
+
+    // Example action based on swipe direction
+    if (direction === "left") {
+      // Perhaps mark this profile as a 'nope'
+      console.log(
+        `Noped ${profiles[index].name.first} ${profiles[index].name.last}`,
+      );
+    } else if (direction === "right") {
+      // Or mark it as a 'like'
+      console.log(
+        `Liked ${profiles[index].name.first} ${profiles[index].name.last}`,
+      );
+    }
+
+    // Move to the next profile
     setCurrentIndex(index + 1);
   };
 
