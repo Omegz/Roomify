@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 
-import React, { useState, useMemo, useEffect } from "react";
-// import TinderCard from '../react-tinder-card/index'
+import React, { useRef, useState, useEffect, useMemo } from "react";
 import TinderCard from "react-tinder-card";
 
 const db = [];
@@ -57,10 +57,10 @@ function Person() {
 
   const childRefs = useMemo(
     () =>
-      Array(db.length)
-        .fill(0)
-        .map((i) => React.createRef()),
-    [],
+      Array(characters.length)
+        .fill(null)
+        .map(() => React.createRef<never>()),
+    [characters.length],
   );
 
   const swiped = (direction, person) => {
