@@ -1,20 +1,28 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Adjust the height if necessary */
-  }
-  
-  .cardContainer {
+.carousel {
     position: relative;
-    width: 18rem; /* Adjust based on the size of your cards */
-    height: 26rem; /* Adjust based on the size of your cards */
-    margin: auto;
   }
   
-  .card {
+  .carouselControlLeft, .carouselControlRight {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px;
+  }
+  
+  .carouselControlLeft {
+    left: 10px;
+  }
+  
+  .carouselControlRight {
+    right: 10px;
+  }
+  
+  .card-img-top {
+    transition: transform 0.5s ease; /* Smooth transition for the image change */
   }
   

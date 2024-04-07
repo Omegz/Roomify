@@ -36,10 +36,26 @@ interface PersonData {
   phone: string;
 }
 
+const defaultPhotos = ["/astronaut.png", "/lcLogo.png", "/logo.png"];
+
 function Person() {
   const [loading, setLoading] = useState<boolean>(true);
   const [profiles, setProfiles] = useState<PersonData[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Handlers for next and previous image
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex + 1 < defaultPhotos.length ? prevIndex + 1 : 0,
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex - 1 >= 0 ? prevIndex - 1 : defaultPhotos.length - 1,
+    );
+  };
 
   const childRefs = useMemo(
     () => profiles.map(() => React.createRef<never>()),
@@ -98,7 +114,6 @@ function Person() {
 
   return (
     <div className={styles.container}>
-      <h1>React Tinder Card</h1>
       {loading ? (
         <div className="spinner-border text-primary" role="status">
           <span className="visually-hidden">Loading...</span>
@@ -121,11 +136,29 @@ function Person() {
                   }
                 >
                   <div className={styles.card}>
-                    <img
-                      src={profile.picture.large}
-                      className="card-img-top"
-                      alt={`${profile.name.first} ${profile.name.last}`}
-                    />
+                    <div className={styles.carousel}>
+                      <img
+                        src={defaultPhotos[currentImageIndex]}
+                        className="card-img-top h-screen w-full object-cover"
+                        alt={`${profile.name.first} ${profile.name.last}`}
+                      />
+                      {defaultPhotos.length > 1 && (
+                        <>
+                          <button
+                            onClick={prevImage}
+                            className={styles.carouselControlLeft}
+                          >
+                            &#x3c;
+                          </button>
+                          <button
+                            onClick={nextImage}
+                            className={styles.carouselControlRight}
+                          >
+                            &#x3e;
+                          </button>
+                        </>
+                      )}
+                    </div>
                     <div className="card-body">
                       <h5 className="card-title">{`${profile.name.first} ${profile.name.last}`}</h5>
                       <p className="card-text">{profile.phone}</p>
