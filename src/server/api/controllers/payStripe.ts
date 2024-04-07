@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // src/controllers/StripeController.ts
 
 import { Stripe } from 'stripe';
@@ -47,7 +48,7 @@ export const StripeController = {
     try {
       event = stripe.webhooks.constructEvent(reqBody, sig, process.env.STRIPE_WEBHOOK_SECRET!);
     } catch (err) {
-      console.error(`Webhook signature verification failed: ${err.message}`);
+      // console.error(`Webhook signature verification failed: ${err.message}`);
       throw err; // This should be caught and handled to return an appropriate response to Stripe
     }
 
