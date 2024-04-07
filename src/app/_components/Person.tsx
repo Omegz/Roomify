@@ -84,21 +84,15 @@ function Person() {
       return; // Exit the function if index is not valid
     }
 
-    console.log(
-      `You swiped ${direction} on ${profiles[index].name.first} ${profiles[index].name.last}`,
-    );
+    console.log(`You swiped `);
 
     // Example action based on swipe direction
     if (direction === "left") {
       // Perhaps mark this profile as a 'nope'
-      console.log(
-        `Noped ${profiles[index].name.first} ${profiles[index].name.last}`,
-      );
+      console.log(`Noped `);
     } else if (direction === "right") {
       // Or mark it as a 'like'
-      console.log(
-        `Liked ${profiles[index].name.first} ${profiles[index].name.last}`,
-      );
+      console.log(`Liked `);
     }
 
     // Move to the next profile
