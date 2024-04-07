@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
@@ -7,6 +8,17 @@ import TinderCard from "react-tinder-card";
 const db = [];
 const alreadyRemoved = [];
 const URL = "https://randomuser.me/api/";
+
+interface PersonData {
+  gender: string;
+  name: string;
+  age: number;
+  picture: string;
+  address: string;
+  email: string;
+  phone: string;
+}
+
 function Person() {
   const [loading, setLoading] = useState(true);
   const [characters, setCharacters] = useState([]);
@@ -16,30 +28,25 @@ function Person() {
     const response = await fetch(URL);
     const responseJSON = await response.json();
     const person = responseJSON.results[0];
-    const gender = person.gender;
-    const name = person.name.first + " " + person.name.last;
-    const age = person.dob.age;
-    const picture = person.picture.large;
     const { street, city, state } = person.location;
-    console.log(person.location);
-    const address = street.name + ", " + city + ", " + state;
-    const email = person.email;
 
-    const db = [];
-    db.push({
-      gender: gender,
-      name: name,
-      age: age,
-      picture: picture,
-      address: address,
-      email: email,
+    // Now db is typed correctly as an array of PersonData objects
+    const newCharacter: PersonData = {
+      gender: person.gender,
+      name: `${person.name.first} ${person.name.last}`,
+      age: person.dob.age,
+      picture: person.picture.large,
+      address: `${street.name}, ${city}, ${state}`,
+      email: person.email,
       phone: person.phone,
-    });
-    setCharacters([...characters, ...db]);
+    };
+
+    setCharacters((prevCharacters) => [...prevCharacters, newCharacter]);
     setLoading(false);
   };
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     loadData();
   }, []);
 
