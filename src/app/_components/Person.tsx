@@ -21,7 +21,8 @@ interface PersonData {
 
 function Person() {
   const [loading, setLoading] = useState(true);
-  const [characters, setCharacters] = useState([]);
+  const [characters, setCharacters] = useState<PersonData[]>([]);
+
   const [lastDirection, setLastDirection] = useState();
 
   const loadData = async () => {
