@@ -54,6 +54,7 @@
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
+    "@vite-pwa/assets-generator": "^0.2.4",
     "arctic": "^1.2.1",
     "better-usernames": "^1.5.2",
     "do_username": "^1.0.0",
