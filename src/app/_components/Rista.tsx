@@ -22,13 +22,6 @@ const SliderContainer = styled.div`
   position: relative;
 `;
 
-const Line = styled.div`
-  height: 2px;
-  background: linear-gradient(to right, transparent 50%, #223049 50%);
-  background-size:
-    16px 2px,
-    100% 2px;
-`;
 const SliderInput = styled.input`
   width: 100%;
   appearance: none;
@@ -120,6 +113,51 @@ const SliderValue = styled.span`
   font-size: 1rem;
 `;
 
+const Line = styled.div`
+  border-bottom: 1px solid #000;
+  margin: 12px 0;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  padding: 2rem;
+`;
+
+const InnerContainer = styled.div`
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 8px solid ${(props) => (props.isPaid ? "#32CD32" : "#FFD700")}; /* Green or Yellow border */
+`;
+
+const TopSection = styled.div`
+  padding: 1rem;
+  background-color: ${({ bgColor }) => bgColor};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const BottomSection = styled.div`
+  padding: 1rem;
+  background-color: ${({ bgColor }) => bgColor};
+`;
+
+const HiddenText = styled.div`
+  visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+`;
+
 const Rista: React.FC = () => {
   const [value, setValue] = useState(0);
   const [isPaid, setIsPaid] = useState(false);
@@ -172,73 +210,68 @@ const Rista: React.FC = () => {
   });
 
   return (
-    // <div className="flex h-screen flex-col items-center justify-center bg-red-500 p-2">
-    //   <div
-    //     className={`m-7 w-full border-8 ${isPaid ? "border-green-400" : "border-yellow-400"} bg-white`}
-    //   >
-    //     <div
-    //       className={`flex items-center justify-center ${isPaid ? "visible" : "invisible"}`}
-    //     >
-    //       hellow world
-    //     </div>
-    //     <div className="mt-24 flex">
-    //       <div className="mb-12 ml-12 flex w-1/2 flex-col justify-center">
-    //         <h1 className="text">LOCATION</h1>
-    //         <h1>Tilda og Karl</h1>
-    //         <p>{formattedTime}</p>
-    //         <p>{formattedDate}</p>
-    //       </div>
-    //     </div>
-    //     <div className="">
-    //       <div className="mb-36 h-12 bg-gray-500">
-    //         <h1 className="ml-12">Islatte</h1>
-    //       </div>
-    //     </div>
-    //     <SliderWrapper className="bg-white">
-    //       <SliderLabel>Slide to Pay</SliderLabel>
-    //       <SliderContainer>
-    //         <SliderInput
-    //           type="range"
-    //           ref={inputRangeRef}
-    //           value={value}
-    //           onChange={handleChange}
-    //           onMouseUp={handleMouseUp}
-    //           onTouchEnd={handleMouseUp}
-    //         />
-    //       </SliderContainer>
-    //     </SliderWrapper>
-    //   </div>
-    // </div>
-
-    <div className="h-screen bg-blue-500">
-      <div className="items-cetner ml-4 mr-4 mt-12 flex flex-col justify-center bg-green-500">
-        <div className=" flex flex-col items-center justify-center">svg</div>
-        <div className=" flex flex-col items-center justify-center">
-          Receipt
-        </div>
-      </div>
-
-      <div className="ml-4  mr-4  flex flex-col items-center justify-center bg-red-500">
-        <div className="ml-5 mr-5 w-full border-8 border-green-400">
-          <div className="items-cetner mt-12 flex justify-center ">0 Kr.</div>
-          <Line className="mb-3 mt-12" />
-          <div className=" flex">
-            <div className=" ml-12 flex w-1/2 flex-col justify-center">
-              <h1 className="text">LOCATION</h1>
-              <h1>Tilda og Karl</h1>
-              <p>{formattedTime}</p>
-              <p>{formattedDate}</p>
+    <Container>
+      {!isPaid ? (
+        <InnerContainer isPaid={isPaid}>
+          <TopSection bgColor="#fff">
+            <HiddenText isVisible={isPaid}>hellow world</HiddenText>
+            <div className="mt-24 flex">
+              <div className="mb-12 ml-12 flex w-1/2 flex-col justify-center">
+                <h1 className="text">LOCATION</h1>
+                <h1>Tilda og Karl</h1>
+                <p>{formattedTime}</p>
+                <p>{formattedDate}</p>
+              </div>
             </div>
-          </div>
-          <Line className=" mb-12 mt-3" />
-          <div className="">
             <div className="mb-36 h-12 bg-gray-500">
               <h1 className="ml-12">Islatte</h1>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            <SliderWrapper>
+              <SliderLabel>Slide to Pay</SliderLabel>
+              <SliderContainer>
+                <SliderInput
+                  type="range"
+                  ref={inputRangeRef}
+                  value={value}
+                  onChange={handleChange}
+                  onMouseUp={handleMouseUp}
+                  onTouchEnd={handleMouseUp}
+                />
+              </SliderContainer>
+            </SliderWrapper>
+          </TopSection>
+        </InnerContainer>
+      ) : (
+        <InnerContainer isPaid={isPaid}>
+          <TopSection bgColor="#32CD32">
+            <div className="flex flex-col items-center justify-center">svg</div>
+            <div className="flex flex-col items-center justify-center">
+              Receipt
+            </div>
+          </TopSection>
+          <BottomSection bgColor="#FF6347">
+            <div className="ml-5 mr-5 w-full border-8 border-green-400">
+              <div className="mt-12 flex items-center justify-center">
+                0 Kr.
+              </div>
+              <Line />
+              <div className="flex">
+                <div className="ml-12 flex w-1/2 flex-col justify-center">
+                  <h1 className="text">LOCATION</h1>
+                  <h1>Tilda og Karl</h1>
+                  <p>{formattedTime}</p>
+                  <p>{formattedDate}</p>
+                </div>
+              </div>
+              <Line />
+              <div className="mb-36 h-12 bg-gray-500">
+                <h1 className="ml-12">Islatte</h1>
+              </div>
+            </div>
+          </BottomSection>
+        </InnerContainer>
+      )}
+    </Container>
   );
 };
 
