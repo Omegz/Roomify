@@ -115,6 +115,7 @@ const SliderValue = styled.span`
 
 const Rista: React.FC = () => {
   const [value, setValue] = useState(0);
+  const [isPaid, setIsPaid] = useState(false);
   const inputRangeRef = useRef<HTMLInputElement>(null);
   const maxValue = 100;
 
@@ -138,7 +139,7 @@ const Rista: React.FC = () => {
   };
 
   const handlePayment = () => {
-    alert("Payment Successful");
+    setIsPaid(true);
     setValue(0);
     if (inputRangeRef.current) {
       inputRangeRef.current.value = "0";
@@ -151,20 +152,39 @@ const Rista: React.FC = () => {
     }
   }, [value]);
 
+  const currentDate = new Date();
+  const formattedDate = currentDate.toLocaleDateString("en-GB", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  const formattedTime = currentDate.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
   return (
     <div className="flex h-screen flex-col items-center justify-center bg-red-500 p-2">
-      <div className="m-7 w-full border-8 border-yellow-400 bg-white  ">
+      <div
+        className={`m-7 w-full border-8 ${isPaid ? "border-green-400" : "border-yellow-400"} bg-white`}
+      >
+        <div
+          className={`flex items-center justify-center ${isPaid ? "visible" : "invisible"}`}
+        >
+          hellow world
+        </div>
         <div className="mt-24 flex">
-          <div className="mb-12 ml-12 flex w-1/2 flex-col justify-center ">
+          <div className="mb-12 ml-12 flex w-1/2 flex-col justify-center">
             <h1 className="text">LOCATION</h1>
             <h1>Tilda og Karl</h1>
-            <p>10:45</p>
-            <p>Friday, 17 May 2024</p>
+            <p>{formattedTime}</p>
+            <p>{formattedDate}</p>
           </div>
         </div>
         <div className="">
           <div className="mb-36 h-12 bg-gray-500">
-            <h1 className="ml-12"> Islatte</h1>
+            <h1 className="ml-12">Islatte</h1>
           </div>
         </div>
         <SliderWrapper className="bg-white">
