@@ -294,7 +294,7 @@ const Rista: React.FC = () => {
             </TopSection>
             <BottomSection bgColor="#FFFFFF">
               <div className=" w-full  ">
-                <div className="mt-5 flex items-center justify-center text-2xl font-bold text-rose-950">
+                <div className="mt-5 flex h-12 items-center justify-center text-2xl font-bold text-rose-950">
                   0 Kr.
                 </div>
                 <Line className="mb-2 mt-2" />
@@ -326,7 +326,7 @@ const Rista: React.FC = () => {
                 <img className="mr-8 w-[50px]" src="plusZero.webp" alt="" />
               </div>
               <div className="mt-5 flex w-full items-center justify-center">
-                <button className="mb-8 mt-4  h-10 w-2/4 rounded bg-[#e4b77d] ">
+                <button className="mb-12 mt-4  h-10 w-2/4 rounded bg-[#e4b77d] ">
                   Done
                 </button>
               </div>
