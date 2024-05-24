@@ -12,6 +12,10 @@ interface SectionProps {
   bgColor: string;
 }
 
+interface HiddenTextProps {
+  isVisible: boolean;
+}
+
 const BackgroundContainer = styled.div`
   position: relative;
   width: 100%;
@@ -180,7 +184,7 @@ const BottomSection = styled.div<SectionProps>`
   background-color: ${({ bgColor }) => bgColor};
 `;
 
-const HiddenText = styled.div`
+const HiddenText = styled.div<HiddenTextProps>`
   visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
   font-size: 1.5rem;
   margin-bottom: 1rem;
