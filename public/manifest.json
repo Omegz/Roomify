@@ -3,8 +3,8 @@
 	"short_name": "Svelte5Template",
 	"start_url": "/",
 	"display": "standalone",
-	"background_color": "#ffffff",
-	"theme_color": "#158811",
+	"background_color": "#979999",
+	"theme_color": "#979999",
 	"description": "Svelte 5 Template",
 	"icons": [
 		{

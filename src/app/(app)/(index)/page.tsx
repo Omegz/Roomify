@@ -53,7 +53,7 @@ export default async function Home() {
               </Link>
             ) : null}
 
-            <Link href="/about" className="button type--B" prefetch={true}>
+            <Link href="/rista" className="button type--B" prefetch={true}>
               <div className="button__line"></div>
               <div className="button__line"></div>
               <span className="button__text sp">Learn More</span>
