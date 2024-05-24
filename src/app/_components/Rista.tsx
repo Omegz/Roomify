@@ -4,6 +4,14 @@ import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import WhiteCheckMark from "./WhiteCheckMark";
 
+interface PopUpContainerProps {
+  isPaid: boolean;
+}
+
+interface SectionProps {
+  bgColor: string;
+}
+
 const BackgroundContainer = styled.div`
   position: relative;
   width: 100%;
@@ -24,13 +32,12 @@ const BackgroundImage = styled.div`
   z-index: 0; /* Ensure it is behind the pop-up container */
 `;
 
-const PopUpContainer = styled.div`
+const PopUpContainer = styled.div<PopUpContainerProps>`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 94%;
-
   max-width: 600px;
   background: white;
   border-radius: 8px;
@@ -161,7 +168,7 @@ const Line = styled.div`
     100% 2px;
 `;
 
-const TopSection = styled.div`
+const TopSection = styled.div<SectionProps>`
   background-color: ${({ bgColor }) => bgColor};
   display: flex;
   flex-direction: column;
@@ -169,7 +176,7 @@ const TopSection = styled.div`
   justify-content: center;
 `;
 
-const BottomSection = styled.div`
+const BottomSection = styled.div<SectionProps>`
   background-color: ${({ bgColor }) => bgColor};
 `;
 
