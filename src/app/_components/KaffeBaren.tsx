@@ -190,9 +190,22 @@ const HiddenText = styled.div<HiddenTextProps>`
   margin-bottom: 1rem;
 `;
 
+const LogoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+`;
+
 const KaffeBaren: React.FC = () => {
   const [value, setValue] = useState(0);
   const [isPaid, setIsPaid] = useState(false);
+  const [showLogo, setShowLogo] = useState(false);
+  const [showReceipt, setShowReceipt] = useState(false);
   const inputRangeRef = useRef<HTMLInputElement>(null);
   const maxValue = 100;
 
@@ -216,7 +229,14 @@ const KaffeBaren: React.FC = () => {
   };
 
   const handlePayment = () => {
-    setIsPaid(true);
+    setShowLogo(true);
+    setTimeout(() => {
+      setShowLogo(false);
+      setIsPaid(true);
+      setTimeout(() => {
+        setShowReceipt(true);
+      }, 200); // Small delay to ensure smooth transition
+    }, 400); // Show the logo for 5 seconds
     setValue(0);
     if (inputRangeRef.current) {
       inputRangeRef.current.value = "0";
@@ -244,63 +264,19 @@ const KaffeBaren: React.FC = () => {
   return (
     <BackgroundContainer>
       <BackgroundImage />
-
-      <PopUpContainer isPaid={isPaid}>
-        {!isPaid ? (
-          <>
-            <TopSection bgColor="#fff">
-              <HiddenText isVisible={isPaid}>hellow world</HiddenText>
-              <div className="ml-11 flex w-full ">
-                <div className="flex w-1/2 flex-col justify-center">
-                  <h1 className="text-sm  text-[#e4b77d]">LOCATION</h1>
-                  <h1 className=" text-xl font-bold text-rose-950">
-                    Kaffebaren Vesterbro
-                  </h1>
-                  <span className="text-sm">{formattedTime}</span>
-                  <span className="text-sm">{formattedDate}</span>
-                </div>
-              </div>
-              <div className="mb-24 mt-6 flex h-12 w-full items-center justify-between bg-[#f9f1e6]">
-                <h1 className="ml-6">Islatte</h1>
-                <div className="mr-8 flex">
-                  <img className="w-[22px]" src="checkMark.webp" alt="" />
-                </div>
-              </div>
-              <SliderWrapper className="mb-12 mt-20">
-                <SliderLabel className="mr-20">
-                  CASHIER SWIPE TO ACCEPT
-                </SliderLabel>
-                <SliderContainer>
-                  <SliderInput
-                    type="range"
-                    className="rounded-xl"
-                    ref={inputRangeRef}
-                    value={value}
-                    onChange={handleChange}
-                    onMouseUp={handleMouseUp}
-                    onTouchEnd={handleMouseUp}
-                  />
-                </SliderContainer>
-              </SliderWrapper>
-            </TopSection>
-          </>
-        ) : (
-          <>
-            <TopSection bgColor="#b0de96">
-              <WhiteCheckMark />
-              <div className="flex h-12 flex-col items-center justify-center text-white">
-                Receipt
-              </div>
-            </TopSection>
-            <BottomSection bgColor="#FFFFFF">
-              <div className=" w-full  ">
-                <div className="mt-5 flex h-12 items-center justify-center text-2xl font-bold text-rose-950">
-                  0 Kr.
-                </div>
-                <Line className="mb-2 mt-2" />
-                <div className="flex ">
-                  <div className="ml-12 flex w-1/2 flex-col justify-center">
-                    <h1 className="text-sm text-[#b0de96]">LOCATION</h1>
+      {showLogo && !showReceipt ? (
+        <LogoContainer>
+          <img className="z-10 " src="coffeLogoInter.png" alt="Logo" />
+        </LogoContainer>
+      ) : (
+        <PopUpContainer isPaid={isPaid}>
+          {!isPaid ? (
+            <>
+              <TopSection bgColor="#fff">
+                <HiddenText isVisible={isPaid}>hellow world</HiddenText>
+                <div className="ml-11 flex w-full ">
+                  <div className="flex w-1/2 flex-col justify-center">
+                    <h1 className="text-sm  text-[#e4b77d]">LOCATION</h1>
                     <h1 className=" text-xl font-bold text-rose-950">
                       Kaffebaren Vesterbro
                     </h1>
@@ -308,32 +284,81 @@ const KaffeBaren: React.FC = () => {
                     <span className="text-sm">{formattedDate}</span>
                   </div>
                 </div>
-                <Line className="mb-2 mt-2" />
-              </div>
-              <div className="mb-12 mt-6 flex h-12 items-center justify-between bg-[#f9f1e6]">
-                <h1 className="ml-11">Latte</h1>
-                <div className="mr-8 flex">
-                  <h1>Free!</h1>
-                  <img className="w-[22px]" src="checkMark.webp" alt="" />
+                <div className="mb-24 mt-6 flex h-12 w-full items-center justify-between bg-[#f9f1e6]">
+                  <h1 className="ml-6">Latte</h1>
+                  <div className="mr-8 flex">
+                    <img className="w-[22px]" src="checkMark.webp" alt="" />
+                  </div>
                 </div>
-              </div>
-              <Line className="mb-2 mt-5" />
-              <div className="mt-5 flex justify-between ">
-                <div className=" ml-10 flex justify-between ">
-                  <img className="w-[35px]" src="coffee.jpg" alt="" />
-                  <h1 className="ml-3 mt-2">Rista Cups</h1>
+                <SliderWrapper className="mb-12 mt-20">
+                  <SliderLabel className="mr-20">
+                    CASHIER SWIPE TO ACCEPT
+                  </SliderLabel>
+                  <SliderContainer>
+                    <SliderInput
+                      type="range"
+                      className="rounded-xl"
+                      ref={inputRangeRef}
+                      value={value}
+                      onChange={handleChange}
+                      onMouseUp={handleMouseUp}
+                      onTouchEnd={handleMouseUp}
+                    />
+                  </SliderContainer>
+                </SliderWrapper>
+              </TopSection>
+            </>
+          ) : showReceipt ? (
+            <>
+              <TopSection bgColor="#b0de96">
+                <WhiteCheckMark />
+                <div className="flex h-12 flex-col items-center justify-center text-white">
+                  Receipt
                 </div>
-                <img className="mr-8 w-[50px]" src="plusZero.webp" alt="" />
-              </div>
-              <div className="mt-5 flex w-full items-center justify-center">
-                <button className="mb-12 mt-4  h-10 w-2/4 rounded bg-[#e4b77d] ">
-                  Done
-                </button>
-              </div>
-            </BottomSection>
-          </>
-        )}
-      </PopUpContainer>
+              </TopSection>
+              <BottomSection bgColor="#FFFFFF">
+                <div className=" w-full  ">
+                  <div className="mt-5 flex h-12 items-center justify-center text-2xl font-bold text-rose-950">
+                    0 Kr.
+                  </div>
+                  <Line className="mb-2 mt-2" />
+                  <div className="flex ">
+                    <div className="ml-12 flex w-1/2 flex-col justify-center">
+                      <h1 className="text-sm text-[#b0de96]">LOCATION</h1>
+                      <h1 className=" text-xl font-bold text-rose-950">
+                        Tilda og Karl
+                      </h1>
+                      <span className="text-sm">{formattedTime}</span>
+                      <span className="text-sm">{formattedDate}</span>
+                    </div>
+                  </div>
+                  <Line className="mb-2 mt-2" />
+                </div>
+                <div className="mb-12 mt-6 flex h-12 items-center justify-between bg-[#f9f1e6]">
+                  <h1 className="ml-11">Latte</h1>
+                  <div className="mr-8 flex">
+                    <h1>Free!</h1>
+                    <img className="w-[22px]" src="checkMark.webp" alt="" />
+                  </div>
+                </div>
+                <Line className="mb-2 mt-5" />
+                <div className="mt-5 flex justify-between ">
+                  <div className=" ml-10 flex justify-between ">
+                    <img className="w-[35px]" src="coffee.jpg" alt="" />
+                    <h1 className="ml-3 mt-2">Rista Cups</h1>
+                  </div>
+                  <img className="mr-8 w-[50px]" src="plusZero.webp" alt="" />
+                </div>
+                <div className="mt-5 flex w-full items-center justify-center">
+                  <button className="mb-12 mt-4  h-10 w-2/4 rounded bg-[#e4b77d] ">
+                    Done
+                  </button>
+                </div>
+              </BottomSection>
+            </>
+          ) : null}
+        </PopUpContainer>
+      )}
     </BackgroundContainer>
   );
 };

@@ -201,7 +201,7 @@ const LogoContainer = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
 
-const Rista: React.FC = () => {
+const TildaLatte: React.FC = () => {
   const [value, setValue] = useState(0);
   const [isPaid, setIsPaid] = useState(false);
   const [showLogo, setShowLogo] = useState(false);
@@ -285,7 +285,7 @@ const Rista: React.FC = () => {
                   </div>
                 </div>
                 <div className="mb-24 mt-6 flex h-12 w-full items-center justify-between bg-[#f9f1e6]">
-                  <h1 className="ml-6">Islatte</h1>
+                  <h1 className="ml-6">Latte</h1>
                   <div className="mr-8 flex">
                     <img className="w-[22px]" src="checkMark.webp" alt="" />
                   </div>
@@ -335,7 +335,7 @@ const Rista: React.FC = () => {
                   <Line className="mb-2 mt-2" />
                 </div>
                 <div className="mb-12 mt-6 flex h-12 items-center justify-between bg-[#f9f1e6]">
-                  <h1 className="ml-11">Islatte</h1>
+                  <h1 className="ml-11">Latte</h1>
                   <div className="mr-8 flex">
                     <h1>Free!</h1>
                     <img className="w-[22px]" src="checkMark.webp" alt="" />
@@ -363,4 +363,4 @@ const Rista: React.FC = () => {
   );
 };
 
-export default Rista;
+export default TildaLatte;

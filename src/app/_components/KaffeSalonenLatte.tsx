@@ -31,7 +31,7 @@ const BackgroundImage = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("tilda.webp") no-repeat center center;
+  background: url("kaffesalonenimage.webp") no-repeat center center;
   background-size: cover;
   z-index: 0; /* Ensure it is behind the pop-up container */
 `;
@@ -201,7 +201,7 @@ const LogoContainer = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
 
-const Rista: React.FC = () => {
+const KaffeSalonenLatte: React.FC = () => {
   const [value, setValue] = useState(0);
   const [isPaid, setIsPaid] = useState(false);
   const [showLogo, setShowLogo] = useState(false);
@@ -278,14 +278,14 @@ const Rista: React.FC = () => {
                   <div className="flex w-1/2 flex-col justify-center">
                     <h1 className="text-sm  text-[#e4b77d]">LOCATION</h1>
                     <h1 className=" text-xl font-bold text-rose-950">
-                      Tilda og Karl
+                      KaffeSalonen
                     </h1>
                     <span className="text-sm">{formattedTime}</span>
                     <span className="text-sm">{formattedDate}</span>
                   </div>
                 </div>
                 <div className="mb-24 mt-6 flex h-12 w-full items-center justify-between bg-[#f9f1e6]">
-                  <h1 className="ml-6">Islatte</h1>
+                  <h1 className="ml-6">Latte</h1>
                   <div className="mr-8 flex">
                     <img className="w-[22px]" src="checkMark.webp" alt="" />
                   </div>
@@ -326,7 +326,7 @@ const Rista: React.FC = () => {
                     <div className="ml-12 flex w-1/2 flex-col justify-center">
                       <h1 className="text-sm text-[#b0de96]">LOCATION</h1>
                       <h1 className=" text-xl font-bold text-rose-950">
-                        Tilda og Karl
+                        Kaffesalonen
                       </h1>
                       <span className="text-sm">{formattedTime}</span>
                       <span className="text-sm">{formattedDate}</span>
@@ -335,7 +335,7 @@ const Rista: React.FC = () => {
                   <Line className="mb-2 mt-2" />
                 </div>
                 <div className="mb-12 mt-6 flex h-12 items-center justify-between bg-[#f9f1e6]">
-                  <h1 className="ml-11">Islatte</h1>
+                  <h1 className="ml-11">Latte</h1>
                   <div className="mr-8 flex">
                     <h1>Free!</h1>
                     <img className="w-[22px]" src="checkMark.webp" alt="" />
@@ -363,4 +363,4 @@ const Rista: React.FC = () => {
   );
 };
 
-export default Rista;
+export default KaffeSalonenLatte;
