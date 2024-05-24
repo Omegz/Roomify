@@ -12,9 +12,9 @@ const SliderWrapper = styled.div`
 `;
 
 const SliderLabel = styled.h1`
-  font-size: 1.2rem;
+  font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 1.25px;
+  color: #e4b77d;
   margin-bottom: 20px;
 `;
 
@@ -24,10 +24,11 @@ const SliderContainer = styled.div`
 `;
 
 const SliderInput = styled.input`
-  width: 100%;
+  width: 80%;
+  margin-left: 30px;
   appearance: none;
-  height: 40px;
-  background: green;
+  height: 50px;
+  background: #e4b77d;
   border-radius: 10px;
   outline: none;
   opacity: 0.7;
@@ -48,18 +49,20 @@ const SliderInput = styled.input`
     color: white;
     font-size: 1rem;
     z-index: 0;
+    border-radius: 12px;
   }
 
   &::-webkit-slider-thumb {
     appearance: none;
     width: 40px;
     height: 40px;
+    margin-left: 2px;
     border-radius: 50%;
     background: white
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='8 4 16 12 8 20'%3E%3C/polyline%3E%3C/svg%3E")
       no-repeat center center;
     background-size: 20px 20px;
-    border: 2px solid black;
+
     cursor: pointer;
     position: relative;
     z-index: 2;
@@ -116,7 +119,7 @@ const SliderValue = styled.span`
 
 const Line = styled.div`
   height: 2px;
-  background: linear-gradient(to right, transparent 50%, #223049 50%);
+  background: linear-gradient(to right, transparent 50%, #a9a8a8 50%);
   background-size:
     16px 2px,
     100% 2px;
@@ -128,7 +131,8 @@ const Container = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100%;
-  padding: 2rem;
+  padding: 1rem;
+  background-color: blue;
 `;
 
 const InnerContainer = styled.div`
@@ -138,11 +142,10 @@ const InnerContainer = styled.div`
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  border: 8px solid ${(props) => (props.isPaid ? "#b0de96" : "#FFD700")}; /* Green or Yellow border */
+  border: 8px solid ${(props) => (props.isPaid ? "#b0de96" : "#e4b77d")}; /* Green or Yellow border */
 `;
 
 const TopSection = styled.div`
-  padding: 1rem;
   background-color: ${({ bgColor }) => bgColor};
   display: flex;
   flex-direction: column;
@@ -215,24 +218,32 @@ const Rista: React.FC = () => {
     <Container>
       {!isPaid ? (
         <InnerContainer isPaid={isPaid}>
-          <TopSection bgColor="#fff">
+          <TopSection bgColor="#fffff">
             <HiddenText isVisible={isPaid}>hellow world</HiddenText>
-            <div className="mt-24 flex">
-              <div className="mb-12 ml-12 flex w-1/2 flex-col justify-center">
-                <h1 className="text">LOCATION</h1>
-                <h1>Tilda og Karl</h1>
-                <p>{formattedTime}</p>
-                <p>{formattedDate}</p>
+            <div className="ml-11 flex w-full ">
+              <div className="flex w-1/2 flex-col justify-center">
+                <h1 className="text-sm  text-[#e4b77d]">LOCATION</h1>
+                <h1 className=" text-xl font-bold text-rose-950">
+                  Tilda og Karl
+                </h1>
+                <span className="text-sm">{formattedTime}</span>
+                <span className="text-sm">{formattedDate}</span>
               </div>
             </div>
-            <div className="mb-36 h-12 bg-gray-500">
-              <h1 className="ml-12">Islatte</h1>
+            <div className="mb-24 mt-6 flex h-12 w-full items-center justify-between bg-[#f9f1e6]">
+              <h1 className="ml-6">Islatte</h1>
+              <div className="mr-8 flex">
+                <img className="w-[22px]" src="checkMark.webp" alt="" />
+              </div>
             </div>
-            <SliderWrapper>
-              <SliderLabel>Slide to Pay</SliderLabel>
+            <SliderWrapper className="mb-12 mt-12">
+              <SliderLabel className="mr-20">
+                CASHIER SWIPE TO ACCEPT
+              </SliderLabel>
               <SliderContainer>
                 <SliderInput
                   type="range"
+                  className="rounded-xl"
                   ref={inputRangeRef}
                   value={value}
                   onChange={handleChange}
@@ -271,9 +282,10 @@ const Rista: React.FC = () => {
               <Line className="mb-2 mt-2" />
             </div>
             <div className="mb-12 mt-6 flex h-12 items-center justify-between bg-[#f9f1e6]">
-              <h1 className="ml-12">Islatte</h1>
-              <div className="mr-12">
-                <h1>FREE!</h1>
+              <h1 className="ml-11">Islatte</h1>
+              <div className="mr-8 flex">
+                <h1>Free!</h1>
+                <img className="w-[22px]" src="checkMark.webp" alt="" />
               </div>
             </div>
 
@@ -281,14 +293,16 @@ const Rista: React.FC = () => {
 
             <div className="flex justify-between ">
               <div className=" ml-10 flex justify-between ">
-                <img className="w-[30px]" src="coffee.jpg" alt="" />
+                <img className="w-[35px]" src="coffee.jpg" alt="" />
                 <h1 className="ml-3 mt-2">Rista Cups</h1>
               </div>
-              <h1>logo</h1>
+              <img className="mr-8 w-[50px]" src="plusZero.webp" alt="" />
             </div>
 
             <div className="mt-5 flex w-full items-center justify-center">
-              <button className="w-1/4 rounded-xl bg-yellow-800">Done</button>
+              <button className="mb-8 h-10  w-2/4 rounded bg-[#e4b77d]">
+                Done
+              </button>
             </div>
           </BottomSection>
         </InnerContainer>
