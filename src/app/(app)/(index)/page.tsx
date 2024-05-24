@@ -44,7 +44,7 @@ export default async function Home() {
 
           <div className="container2">
             {user ? (
-              <Link href="/louis" className="button type--A" prefetch={true}>
+              <Link href="/rista" className="button type--A" prefetch={true}>
                 <div className="button__line"></div>
                 <div className="button__line"></div>
                 <span className="button__text sp">Chat Now</span>

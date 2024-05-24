@@ -8,26 +8,20 @@ const BackgroundContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100vh; /* Ensure it takes up the full height of the viewport */
-  background-color: #f0f0f0; /* Simulated background color */
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const BackgroundContent = styled.div`
+const BackgroundImage = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0; /* Ensure it is behind the pop-up container */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: url("your-background-image.jpg") no-repeat center center;
+  background: url("tilda.webp") no-repeat center center;
   background-size: cover;
-  /* You can add more styles for your background content here */
+  z-index: 0; /* Ensure it is behind the pop-up container */
 `;
 
 const PopUpContainer = styled.div`
@@ -35,7 +29,8 @@ const PopUpContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
+  width: 94%;
+
   max-width: 600px;
   background: white;
   border-radius: 8px;
@@ -172,12 +167,10 @@ const TopSection = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
 `;
 
 const BottomSection = styled.div`
   background-color: ${({ bgColor }) => bgColor};
-  padding: 1rem;
 `;
 
 const HiddenText = styled.div`
@@ -239,70 +232,8 @@ const Rista: React.FC = () => {
 
   return (
     <BackgroundContainer>
-      <BackgroundContent>
-        {/* Add your background content or open tags here */}
-        <h1>Background Content</h1>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-        <p>This is the background content behind the pop-up.</p>
-      </BackgroundContent>
+      <BackgroundImage />
+
       <PopUpContainer isPaid={isPaid}>
         {!isPaid ? (
           <>
@@ -324,7 +255,7 @@ const Rista: React.FC = () => {
                   <img className="w-[22px]" src="checkMark.webp" alt="" />
                 </div>
               </div>
-              <SliderWrapper className="mb-12 mt-12">
+              <SliderWrapper className="mb-12 mt-20">
                 <SliderLabel className="mr-20">
                   CASHIER SWIPE TO ACCEPT
                 </SliderLabel>
@@ -346,7 +277,7 @@ const Rista: React.FC = () => {
           <>
             <TopSection bgColor="#b0de96">
               <WhiteCheckMark />
-              <div className="flex flex-col items-center justify-center text-white">
+              <div className="flex h-12 flex-col items-center justify-center text-white">
                 Receipt
               </div>
             </TopSection>
@@ -375,8 +306,8 @@ const Rista: React.FC = () => {
                   <img className="w-[22px]" src="checkMark.webp" alt="" />
                 </div>
               </div>
-              <Line className="mb-2 mt-2" />
-              <div className="flex justify-between ">
+              <Line className="mb-2 mt-5" />
+              <div className="mt-5 flex justify-between ">
                 <div className=" ml-10 flex justify-between ">
                   <img className="w-[35px]" src="coffee.jpg" alt="" />
                   <h1 className="ml-3 mt-2">Rista Cups</h1>
@@ -384,7 +315,7 @@ const Rista: React.FC = () => {
                 <img className="mr-8 w-[50px]" src="plusZero.webp" alt="" />
               </div>
               <div className="mt-5 flex w-full items-center justify-center">
-                <button className="mb-8 h-10  w-2/4 rounded bg-[#e4b77d]">
+                <button className="mb-8 mt-4  h-10 w-2/4 rounded bg-[#e4b77d] ">
                   Done
                 </button>
               </div>
