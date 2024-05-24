@@ -61,6 +61,14 @@ export default async function Home() {
               <div className="button__drow1"></div>
               <div className="button__drow2"></div>
             </Link>
+            <Link href="/kaffebaren" className="button type--B" prefetch={true}>
+              <div className="button__line"></div>
+              <div className="button__line"></div>
+              <span className="button__text sp">Learn More</span>
+
+              <div className="button__drow1"></div>
+              <div className="button__drow2"></div>
+            </Link>
             <AuthButton user={user} />
           </div>
         </div>
