@@ -19,7 +19,7 @@ interface HiddenTextProps {
 const BackgroundContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100vh; /* Ensure it takes up the full height of the viewport */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,7 +33,7 @@ const BackgroundImage = styled.div`
   height: 100%;
   background: url("tilda.webp") no-repeat center center;
   background-size: cover;
-  z-index: 0;
+  z-index: 0; /* Ensure it is behind the pop-up container */
 `;
 
 const PopUpContainer = styled.div<PopUpContainerProps>`
@@ -47,8 +47,8 @@ const PopUpContainer = styled.div<PopUpContainerProps>`
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  z-index: 100;
-  border: 8px solid ${(props) => (props.isPaid ? "#b0de96" : "#e4b77d")};
+  z-index: 100; /* High z-index to make it appear above the background */
+  border: 8px solid ${(props) => (props.isPaid ? "#b0de96" : "#e4b77d")}; /* Green or Yellow border */
 `;
 
 const SliderWrapper = styled.div`
@@ -109,6 +109,7 @@ const SliderInput = styled.input`
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='8 4 16 12 8 20'%3E%3C/polyline%3E%3C/svg%3E")
       no-repeat center center;
     background-size: 20px 20px;
+
     cursor: pointer;
     position: relative;
     z-index: 2;
@@ -233,7 +234,7 @@ const Rista: React.FC = () => {
       setShowLogo(false);
       setIsPaid(true);
       setShowReceipt(true);
-    }, 400); // Show the logo for 5 seconds
+    }, 300); // Show the logo for 5 seconds
     setValue(0);
     if (inputRangeRef.current) {
       inputRangeRef.current.value = "0";
