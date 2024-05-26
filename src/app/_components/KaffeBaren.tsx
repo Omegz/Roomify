@@ -326,7 +326,7 @@ const KaffeBaren: React.FC = () => {
                     <div className="ml-12 flex w-1/2 flex-col justify-center">
                       <h1 className="text-sm text-[#b0de96]">LOCATION</h1>
                       <h1 className=" text-xl font-bold text-rose-950">
-                        Tilda og Karl
+                        Kaffebaren Vesterbro
                       </h1>
                       <span className="text-sm">{formattedTime}</span>
                       <span className="text-sm">{formattedDate}</span>

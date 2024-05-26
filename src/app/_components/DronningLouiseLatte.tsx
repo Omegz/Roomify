@@ -31,7 +31,7 @@ const BackgroundImage = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("kaffesalonenimage.webp") no-repeat center center;
+  background: url("dronninglouises.webp") no-repeat center center;
   background-size: cover;
   z-index: 0; /* Ensure it is behind the pop-up container */
 `;
@@ -201,7 +201,7 @@ const LogoContainer = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
 
-const KaffeSalonenLatte: React.FC = () => {
+const DronningLouise: React.FC = () => {
   const [value, setValue] = useState(0);
   const [isPaid, setIsPaid] = useState(false);
   const [showLogo, setShowLogo] = useState(false);
@@ -278,7 +278,7 @@ const KaffeSalonenLatte: React.FC = () => {
                   <div className="flex w-1/2 flex-col justify-center">
                     <h1 className="text-sm  text-[#e4b77d]">LOCATION</h1>
                     <h1 className=" text-xl font-bold text-rose-950">
-                      Kaffesalonen
+                      Dronning Louises Creperie
                     </h1>
                     <span className="text-sm">{formattedTime}</span>
                     <span className="text-sm">{formattedDate}</span>
@@ -326,7 +326,7 @@ const KaffeSalonenLatte: React.FC = () => {
                     <div className="ml-12 flex w-1/2 flex-col justify-center">
                       <h1 className="text-sm text-[#b0de96]">LOCATION</h1>
                       <h1 className=" text-xl font-bold text-rose-950">
-                        Kaffesalonen
+                        Dronning Louises Creperie
                       </h1>
                       <span className="text-sm">{formattedTime}</span>
                       <span className="text-sm">{formattedDate}</span>
@@ -363,4 +363,4 @@ const KaffeSalonenLatte: React.FC = () => {
   );
 };
 
-export default KaffeSalonenLatte;
+export default DronningLouise;
