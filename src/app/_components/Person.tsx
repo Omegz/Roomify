@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 /* eslint-disable @typescript-eslint/no-floating-promises */
@@ -7,7 +8,7 @@
 "use client";
 import styles from "./Person.module.css";
 
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import TinderCard from "react-tinder-card";
 import Navbar from "~/app/_components/Navbar";
 const URL = "https://randomuser.me/api/?results=10"; // Fetch 10 results at a time
@@ -44,6 +45,8 @@ function Person() {
   const [profiles, setProfiles] = useState<PersonData[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showMatchPopup, setShowMatchPopup] = useState<boolean>(false);
+  const [rightSwipeCount, setRightSwipeCount] = useState<number>(0);
 
   // Handlers for next and previous image
   const nextImage = () => {
@@ -85,7 +88,7 @@ function Person() {
       return; // Exit the function if index is not valid
     }
 
-    console.log(`You swiped `);
+    console.log(`You swiped ${direction}`);
 
     // Example action based on swipe direction
     if (direction === "left") {
@@ -94,6 +97,27 @@ function Person() {
     } else if (direction === "right") {
       // Or mark it as a 'like'
       console.log(`Liked `);
+
+      // Increment right swipe count
+      const newRightSwipeCount = rightSwipeCount + 1;
+      setRightSwipeCount(newRightSwipeCount);
+
+      // Show the "Match" pop-up and save to local storage every 5th right swipe
+      if (newRightSwipeCount % 5 === 0) {
+        setShowMatchPopup(true);
+        setTimeout(() => {
+          setShowMatchPopup(false);
+        }, 3000);
+
+        const matchedProfiles = JSON.parse(
+          localStorage.getItem("matchedProfiles") || "[]",
+        );
+        matchedProfiles.push(profiles[index]);
+        localStorage.setItem(
+          "matchedProfiles",
+          JSON.stringify(matchedProfiles),
+        );
+      }
     }
 
     // Move to the next profile
@@ -153,23 +177,6 @@ function Person() {
                           {`${profile.name.first} ${profile.name.last}`}
                         </h1>
                       </div>
-
-                      {/* {defaultPhotos.length > 1 && (
-                        <>
-                          <button
-                            onClick={prevImage}
-                            className={styles.carouselControlLeft}
-                          >
-                            &#x3c;
-                          </button>
-                          <button
-                            onClick={nextImage}
-                            className={styles.carouselControlRight}
-                          >
-                            &#x3e;
-                          </button>
-                        </>
-                      )} */}
                     </div>
 
                     <div className="flex h-24 justify-between bg-gray-500 pl-12 pr-12">
@@ -190,6 +197,12 @@ function Person() {
                 </TinderCard>
               ),
           )}
+        </div>
+      )}
+
+      {showMatchPopup && (
+        <div className={styles.matchPopup}>
+          <h2>Match!</h2>
         </div>
       )}
     </div>
