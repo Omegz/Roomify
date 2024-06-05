@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/consistent-type-imports */
@@ -10,7 +11,7 @@ import styles from "./Person.module.css";
 
 import React, { useState, useEffect, useMemo } from "react";
 import TinderCard from "react-tinder-card";
-import Navbar from "~/app/_components/Navbar";
+import Navbar from "./NavBar";
 const URL = "https://randomuser.me/api/?results=10"; // Fetch 10 results at a time
 
 interface Location {

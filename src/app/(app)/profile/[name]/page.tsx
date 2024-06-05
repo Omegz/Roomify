@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -32,7 +33,8 @@ interface PersonData {
 }
 
 function Profile() {
-  const { name } = useParams<{ name: string }>();
+  const params = useParams();
+  const name = params?.name as string | undefined;
   const [match, setMatch] = useState<PersonData | null>(null);
 
   useEffect(() => {

@@ -34,7 +34,8 @@ interface PersonData {
 
 function Chat() {
   const router = useRouter();
-  const { name } = useParams<{ name: string }>();
+  const params = useParams();
+  const name = params?.name as string | undefined;
   const [match, setMatch] = useState<PersonData | null>(null);
   const [messages, setMessages] = useState<string[]>([]);
   const [newMessage, setNewMessage] = useState<string>("");
