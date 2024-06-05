@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
@@ -8,7 +9,7 @@ import styles from "./Person.module.css";
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import TinderCard from "react-tinder-card";
-
+import Navbar from "~/app/_components/Navbar";
 const URL = "https://randomuser.me/api/?results=10"; // Fetch 10 results at a time
 
 interface Location {
@@ -108,6 +109,7 @@ function Person() {
 
   return (
     <div className={styles.container}>
+      <Navbar />
       {loading ? (
         <div className="spinner-border text-primary" role="status">
           <span className="visually-hidden">Loading...</span>
@@ -119,7 +121,7 @@ function Person() {
               index === currentIndex && (
                 <TinderCard
                   ref={childRefs[index]}
-                  className="swipe"
+                  className="swipe bg-gray-600 p-5"
                   key={profile.email} // email as a unique key; adjust as necessary
                   onSwipe={(dir) => swiped(dir, index)}
                   onCardLeftScreen={() =>
@@ -131,12 +133,28 @@ function Person() {
                 >
                   <div className={styles.card}>
                     <div className={styles.carousel}>
-                      <img
-                        src={defaultPhotos[currentImageIndex]}
-                        className="card-img-top h-screen w-full object-cover"
-                        alt={`${profile.name.first} ${profile.name.last}`}
-                      />
-                      {defaultPhotos.length > 1 && (
+                      <div style={{ position: "relative" }}>
+                        <img
+                          src={defaultPhotos[currentImageIndex]}
+                          className="card-img-top h-[80vh] w-full bg-blue-600 object-cover"
+                          alt={`${profile.name.first} ${profile.name.last}`}
+                          style={{ opacity: 0.8 }} // Adjust the opacity value as needed
+                        />
+                        <h1
+                          className="card-title mb-7 text-2xl text-white"
+                          style={{
+                            position: "absolute",
+                            bottom: 0,
+                            left: 0,
+                            width: "100%",
+                            padding: "10px",
+                          }}
+                        >
+                          {`${profile.name.first} ${profile.name.last}`}
+                        </h1>
+                      </div>
+
+                      {/* {defaultPhotos.length > 1 && (
                         <>
                           <button
                             onClick={prevImage}
@@ -151,10 +169,19 @@ function Person() {
                             &#x3e;
                           </button>
                         </>
-                      )}
+                      )} */}
                     </div>
-                    <div className="card-body">
-                      <h5 className="card-title">{`${profile.name.first} ${profile.name.last}`}</h5>
+
+                    <div className="flex h-24 justify-between bg-gray-500 pl-12 pr-12">
+                      <button onClick={prevImage} className="">
+                        <img src="/rejectButton.png" />
+                      </button>
+                      <button onClick={nextImage} className="">
+                        <img src="/gayheart.png" />
+                      </button>
+                    </div>
+                    <div className="card-body ">
+                      <h1>About</h1>
                       <p className="card-text">{profile.phone}</p>
                       <p className="card-text">{profile.email}</p>
                       <p className="card-text">{`${profile.location.street.number} ${profile.location.street.name}, ${profile.location.city}, ${profile.location.state}`}</p>
