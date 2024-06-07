@@ -32,6 +32,7 @@ interface PersonData {
   location: Location;
   email: string;
   phone: string;
+  description?: string;
 }
 
 function Person() {
@@ -54,7 +55,7 @@ function Person() {
   const fetchProfiles = async () => {
     try {
       const response = await fetch("/people.json");
-      const data = await response.json();
+      const data: PersonData[] = await response.json();
       console.log(data);
       setProfiles(data);
       setCurrentIndex(data.length - 1); // Start from the last profile
@@ -116,9 +117,7 @@ function Person() {
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex + 1 < profiles[currentIndex].pictures.length
-        ? prevIndex + 1
-        : 0,
+      profiles[currentIndex]?.pictures[prevIndex + 1] ? prevIndex + 1 : 0,
     );
   };
 
@@ -126,7 +125,7 @@ function Person() {
     setCurrentImageIndex((prevIndex) =>
       prevIndex - 1 >= 0
         ? prevIndex - 1
-        : profiles[currentIndex].pictures.length - 1,
+        : (profiles[currentIndex]?.pictures.length ?? 0) - 1,
     );
   };
 
@@ -177,10 +176,12 @@ function Person() {
                         <div style={{ position: "relative" }}>
                           <img
                             src={
-                              profiles[currentIndex].pictures[currentImageIndex]
+                              profiles[currentIndex]?.pictures[
+                                currentImageIndex
+                              ]
                             }
                             className="card-img-top h-[80vh] w-full bg-blue-600 object-cover"
-                            alt={`${profiles[currentIndex].name.first} ${profiles[currentIndex].name.last}`}
+                            alt={`${profiles[currentIndex]?.name.first} ${profiles[currentIndex]?.name.last}`}
                             style={{ opacity: 0.8 }}
                             onClick={handleImageClick}
                           />
@@ -194,7 +195,7 @@ function Person() {
                               padding: "10px",
                             }}
                           >
-                            {`${profiles[currentIndex].name.first} ${profiles[currentIndex].name.last}`}
+                            {`${profiles[currentIndex]?.name.first} ${profiles[currentIndex]?.name.last}`}
                           </h1>
                         </div>
                       </div>
@@ -210,15 +211,15 @@ function Person() {
                       <div className="card-body p-2 ">
                         <h1>About</h1>
                         <p className="card-text">
-                          {profiles[currentIndex].phone}
+                          {profiles[currentIndex]?.phone}
                         </p>
                         <p className="card-text">
-                          {profiles[currentIndex].email}
+                          {profiles[currentIndex]?.email}
                         </p>
-                        <p className="card-text">{`${profiles[currentIndex].location.street.number} ${profiles[currentIndex].location.street.name}, ${profiles[currentIndex].location.city}, ${profiles[currentIndex].location.state}`}</p>
+                        <p className="card-text">{`${profiles[currentIndex]?.location.street.number} ${profiles[currentIndex]?.location.street.name}, ${profiles[currentIndex]?.location.city}, ${profiles[currentIndex]?.location.state}`}</p>
 
                         <p className="card-text mt-4">
-                          {profiles[currentIndex].description}
+                          {profiles[currentIndex]?.description}
                         </p>
                       </div>
                     </div>
