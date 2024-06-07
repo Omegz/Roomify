@@ -1,0 +1,81 @@
+[
+    {
+      "gender": "female",
+      "name": { "first": "This", "last": "One" },
+      "dob": { "age": 25 },
+      "pictures": ["/coffee.jpg", "/astronaut.png", "/gayheart.png"],
+      "location": {
+        "street": { "name": "Elm St", "number": 456 },
+        "city": "Othertown",
+        "state": "NY"
+      },
+      "email": "jane.smith@example.com",
+      "phone": "098-765-4321"
+    },
+    {
+      "gender": "female",
+      "name": { "first": "Qassam", "last": "Smith" },
+      "dob": { "age": 25 },
+      "pictures": ["/coffee.jpg", "/astronaut.png", "/gayheart.png"],
+      "location": {
+        "street": { "name": "Elm St", "number": 456 },
+        "city": "Othertown",
+        "state": "NY"
+      },
+      "email": "jane.smith@example.com",
+      "phone": "098-765-4321"
+    },
+    {
+        "gender": "female",
+        "name": { "first": "Baby", "last": "Oscat" },
+        "dob": { "age": 25 },
+        "pictures": ["/coffee.jpg", "/astronaut.png", "/gayheart.png"],
+        "location": {
+          "street": { "name": "Elm St", "number": 456 },
+          "city": "Othertown",
+          "state": "NY"
+        },
+        "email": "jane.smith@example.com",
+        "phone": "098-765-4321"
+      },
+    {
+      "gender": "female",
+      "name": { "first": "Jaholene", "last": "Smith" },
+      "dob": { "age": 25 },
+      "pictures": ["/coffee.jpg", "/astronaut.png", "/gayheart.png"],
+      "location": {
+        "street": { "name": "Elm St", "number": 456 },
+        "city": "Othertown",
+        "state": "NY"
+      },
+      "email": "jane.smith@example.com",
+      "phone": "098-765-4321"
+    },
+    {
+      "gender": "male",
+      "name": { "first": "John", "last": "Doe" },
+      "dob": { "age": 30 },
+      "pictures": ["/astronaut.png", "/coffee.jpg", "/gayheart.png"],
+      "location": {
+        "street": { "name": "Main St", "number": 123 },
+        "city": "Anytown",
+        "state": "CA"
+      },
+      "email": "john.doe@example.com",
+      "phone": "123-456-7890"
+    },
+    {
+      "gender": "female",
+      "name": { "first": "Jane", "last": "Smith" },
+      "dob": { "age": 25 },
+      "pictures": ["/coffee.jpg", "/astronaut.png", "/gayheart.png"],
+      "location": {
+        "street": { "name": "Elm St", "number": 456 },
+        "city": "Othertown",
+        "state": "NY"
+      },
+      "email": "jane.smith@example.com",
+      "phone": "098-765-4321"
+    }
+  ]
+  

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
@@ -58,7 +59,7 @@ function Matches() {
             onClick={() => openChat(match.name)}
           >
             <img
-              src={match.picture.large}
+              src={match.picture}
               alt={`${match.name.first} ${match.name.last}`}
               className="mb-2 h-24 w-24 rounded-full object-cover"
             />
