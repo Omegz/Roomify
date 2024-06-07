@@ -47,24 +47,24 @@ export default async function Home() {
               <Link href="/rista" className="button type--A" prefetch={true}>
                 <div className="button__line"></div>
                 <div className="button__line"></div>
-                <span className="button__text sp">Chat Now</span>
+                <span className="button__text sp">islatte tilda</span>
                 <div className="button__drow1"></div>
                 <div className="button__drow2"></div>
               </Link>
             ) : null}
 
-            <Link href="/rista" className="button type--B" prefetch={true}>
+            <Link href="/rista" className="button type--A" prefetch={true}>
               <div className="button__line"></div>
               <div className="button__line"></div>
-              <span className="button__text sp">Learn More</span>
-
+              <span className="button__text sp">islatte tilda</span>
               <div className="button__drow1"></div>
               <div className="button__drow2"></div>
             </Link>
+
             <Link href="/kaffebaren" className="button type--B" prefetch={true}>
               <div className="button__line"></div>
               <div className="button__line"></div>
-              <span className="button__text sp">Learn More</span>
+              <span className="button__text sp">Vestebro</span>
 
               <div className="button__drow1"></div>
               <div className="button__drow2"></div>
@@ -72,7 +72,7 @@ export default async function Home() {
             <Link href="/tildalatte" className="button type--B" prefetch={true}>
               <div className="button__line"></div>
               <div className="button__line"></div>
-              <span className="button__text sp">Learn More</span>
+              <span className="button__text sp">tilda latte</span>
 
               <div className="button__drow1"></div>
               <div className="button__drow2"></div>
@@ -84,7 +84,7 @@ export default async function Home() {
             >
               <div className="button__line"></div>
               <div className="button__line"></div>
-              <span className="button__text sp">Learn More</span>
+              <span className="button__text sp">kaffe salonen </span>
 
               <div className="button__drow1"></div>
               <div className="button__drow2"></div>
@@ -97,7 +97,7 @@ export default async function Home() {
             >
               <div className="button__line"></div>
               <div className="button__line"></div>
-              <span className="button__text sp">Learn More</span>
+              <span className="button__text sp">dronning </span>
 
               <div className="button__drow1"></div>
               <div className="button__drow2"></div>
@@ -109,7 +109,7 @@ export default async function Home() {
             >
               <div className="button__line"></div>
               <div className="button__line"></div>
-              <span className="button__text sp">Learn More</span>
+              <span className="button__text sp">bistro coco</span>
 
               <div className="button__drow1"></div>
               <div className="button__drow2"></div>

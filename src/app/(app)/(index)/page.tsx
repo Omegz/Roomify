@@ -12,7 +12,9 @@ export default async function Home() {
   const { user } = await validateRequest();
   return (
     <main className="flex min-h-screen flex-col items-center justify-center  text-white ">
-      hello world
+      <a href="/choices">
+        <button>choices</button>
+      </a>
     </main>
   );
 }
