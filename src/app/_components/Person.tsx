@@ -8,7 +8,6 @@
 
 "use client";
 import styles from "./Person.module.css";
-
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import TinderCard from "react-tinder-card";
 import Navbar from "./NavBar";
@@ -130,7 +129,7 @@ function Person() {
   };
 
   return (
-    <div className="overflow-hidden ">
+    <div className="flex h-screen flex-col overflow-hidden">
       <div className="flex h-24 justify-between bg-gray-500 pl-12 pr-12">
         <a href="/">
           <button className=" mt-5">
@@ -153,9 +152,9 @@ function Person() {
           <span className="visually-hidden">Loading...</span>
         </div>
       ) : (
-        <div className="">
+        <div className="flex flex-grow items-center justify-center">
           {profiles.length > 0 && (
-            <div className="">
+            <div className="relative">
               {profiles.map((profile, index) => (
                 <TinderCard
                   ref={childRefs[index]}
@@ -171,33 +170,20 @@ function Person() {
                   preventSwipe={["up", "down"]}
                 >
                   {index === currentIndex && (
-                    <div className="">
-                      <div className="">
-                        <div style={{ position: "relative" }}>
-                          <img
-                            src={
-                              profiles[currentIndex]?.pictures[
-                                currentImageIndex
-                              ]
-                            }
-                            className="card-img-top h-[80vh] w-full bg-blue-600 object-cover"
-                            alt={`${profiles[currentIndex]?.name.first} ${profiles[currentIndex]?.name.last}`}
-                            style={{ opacity: 0.8 }}
-                            onClick={handleImageClick}
-                          />
-                          <h1
-                            className="card-title mb-7 text-2xl text-white"
-                            style={{
-                              position: "absolute",
-                              bottom: 0,
-                              left: 0,
-                              width: "100%",
-                              padding: "10px",
-                            }}
-                          >
-                            {`${profiles[currentIndex]?.name.first} ${profiles[currentIndex]?.name.last}`}
-                          </h1>
-                        </div>
+                    <div className="relative">
+                      <div className="relative">
+                        <img
+                          src={
+                            profiles[currentIndex]?.pictures[currentImageIndex]
+                          }
+                          className="card-img-top h-[80vh] w-full  object-cover"
+                          alt={`${profiles[currentIndex]?.name.first} ${profiles[currentIndex]?.name.last}`}
+                          style={{ opacity: 0.8 }}
+                          onClick={handleImageClick}
+                        />
+                        <h1 className="card-title absolute bottom-0 left-0 mb-7 w-full p-10 text-2xl text-white">
+                          {`${profiles[currentIndex]?.name.first} ${profiles[currentIndex]?.name.last}`}
+                        </h1>
                       </div>
 
                       <div className="flex h-24 justify-between bg-gray-500 pl-12 pr-12">
@@ -208,7 +194,7 @@ function Person() {
                           <img src="/gayheart.png" />
                         </button>
                       </div>
-                      <div className="card-body p-2 ">
+                      <div className="card-body p-2">
                         <h1>About</h1>
                         <p className="card-text">
                           {profiles[currentIndex]?.phone}
