@@ -3,7 +3,7 @@
       "gender": "female",
       "name": { "first": "This", "last": "One" },
       "dob": { "age": 25 },
-      "pictures": ["/coffee.jpg", "/astronaut.png", "/gayheart.png"],
+      "pictures": ["/coffee.jpg"],
       "location": {
         "street": { "name": "Elm St", "number": 456 },
         "city": "Othertown",
@@ -16,7 +16,7 @@
       "gender": "female",
       "name": { "first": "Qassam", "last": "Smith" },
       "dob": { "age": 25 },
-      "pictures": ["/coffee.jpg", "/astronaut.png", "/gayheart.png"],
+      "pictures": ["/coffee.jpg"],
       "location": {
         "street": { "name": "Elm St", "number": 456 },
         "city": "Othertown",
@@ -29,7 +29,7 @@
         "gender": "female",
         "name": { "first": "Baby", "last": "Oscat" },
         "dob": { "age": 25 },
-        "pictures": ["/coffee.jpg", "/astronaut.png", "/gayheart.png"],
+        "pictures": ["/coffee.jpg"],
         "location": {
           "street": { "name": "Elm St", "number": 456 },
           "city": "Othertown",
@@ -42,7 +42,7 @@
       "gender": "female",
       "name": { "first": "Jaholene", "last": "Smith" },
       "dob": { "age": 25 },
-      "pictures": ["/coffee.jpg", "/astronaut.png", "/gayheart.png"],
+      "pictures": ["/coffee.jpg"],
       "location": {
         "street": { "name": "Elm St", "number": 456 },
         "city": "Othertown",
@@ -55,7 +55,7 @@
       "gender": "male",
       "name": { "first": "John", "last": "Doe" },
       "dob": { "age": 30 },
-      "pictures": ["/astronaut.png", "/coffee.jpg", "/gayheart.png"],
+      "pictures": ["/astronaut.png"],
       "location": {
         "street": { "name": "Main St", "number": 123 },
         "city": "Anytown",
@@ -68,7 +68,7 @@
       "gender": "female",
       "name": { "first": "Jane", "last": "Smith" },
       "dob": { "age": 25 },
-      "pictures": ["/coffee.jpg", "/astronaut.png", "/gayheart.png"],
+      "pictures": ["/coffee.jpg"],
       "location": {
         "street": { "name": "Elm St", "number": 456 },
         "city": "Othertown",
