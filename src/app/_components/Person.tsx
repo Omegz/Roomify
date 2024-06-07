@@ -129,7 +129,7 @@ function Person() {
   };
 
   return (
-    <div className="flex h-screen flex-col overflow-hidden">
+    <div className="flex min-h-screen flex-col overflow-hidden">
       <div className="flex h-24 justify-between bg-gray-500 pl-12 pr-12">
         <a href="/">
           <button className=" mt-5">
@@ -176,7 +176,7 @@ function Person() {
                           src={
                             profiles[currentIndex]?.pictures[currentImageIndex]
                           }
-                          className="card-img-top h-[80vh] w-full  object-cover"
+                          className="card-img-top h-[80vh] w-full bg-blue-600 object-cover"
                           alt={`${profiles[currentIndex]?.name.first} ${profiles[currentIndex]?.name.last}`}
                           style={{ opacity: 0.8 }}
                           onClick={handleImageClick}
