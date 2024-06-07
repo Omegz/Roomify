@@ -3,53 +3,60 @@
       "gender": "female",
       "name": { "first": "This", "last": "One" },
       "dob": { "age": 25 },
-      "pictures": ["/coffee.jpg"],
+      "pictures": ["/astronaut.png"],
       "location": {
         "street": { "name": "Elm St", "number": 456 },
         "city": "Othertown",
         "state": "NY"
       },
       "email": "jane.smith@example.com",
-      "phone": "098-765-4321"
+      "phone": "098-765-4321",
+      "description": "Hi there! I'm Alex, a software engineer who works remotely for a tech startup. I love coding, hiking, and exploring new coffee shops around town. I’m tidy, respectful, and enjoy a good balance of socializing and alone time. On weekends, you can usually find me at the gym or playing board games with friends. Looking for a roommate who’s friendly and keeps common areas clean."
     },
     {
       "gender": "female",
       "name": { "first": "Qassam", "last": "Smith" },
       "dob": { "age": 25 },
-      "pictures": ["/coffee.jpg"],
+      "pictures": ["/astronaut.png"],
       "location": {
         "street": { "name": "Elm St", "number": 456 },
         "city": "Othertown",
         "state": "NY"
       },
       "email": "jane.smith@example.com",
-      "phone": "098-765-4321"
+      "phone": "098-765-4321",
+      "description": "Hey! I'm Jamie, working as a marketing manager at a local firm. I'm passionate about cooking, painting, and attending music festivals. I’m easygoing and appreciate a drama-free living environment. I have a cat named Whiskers who’s very well-behaved. Seeking a roommate who’s responsible and doesn’t mind living with a pet."
+
     },
     {
         "gender": "female",
         "name": { "first": "Baby", "last": "Oscat" },
         "dob": { "age": 25 },
-        "pictures": ["/coffee.jpg"],
+        "pictures": ["/astronaut.png"],
         "location": {
           "street": { "name": "Elm St", "number": 456 },
           "city": "Othertown",
           "state": "NY"
         },
         "email": "jane.smith@example.com",
-        "phone": "098-765-4321"
+        "phone": "098-765-4321",
+        "description": " Hi, I’m Chris, currently pursuing a master's degree in environmental science. My hobbies include rock climbing, reading sci-fi novels, and volunteering at the local animal shelter. I’m quiet during the weekdays but enjoy socializing and game nights on weekends. Prefer a roommate who’s considerate and shares an interest in sustainability."
+
       },
     {
       "gender": "female",
       "name": { "first": "Jaholene", "last": "Smith" },
       "dob": { "age": 25 },
-      "pictures": ["/coffee.jpg"],
+      "pictures": ["/astronaut.png"],
       "location": {
         "street": { "name": "Elm St", "number": 456 },
         "city": "Othertown",
         "state": "NY"
       },
       "email": "jane.smith@example.com",
-      "phone": "098-765-4321"
+      "phone": "098-765-4321",
+      "description": "Hello! I’m Taylor, a graphic designer working for an ad agency. My interests include photography, yoga, and binge-watching crime documentaries. I’m neat, organized, and value open communication. I occasionally work from home, so I need a quiet space. Looking for a roommate who’s chill, responsible, and enjoys a peaceful home environment."
+
     },
     {
       "gender": "male",
@@ -62,20 +69,24 @@
         "state": "CA"
       },
       "email": "john.doe@example.com",
-      "phone": "123-456-7890"
+      "phone": "123-456-7890",
+      "description": "Hi, I’m Morgan, a nurse working at the city hospital. My schedule can be a bit irregular, but I make the most of my free time by gardening, baking, and going for long runs. I’m clean, considerate, and respectful of others' space and time. Seeking a roommate who’s understanding of my shifts and enjoys a cozy, friendly atmosphere."
+
     },
     {
       "gender": "female",
       "name": { "first": "Jane", "last": "Smith" },
       "dob": { "age": 25 },
-      "pictures": ["/coffee.jpg"],
+      "pictures": ["/astronaut.png"],
       "location": {
         "street": { "name": "Elm St", "number": 456 },
         "city": "Othertown",
         "state": "NY"
       },
       "email": "jane.smith@example.com",
-      "phone": "098-765-4321"
+      "phone": "098-765-4321",
+      "description": " Hey! I'm Jamie, working as a marketing manager at a local firm. I'm passionate about cooking, painting, and attending music festivals. I’m easygoing and appreciate a drama-free living environment. I have a cat named Whiskers who’s very well-behaved. Seeking a roommate who’s responsible and doesn’t mind living with a pet."
+
     }
   ]
   

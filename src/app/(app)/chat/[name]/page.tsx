@@ -18,15 +18,11 @@ interface Name {
   last: string;
 }
 
-interface Picture {
-  large: string;
-}
-
 interface PersonData {
   gender: string;
   name: Name;
   dob: { age: number };
-  picture: Picture;
+  pictures: string[];
   location: Location;
   email: string;
   phone: string;
@@ -67,7 +63,7 @@ function Chat() {
     <div className="flex h-screen flex-col p-4">
       <div className="mb-4 flex items-center">
         <img
-          src={match.picture.large}
+          src={match.pictures[0]} // Use the first picture in the pictures array
           alt={`${match.name.first} ${match.name.last}`}
           className="h-16 w-16 cursor-pointer rounded-full"
           onClick={() => router.push(`/profile/${name}`)}

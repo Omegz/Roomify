@@ -131,23 +131,32 @@ function Person() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className="overflow-hidden ">
       <div className="flex h-24 justify-between bg-gray-500 pl-12 pr-12">
-        <button onClick={prevImage} className="">
-          <img src="/rejectButton.png" />
-        </button>
-        <button onClick={nextImage} className="">
-          <img src="/gayheart.png" />
-        </button>
+        <a href="/">
+          <button className=" mt-5">
+            <img src="/homeIcon.png" />
+          </button>
+        </a>
+        <a href="/matches">
+          <button className="mt-5">
+            <img src="/matchesIcon.png" />
+          </button>
+        </a>
+        <a href="/user">
+          <button className="mt-5">
+            <img src="/maleIcon.png" />
+          </button>
+        </a>
       </div>
       {loading ? (
         <div className="spinner-border text-primary" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
       ) : (
-        <div className={styles.cardContainer}>
+        <div className="">
           {profiles.length > 0 && (
-            <div className={styles.cardWrapper}>
+            <div className="">
               {profiles.map((profile, index) => (
                 <TinderCard
                   ref={childRefs[index]}
@@ -163,8 +172,8 @@ function Person() {
                   preventSwipe={["up", "down"]}
                 >
                   {index === currentIndex && (
-                    <div className={styles.card}>
-                      <div className={styles.carousel}>
+                    <div className="">
+                      <div className="">
                         <div style={{ position: "relative" }}>
                           <img
                             src={
@@ -198,7 +207,7 @@ function Person() {
                           <img src="/gayheart.png" />
                         </button>
                       </div>
-                      <div className="card-body ">
+                      <div className="card-body p-2 ">
                         <h1>About</h1>
                         <p className="card-text">
                           {profiles[currentIndex].phone}
@@ -207,6 +216,10 @@ function Person() {
                           {profiles[currentIndex].email}
                         </p>
                         <p className="card-text">{`${profiles[currentIndex].location.street.number} ${profiles[currentIndex].location.street.name}, ${profiles[currentIndex].location.city}, ${profiles[currentIndex].location.state}`}</p>
+
+                        <p className="card-text mt-4">
+                          {profiles[currentIndex].description}
+                        </p>
                       </div>
                     </div>
                   )}

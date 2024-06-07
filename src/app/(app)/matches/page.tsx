@@ -27,7 +27,7 @@ interface PersonData {
   gender: string;
   name: Name;
   dob: { age: number };
-  picture: Picture;
+  pictures: string[];
   location: Location;
   email: string;
   phone: string;
@@ -59,7 +59,7 @@ function Matches() {
             onClick={() => openChat(match.name)}
           >
             <img
-              src={match.picture}
+              src={match.pictures[0]} // Assuming the first picture is displayed in matches
               alt={`${match.name.first} ${match.name.last}`}
               className="mb-2 h-24 w-24 rounded-full object-cover"
             />

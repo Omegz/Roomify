@@ -18,15 +18,12 @@ interface Name {
   last: string;
 }
 
-interface Picture {
-  large: string;
-}
-
 interface PersonData {
+  description: string;
   gender: string;
   name: Name;
   dob: { age: number };
-  picture: Picture;
+  pictures: string[];
   location: Location;
   email: string;
   phone: string;
@@ -57,7 +54,7 @@ function Profile() {
     <div className="p-4">
       <h1 className="mb-4 text-2xl font-bold">{`${match.name.first} ${match.name.last}`}</h1>
       <img
-        src={match.picture.large}
+        src={match.pictures[0]} // Use the first picture in the pictures array
         alt={`${match.name.first} ${match.name.last}`}
         className="mb-4 h-32 w-32 rounded-full"
       />
@@ -77,6 +74,10 @@ function Profile() {
         </p>
         <p className="mb-2">
           <strong>Gender:</strong> {match.gender}
+        </p>
+
+        <p className="mb-2">
+          <strong>About:</strong> {match.description}
         </p>
       </div>
     </div>
