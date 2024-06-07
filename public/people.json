@@ -1,92 +1,651 @@
 [
-    {
+  {
       "gender": "female",
-      "name": { "first": "This", "last": "One" },
+      "name": { "first": "Alex", "last": "Johnson" },
       "dob": { "age": 25 },
-      "pictures": ["/astronaut.png"],
+      "pictures": ["https://media.istockphoto.com/id/1284547430/photo/gay-man-with-rainbow-eyeshadow-winking-at-camera.jpg?s=612x612&w=0&k=20&c=-1aFl2Ylt-By90P_JMHsHhPzSNy6oEcdmQMtSG227_M="],
       "location": {
-        "street": { "name": "Elm St", "number": 456 },
-        "city": "Othertown",
-        "state": "NY"
-      },
-      "email": "jane.smith@example.com",
-      "phone": "098-765-4321",
-      "description": "Hi there! I'm Alex, a software engineer who works remotely for a tech startup. I love coding, hiking, and exploring new coffee shops around town. I’m tidy, respectful, and enjoy a good balance of socializing and alone time. On weekends, you can usually find me at the gym or playing board games with friends. Looking for a roommate who’s friendly and keeps common areas clean."
-    },
-    {
-      "gender": "female",
-      "name": { "first": "Qassam", "last": "Smith" },
-      "dob": { "age": 25 },
-      "pictures": ["/astronaut.png"],
-      "location": {
-        "street": { "name": "Elm St", "number": 456 },
-        "city": "Othertown",
-        "state": "NY"
-      },
-      "email": "jane.smith@example.com",
-      "phone": "098-765-4321",
-      "description": "Hey! I'm Jamie, working as a marketing manager at a local firm. I'm passionate about cooking, painting, and attending music festivals. I’m easygoing and appreciate a drama-free living environment. I have a cat named Whiskers who’s very well-behaved. Seeking a roommate who’s responsible and doesn’t mind living with a pet."
-
-    },
-    {
-        "gender": "female",
-        "name": { "first": "Baby", "last": "Oscat" },
-        "dob": { "age": 25 },
-        "pictures": ["/astronaut.png"],
-        "location": {
           "street": { "name": "Elm St", "number": 456 },
           "city": "Othertown",
           "state": "NY"
-        },
-        "email": "jane.smith@example.com",
-        "phone": "098-765-4321",
-        "description": " Hi, I’m Chris, currently pursuing a master's degree in environmental science. My hobbies include rock climbing, reading sci-fi novels, and volunteering at the local animal shelter. I’m quiet during the weekdays but enjoy socializing and game nights on weekends. Prefer a roommate who’s considerate and shares an interest in sustainability."
-
       },
-    {
+      "email": "alex.johnson@example.com",
+      "phone": "098-765-4321",
+      "description": "Hi there! I'm Alex, a software engineer who works remotely for a tech startup. I love coding, hiking, and exploring new coffee shops around town. I’m tidy, respectful, and enjoy a good balance of socializing and alone time. On weekends, you can usually find me at the gym or playing board games with friends. Looking for a roommate who’s friendly and keeps common areas clean."
+  },
+  {
       "gender": "female",
-      "name": { "first": "Jaholene", "last": "Smith" },
+      "name": { "first": "Jamie", "last": "Smith" },
       "dob": { "age": 25 },
       "pictures": ["/astronaut.png"],
       "location": {
-        "street": { "name": "Elm St", "number": 456 },
-        "city": "Othertown",
-        "state": "NY"
+          "street": { "name": "Elm St", "number": 456 },
+          "city": "Othertown",
+          "state": "NY"
       },
-      "email": "jane.smith@example.com",
+      "email": "jamie.smith@example.com",
+      "phone": "098-765-4321",
+      "description": "Hey! I'm Jamie, working as a marketing manager at a local firm. I'm passionate about cooking, painting, and attending music festivals. I’m easygoing and appreciate a drama-free living environment. I have a cat named Whiskers who’s very well-behaved. Seeking a roommate who’s responsible and doesn’t mind living with a pet."
+  },
+  {
+      "gender": "female",
+      "name": { "first": "Chris", "last": "Brown" },
+      "dob": { "age": 25 },
+      "pictures": ["/astronaut.png"],
+      "location": {
+          "street": { "name": "Elm St", "number": 456 },
+          "city": "Othertown",
+          "state": "NY"
+      },
+      "email": "chris.brown@example.com",
+      "phone": "098-765-4321",
+      "description": "Hi, I’m Chris, currently pursuing a master's degree in environmental science. My hobbies include rock climbing, reading sci-fi novels, and volunteering at the local animal shelter. I’m quiet during the weekdays but enjoy socializing and game nights on weekends. Prefer a roommate who’s considerate and shares an interest in sustainability."
+  },
+  {
+      "gender": "female",
+      "name": { "first": "Taylor", "last": "Wilson" },
+      "dob": { "age": 25 },
+      "pictures": ["/astronaut.png"],
+      "location": {
+          "street": { "name": "Elm St", "number": 456 },
+          "city": "Othertown",
+          "state": "NY"
+      },
+      "email": "taylor.wilson@example.com",
       "phone": "098-765-4321",
       "description": "Hello! I’m Taylor, a graphic designer working for an ad agency. My interests include photography, yoga, and binge-watching crime documentaries. I’m neat, organized, and value open communication. I occasionally work from home, so I need a quiet space. Looking for a roommate who’s chill, responsible, and enjoys a peaceful home environment."
-
-    },
-    {
+  },
+  {
       "gender": "male",
-      "name": { "first": "John", "last": "Doe" },
+      "name": { "first": "Morgan", "last": "Doe" },
       "dob": { "age": 30 },
       "pictures": ["/astronaut.png"],
       "location": {
-        "street": { "name": "Main St", "number": 123 },
-        "city": "Anytown",
-        "state": "CA"
+          "street": { "name": "Main St", "number": 123 },
+          "city": "Anytown",
+          "state": "CA"
       },
-      "email": "john.doe@example.com",
+      "email": "morgan.doe@example.com",
       "phone": "123-456-7890",
       "description": "Hi, I’m Morgan, a nurse working at the city hospital. My schedule can be a bit irregular, but I make the most of my free time by gardening, baking, and going for long runs. I’m clean, considerate, and respectful of others' space and time. Seeking a roommate who’s understanding of my shifts and enjoys a cozy, friendly atmosphere."
-
-    },
-    {
+  },
+  {
       "gender": "female",
       "name": { "first": "Jane", "last": "Smith" },
       "dob": { "age": 25 },
       "pictures": ["/astronaut.png"],
       "location": {
-        "street": { "name": "Elm St", "number": 456 },
-        "city": "Othertown",
-        "state": "NY"
+          "street": { "name": "Elm St", "number": 456 },
+          "city": "Othertown",
+          "state": "NY"
       },
       "email": "jane.smith@example.com",
       "phone": "098-765-4321",
-      "description": " Hey! I'm Jamie, working as a marketing manager at a local firm. I'm passionate about cooking, painting, and attending music festivals. I’m easygoing and appreciate a drama-free living environment. I have a cat named Whiskers who’s very well-behaved. Seeking a roommate who’s responsible and doesn’t mind living with a pet."
+      "description": "Hey! I'm Jamie, working as a marketing manager at a local firm. I'm passionate about cooking, painting, and attending music festivals. I’m easygoing and appreciate a drama-free living environment. I have a cat named Whiskers who’s very well-behaved. Seeking a roommate who’s responsible and doesn’t mind living with a pet."
+  },
+  {
+    "gender": "female",
+    "name": { "first": "Samantha", "last": "Adams" },
+    "dob": { "age": 28 },
+    "pictures": ["/astronaut.png"],
+    "location": {
+        "street": { "name": "Oak St", "number": 789 },
+        "city": "Othertown",
+        "state": "NY"
+    },
+    "email": "samantha.adams@example.com",
+    "phone": "123-456-7890",
+    "description": "Hi, I'm Samantha, a digital marketer with a passion for travel and photography. I love exploring new cultures and cuisines. I'm looking for a roommate who is respectful, tidy, and enjoys a quiet home environment."
+},
+{
+    "gender": "male",
+    "name": { "first": "Daniel", "last": "Baker" },
+    "dob": { "age": 27 },
+    "pictures": ["/astronaut.png"],
+    "location": {
+        "street": { "name": "Pine St", "number": 101 },
+        "city": "Anytown",
+        "state": "CA"
+    },
+    "email": "daniel.baker@example.com",
+    "phone": "234-567-8901",
+    "description": "Hello, I'm Daniel, a software developer who enjoys hiking, gaming, and playing guitar. I'm neat, organized, and looking for a roommate who shares similar interests and values a clean living space."
+},
+{
+    "gender": "female",
+    "name": { "first": "Laura", "last": "Clark" },
+    "dob": { "age": 29 },
+    "pictures": ["/astronaut.png"],
+    "location": {
+        "street": { "name": "Maple St", "number": 202 },
+        "city": "Othertown",
+        "state": "NY"
+    },
+    "email": "laura.clark@example.com",
+    "phone": "345-678-9012",
+    "description": "Hi, I'm Laura, an artist and freelance graphic designer. I love painting, yoga, and spending time in nature. I'm looking for a roommate who is creative, open-minded, and respects personal space."
+},
+{
+    "gender": "male",
+    "name": { "first": "Michael", "last": "Davis" },
+    "dob": { "age": 31 },
+    "pictures": ["/astronaut.png"],
+    "location": {
+        "street": { "name": "Birch St", "number": 303 },
+        "city": "Anytown",
+        "state": "CA"
+    },
+    "email": "michael.davis@example.com",
+    "phone": "456-789-0123",
+    "description": "Hey, I'm Michael, a chef who enjoys cooking, biking, and gardening. I'm clean, responsible, and looking for a roommate who appreciates good food and a harmonious living space."
+},
+{
+    "gender": "female",
+    "name": { "first": "Emily", "last": "Evans" },
+    "dob": { "age": 26 },
+    "pictures": ["/astronaut.png"],
+    "location": {
+        "street": { "name": "Cedar St", "number": 404 },
+        "city": "Othertown",
+        "state": "NY"
+    },
+    "email": "emily.evans@example.com",
+    "phone": "567-890-1234",
+    "description": "Hi, I'm Emily, a teacher who loves reading, hiking, and yoga. I'm organized, friendly, and looking for a roommate who is considerate and values a peaceful home environment."
+},
+{
+    "gender": "male",
+    "name": { "first": "Joshua", "last": "Franklin" },
+    "dob": { "age": 29 },
+    "pictures": ["/astronaut.png"],
+    "location": {
+        "street": { "name": "Spruce St", "number": 505 },
+        "city": "Anytown",
+        "state": "CA"
+    },
+    "email": "joshua.franklin@example.com",
+    "phone": "678-901-2345",
+    "description": "Hello, I'm Joshua, a financial analyst who enjoys running, cooking, and playing board games. I'm looking for a roommate who is reliable, tidy, and enjoys socializing."
+},
+{
+    "gender": "female",
+    "name": { "first": "Olivia", "last": "Garcia" },
+    "dob": { "age": 27 },
+    "pictures": ["/astronaut.png"],
+    "location": {
+        "street": { "name": "Willow St", "number": 606 },
+        "city": "Othertown",
+        "state": "NY"
+    },
+    "email": "olivia.garcia@example.com",
+    "phone": "789-012-3456",
+    "description": "Hi, I'm Olivia, a marketing specialist who enjoys painting, hiking, and trying new recipes. I'm easygoing, neat, and looking for a roommate who values a clean and friendly living environment."
+},
+{
+    "gender": "male",
+    "name": { "first": "David", "last": "Harris" },
+    "dob": { "age": 32 },
+    "pictures": ["/astronaut.png"],
+    "location": {
+        "street": { "name": "Aspen St", "number": 707 },
+        "city": "Anytown",
+        "state": "CA"
+    },
+    "email": "david.harris@example.com",
+    "phone": "890-123-4567",
+    "description": "Hi, I'm David, a project manager who enjoys hiking, reading, and playing the piano. I'm looking for a roommate who is respectful, clean, and enjoys a quiet home environment."
+},
+{
+    "gender": "female",
+    "name": { "first": "Sophia", "last": "Irving" },
+    "dob": { "age": 26 },
+    "pictures": ["/astronaut.png"],
+    "location": {
+        "street": { "name": "Pine St", "number": 808 },
+        "city": "Othertown",
+        "state": "NY"
+    },
+    "email": "sophia.irving@example.com",
+    "phone": "901-234-5678",
+    "description": "Hello, I'm Sophia, a medical student who loves reading, painting, and yoga. I'm neat, quiet, and looking for a roommate who values a clean and calm living space."
+},
+{
+    "gender": "male",
+    "name": { "first": "Ethan", "last": "Jackson" },
+    "dob": { "age": 28 },
+    "pictures": ["/astronaut.png"],
+    "location": {
+        "street": { "name": "Oak St", "number": 909 },
+        "city": "Anytown",
+        "state": "CA"
+    },
+    "email": "ethan.jackson@example.com",
+    "phone": "012-345-6789",
+    "description": "Hi, I'm Ethan, a graphic designer who enjoys biking, photography, and playing video games. I'm looking for a roommate who is clean, respectful, and shares similar interests."
+},
+{
+  "gender": "female",
+  "name": { "first": "Rachel", "last": "Kelly" },
+  "dob": { "age": 30 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Maple St", "number": 1010 },
+      "city": "Othertown",
+      "state": "NY"
+  },
+  "email": "rachel.kelly@example.com",
+  "phone": "123-456-7890",
+  "description": "Hi, I'm Rachel, a writer who enjoys reading, traveling, and cooking. I'm looking for a roommate who is clean, quiet, and values a peaceful home environment."
+},
+{
+  "gender": "male",
+  "name": { "first": "Luke", "last": "Miller" },
+  "dob": { "age": 27 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Birch St", "number": 1111 },
+      "city": "Anytown",
+      "state": "CA"
+  },
+  "email": "luke.miller@example.com",
+  "phone": "234-567-8901",
+  "description": "Hello, I'm Luke, an architect who enjoys sketching, hiking, and playing basketball. I'm looking for a roommate who is respectful, tidy, and enjoys a calm living space."
+},
+{
+  "gender": "female",
+  "name": { "first": "Mia", "last": "Nelson" },
+  "dob": { "age": 28 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Cedar St", "number": 1212 },
+      "city": "Othertown",
+      "state": "NY"
+  },
+  "email": "mia.nelson@example.com",
+  "phone": "345-678-9012",
+  "description": "Hi, I'm Mia, a nurse who loves reading, yoga, and gardening. I'm organized, friendly, and looking for a roommate who is considerate and values a clean living environment."
+},
+{
+  "gender": "male",
+  "name": { "first": "Jack", "last": "Owens" },
+  "dob": { "age": 29 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Spruce St", "number": 1313 },
+      "city": "Anytown",
+      "state": "CA"
+  },
+  "email": "jack.owens@example.com",
+  "phone": "456-789-0123",
+  "description": "Hello, I'm Jack, a teacher who enjoys hiking, playing guitar, and cooking. I'm looking for a roommate who is tidy, respectful, and enjoys a quiet living space."
+},
+{
+  "gender": "female",
+  "name": { "first": "Ella", "last": "Parker" },
+  "dob": { "age": 25 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Willow St", "number": 1414 },
+      "city": "Othertown",
+      "state": "NY"
+  },
+  "email": "ella.parker@example.com",
+  "phone": "567-890-1234",
+  "description": "Hi, I'm Ella, a graphic designer who loves painting, hiking, and trying new recipes. I'm looking for a roommate who is clean, friendly, and enjoys a creative living environment."
+},
+{
+  "gender": "male",
+  "name": { "first": "Liam", "last": "Quinn" },
+  "dob": { "age": 30 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Aspen St", "number": 1515 },
+      "city": "Anytown",
+      "state": "CA"
+  },
+  "email": "liam.quinn@example.com",
+  "phone": "678-901-2345",
+  "description": "Hey, I'm Liam, a financial analyst who enjoys running, cooking, and playing chess. I'm looking for a roommate who is reliable, tidy, and enjoys a peaceful home environment."
+},
+{
+  "gender": "female",
+  "name": { "first": "Chloe", "last": "Reed" },
+  "dob": { "age": 27 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Pine St", "number": 1616 },
+      "city": "Othertown",
+      "state": "NY"
+  },
+  "email": "chloe.reed@example.com",
+  "phone": "789-012-3456",
+  "description": "Hi, I'm Chloe, a marketing manager who enjoys painting, hiking, and attending music festivals. I'm easygoing, neat, and looking for a roommate who values a clean and friendly living environment."
+},
+{
+  "gender": "male",
+  "name": { "first": "Noah", "last": "Scott" },
+  "dob": { "age": 32 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Oak St", "number": 1717 },
+      "city": "Anytown",
+      "state": "CA"
+  },
+  "email": "noah.scott@example.com",
+  "phone": "890-123-4567",
+  "description": "Hello, I'm Noah, a project manager who enjoys hiking, reading, and playing the piano. I'm looking for a roommate who is respectful, clean, and enjoys a quiet home environment."
+},
+{
+  "gender": "female",
+  "name": { "first": "Ava", "last": "Taylor" },
+  "dob": { "age": 26 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Maple St", "number": 1818 },
+      "city": "Othertown",
+      "state": "NY"
+  },
+  "email": "ava.taylor@example.com",
+  "phone": "901-234-5678",
+  "description": "Hi, I'm Ava, a medical student who loves reading, painting, and yoga. I'm neat, quiet, and looking for a roommate who values a clean and calm living space."
+},
+{
+  "gender": "male",
+  "name": { "first": "Benjamin", "last": "Upton" },
+  "dob": { "age": 28 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Birch St", "number": 1919 },
+      "city": "Anytown",
+      "state": "CA"
+  },
+  "email": "benjamin.upton@example.com",
+  "phone": "012-345-6789",
+  "description": "Hi, I'm Benjamin, a graphic designer who enjoys biking, photography, and playing video games. I'm looking for a roommate who is clean, respectful, and shares similar interests."
+},
 
-    }
-  ]
-  
+{
+  "gender": "female",
+  "name": { "first": "Lily", "last": "Vargas" },
+  "dob": { "age": 29 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Cedar St", "number": 2020 },
+      "city": "Othertown",
+      "state": "NY"
+  },
+  "email": "lily.vargas@example.com",
+  "phone": "123-456-7890",
+  "description": "Hi, I'm Lily, an event planner who enjoys reading, traveling, and cooking. I'm looking for a roommate who is clean, quiet, and values a peaceful home environment."
+},
+{
+  "gender": "male",
+  "name": { "first": "Henry", "last": "White" },
+  "dob": { "age": 26 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Spruce St", "number": 2121 },
+      "city": "Anytown",
+      "state": "CA"
+  },
+  "email": "henry.white@example.com",
+  "phone": "234-567-8901",
+  "description": "Hello, I'm Henry, a photographer who enjoys hiking, gaming, and playing guitar. I'm neat, organized, and looking for a roommate who shares similar interests and values a clean living space."
+},
+{
+  "gender": "female",
+  "name": { "first": "Grace", "last": "Xavier" },
+  "dob": { "age": 30 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Willow St", "number": 2222 },
+      "city": "Othertown",
+      "state": "NY"
+  },
+  "email": "grace.xavier@example.com",
+  "phone": "345-678-9012",
+  "description": "Hi, I'm Grace, a fashion designer who loves painting, yoga, and spending time in nature. I'm looking for a roommate who is creative, open-minded, and respects personal space."
+},
+{
+  "gender": "male",
+  "name": { "first": "Oscar", "last": "Young" },
+  "dob": { "age": 31 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Aspen St", "number": 2323 },
+      "city": "Anytown",
+      "state": "CA"
+  },
+  "email": "oscar.young@example.com",
+  "phone": "456-789-0123",
+  "description": "Hey, I'm Oscar, a chef who enjoys cooking, biking, and gardening. I'm clean, responsible, and looking for a roommate who appreciates good food and a harmonious living space."
+},
+{
+  "gender": "female",
+  "name": { "first": "Hannah", "last": "Zimmer" },
+  "dob": { "age": 25 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Pine St", "number": 2424 },
+      "city": "Othertown",
+      "state": "NY"
+  },
+  "email": "hannah.zimmer@example.com",
+  "phone": "567-890-1234",
+  "description": "Hi, I'm Hannah, a teacher who loves reading, hiking, and yoga. I'm organized, friendly, and looking for a roommate who is considerate and values a peaceful home environment."
+},
+{
+  "gender": "male",
+  "name": { "first": "Samuel", "last": "Anderson" },
+  "dob": { "age": 29 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Oak St", "number": 2525 },
+      "city": "Anytown",
+      "state": "CA"
+  },
+  "email": "samuel.anderson@example.com",
+  "phone": "678-901-2345",
+  "description": "Hello, I'm Samuel, a financial analyst who enjoys running, cooking, and playing board games. I'm looking for a roommate who is reliable, tidy, and enjoys socializing."
+},
+{
+  "gender": "female",
+  "name": { "first": "Isabella", "last": "Brown" },
+  "dob": { "age": 27 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Maple St", "number": 2626 },
+      "city": "Othertown",
+      "state": "NY"
+  },
+  "email": "isabella.brown@example.com",
+  "phone": "789-012-3456",
+  "description": "Hi, I'm Isabella, a marketing specialist who enjoys painting, hiking, and trying new recipes. I'm easygoing, neat, and looking for a roommate who values a clean and friendly living environment."
+},
+{
+  "gender": "male",
+  "name": { "first": "William", "last": "Clark" },
+  "dob": { "age": 32 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Birch St", "number": 2727 },
+      "city": "Anytown",
+      "state": "CA"
+  },
+  "email": "william.clark@example.com",
+  "phone": "890-123-4567",
+  "description": "Hi, I'm William, a project manager who enjoys hiking, reading, and playing the piano. I'm looking for a roommate who is respectful, clean, and enjoys a quiet home environment."
+},
+{
+  "gender": "female",
+  "name": { "first": "Natalie", "last": "Davis" },
+  "dob": { "age": 26 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Cedar St", "number": 2828 },
+      "city": "Othertown",
+      "state": "NY"
+  },
+  "email": "natalie.davis@example.com",
+  "phone": "901-234-5678",
+  "description": "Hello, I'm Natalie, a medical student who loves reading, painting, and yoga. I'm neat, quiet, and looking for a roommate who values a clean and calm living space."
+},
+{
+  "gender": "male",
+  "name": { "first": "James", "last": "Evans" },
+  "dob": { "age": 28 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Spruce St", "number": 2929 },
+      "city": "Anytown",
+      "state": "CA"
+  },
+  "email": "james.evans@example.com",
+  "phone": "012-345-6789",
+  "description": "Hi, I'm James, a graphic designer who enjoys biking, photography, and playing video games. I'm looking for a roommate who is clean, respectful, and shares similar interests."
+},
+{
+  "gender": "female",
+  "name": { "first": "Avery", "last": "Foster" },
+  "dob": { "age": 25 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Oak St", "number": 3030 },
+      "city": "Othertown",
+      "state": "NY"
+  },
+  "email": "avery.foster@example.com",
+  "phone": "123-456-7890",
+  "description": "Hi, I'm Avery, a content writer who enjoys reading, traveling, and cooking. I'm looking for a roommate who is clean, quiet, and values a peaceful home environment."
+},
+{
+  "gender": "male",
+  "name": { "first": "Elijah", "last": "Green" },
+  "dob": { "age": 29 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Maple St", "number": 3131 },
+      "city": "Anytown",
+      "state": "CA"
+  },
+  "email": "elijah.green@example.com",
+  "phone": "234-567-8901",
+  "description": "Hello, I'm Elijah, a software developer who enjoys hiking, gaming, and playing guitar. I'm neat, organized, and looking for a roommate who shares similar interests and values a clean living space."
+},
+{
+  "gender": "female",
+  "name": { "first": "Madison", "last": "Hernandez" },
+  "dob": { "age": 28 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Birch St", "number": 3232 },
+      "city": "Othertown",
+      "state": "NY"
+  },
+  "email": "madison.hernandez@example.com",
+  "phone": "345-678-9012",
+  "description": "Hi, I'm Madison, an artist who loves painting, yoga, and spending time in nature. I'm looking for a roommate who is creative, open-minded, and respects personal space."
+},
+{
+  "gender": "male",
+  "name": { "first": "Logan", "last": "Jones" },
+  "dob": { "age": 31 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Cedar St", "number": 3333 },
+      "city": "Anytown",
+      "state": "CA"
+  },
+  "email": "logan.jones@example.com",
+  "phone": "456-789-0123",
+  "description": "Hey, I'm Logan, a chef who enjoys cooking, biking, and gardening. I'm clean, responsible, and looking for a roommate who appreciates good food and a harmonious living space."
+},
+{
+  "gender": "female",
+  "name": { "first": "Amelia", "last": "King" },
+  "dob": { "age": 27 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Spruce St", "number": 3434 },
+      "city": "Othertown",
+      "state": "NY"
+  },
+  "email": "amelia.king@example.com",
+  "phone": "567-890-1234",
+  "description": "Hi, I'm Amelia, a teacher who loves reading, hiking, and yoga. I'm organized, friendly, and looking for a roommate who is considerate and values a peaceful home environment."
+},
+{
+  "gender": "male",
+  "name": { "first": "Jacob", "last": "Lee" },
+  "dob": { "age": 29 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Willow St", "number": 3535 },
+      "city": "Anytown",
+      "state": "CA"
+  },
+  "email": "jacob.lee@example.com",
+  "phone": "678-901-2345",
+  "description": "Hello, I'm Jacob, a financial analyst who enjoys running, cooking, and playing board games. I'm looking for a roommate who is reliable, tidy, and enjoys socializing."
+},
+{
+  "gender": "female",
+  "name": { "first": "Charlotte", "last": "Martinez" },
+  "dob": { "age": 27 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Aspen St", "number": 3636 },
+      "city": "Othertown",
+      "state": "NY"
+  },
+  "email": "charlotte.martinez@example.com",
+  "phone": "789-012-3456",
+  "description": "Hi, I'm Charlotte, a marketing specialist who enjoys painting, hiking, and trying new recipes. I'm easygoing, neat, and looking for a roommate who values a clean and friendly living environment."
+},
+{
+  "gender": "male",
+  "name": { "first": "Sebastian", "last": "Nelson" },
+  "dob": { "age": 32 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Pine St", "number": 3737 },
+      "city": "Anytown",
+      "state": "CA"
+  },
+  "email": "sebastian.nelson@example.com",
+  "phone": "890-123-4567",
+  "description": "Hi, I'm Sebastian, a project manager who enjoys hiking, reading, and playing the piano. I'm looking for a roommate who is respectful, clean, and enjoys a quiet home environment."
+},
+{
+  "gender": "female",
+  "name": { "first": "Victoria", "last": "Owen" },
+  "dob": { "age": 26 },
+  "pictures": ["/astronaut.png"],
+  "location": {
+      "street": { "name": "Oak St", "number": 3838 },
+      "city": "Othertown",
+      "state": "NY"
+  },
+  "email": "victoria.owen@example.com",
+  "phone": "901-234-5678",
+  "description": "Hello, I'm Victoria, a medical student who loves reading, painting, and yoga. I'm neat, quiet, and looking for a roommate who values a clean and calm living space."
+},
+{
+  "gender": "male",
+  "name": { "first": "Matthew", "last": "Perez" },
+  "dob": { "age": 28 },
+  "pictures": ["https://media.istockphoto.com/id/1284547430/photo/gay-man-with-rainbow-eyeshadow-winking-at-camera.jpg?s=612x612&w=0&k=20&c=-1aFl2Ylt-By90P_JMHsHhPzSNy6oEcdmQMtSG227_M="],
+  "location": {
+      "street": { "name": "Maple St", "number": 3939 },
+      "city": "Anytown",
+      "state": "CA"
+  },
+  "email": "matthew.perez@example.com",
+  "phone": "012-345-6789",
+  "description": "Hi, I'm Matthew, a graphic designer who enjoys biking, photography, and playing video games. I'm looking for a roommate who is clean, respectful, and shares similar interests."
+}
+
+
+
+]
+

@@ -12,9 +12,21 @@ export default async function Home() {
   const { user } = await validateRequest();
   return (
     <main className="flex min-h-screen flex-col items-center justify-center  text-white ">
-      <a href="/choices">
-        <button>choices</button>
-      </a>
+      <div className="flex">
+        <h1>Company Name: </h1>
+        <a href="/choices">
+          <button className="ml-3">Choices</button>
+        </a>
+      </div>
+
+      <div className="mt-4 w-3/4 ">
+        <h1>Gay boy Click Here to continue your jouney being Gay:</h1>
+        <a href="/louis">
+          <button className="ml-3 ml-3 border-2 hover:bg-pink-500">
+            I accept being gay!
+          </button>
+        </a>
+      </div>
     </main>
   );
 }

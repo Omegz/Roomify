@@ -49,24 +49,43 @@ function Matches() {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="mb-4 text-2xl font-bold">Your Matches</h1>
-      <div className="flex flex-wrap">
-        {matches.map((match) => (
-          <div
-            key={match.email}
-            className="m-2 transform cursor-pointer border p-4 transition-transform hover:scale-105"
-            onClick={() => openChat(match.name)}
-          >
-            <img
-              src={match.pictures[0]} // Assuming the first picture is displayed in matches
-              alt={`${match.name.first} ${match.name.last}`}
-              className="mb-2 h-24 w-24 rounded-full object-cover"
-            />
-            <h2 className="text-xl font-semibold">{`${match.name.first} ${match.name.last}`}</h2>
-            <p>{match.email}</p>
-          </div>
-        ))}
+    <div>
+      <div className="flex h-24 justify-between bg-gray-500 pl-12 pr-12">
+        <a href="/">
+          <button className=" mt-5">
+            <img src="/homeIcon.png" />
+          </button>
+        </a>
+        <a href="/matches">
+          <button className="mt-5">
+            <img src="/matchesIcon.png" />
+          </button>
+        </a>
+        <a href="/user">
+          <button className="mt-5">
+            <img src="/maleIcon.png" />
+          </button>
+        </a>
+      </div>
+      <div className="p-4">
+        <h1 className="mb-4 text-2xl font-bold">Your Matches</h1>
+        <div className="flex flex-wrap">
+          {matches.map((match) => (
+            <div
+              key={match.email}
+              className="m-2 transform cursor-pointer border p-4 transition-transform hover:scale-105"
+              onClick={() => openChat(match.name)}
+            >
+              <img
+                src={match.pictures[0]} // Assuming the first picture is displayed in matches
+                alt={`${match.name.first} ${match.name.last}`}
+                className="mb-2 h-24 w-24 rounded-full object-cover"
+              />
+              <h2 className="text-xl font-semibold">{`${match.name.first} ${match.name.last}`}</h2>
+              <p>{match.email}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
